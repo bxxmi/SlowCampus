@@ -81,6 +81,8 @@ curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup
 
 ### 로그인
 
+- 발급된 `accessToken`은 24시간 후 만료됩니다.(만료 후 다시 로그인 필요)
+
 ```curl
 curl https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login
   \ -X 'POST'
