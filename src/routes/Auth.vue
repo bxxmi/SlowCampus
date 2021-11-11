@@ -14,7 +14,7 @@ export default {
     methods: {
         auth : async function() {
 
-            const accessToken = this.$store.state.token.data
+            const accessToken = this.$store.state.token.accessToken
             
             //전송
 			const {data}  = await axios({
@@ -23,7 +23,7 @@ export default {
 				headers: {
 					"content-type": "application/json",
 					"apikey": "FcKdtJs202110",
-					"username": "team2",
+					"username": "pyc",
 					Authorization : `Bearer ${accessToken}`,
 				}
 			})

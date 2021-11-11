@@ -3,6 +3,9 @@
     <RouterLink to="/">
       Home.
     </RouterLink>
+    <RouterLink to="/signup">
+      Signup.
+    </RouterLink>
     <RouterLink to="/login">
       Login.
     </RouterLink>
@@ -11,6 +14,9 @@
     </RouterLink>
     <RouterLink to="/logout">
       Logout.
+    </RouterLink>
+    <RouterLink to="/editinfo">
+      Editinfo.
     </RouterLink>
   </header>
 </template>

@@ -3,6 +3,8 @@ import Home from './Home'
 import Login from './Login'
 import Auth from './Auth'
 import Logout from './Logout'
+import Signup from './Signup'
+import Editinfo from './Editinfo'
 
 export default createRouter({
   history: createWebHistory(),
@@ -11,6 +13,10 @@ export default createRouter({
     {
       path: '/',
       component: Home
+    },
+    {
+      path: '/signup',
+      component: Signup
     },
     {
       path: '/login',
@@ -23,6 +29,10 @@ export default createRouter({
     {
       path: '/auth',
       component: Auth
+    },
+    {
+      path: '/editInfo',
+      component: Editinfo
     },
   ]
 })

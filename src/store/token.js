@@ -1,11 +1,12 @@
 export default {
   namespaced: true,
   state: {
-    data: ""
+    accessToken: "",
+    encrypt_key : "1234"
   },
   mutations: {
-    set (state, input) {
-      state.data = input
+    setAccessToken (state, input) {
+      state.accessToken = input
     }
   },
 }
