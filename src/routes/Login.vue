@@ -12,6 +12,12 @@
 </template>
 
 <script>
+/*
+email : pyc3@pyc3.com
+pw : pyc3pyc3
+name: pyc3
+*/
+
 import axios from 'axios';
 import CryptoJS from 'crypto-js'
 
