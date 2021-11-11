@@ -9,6 +9,9 @@
     <RouterLink to="/auth">
       Auth.
     </RouterLink>
+    <RouterLink to="/logout">
+      Logout.
+    </RouterLink>
   </header>
 </template>
 
