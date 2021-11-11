@@ -6,6 +6,9 @@
     <RouterLink to="/login">
       Login.
     </RouterLink>
+    <RouterLink to="/auth">
+      Auth.
+    </RouterLink>
   </header>
 </template>
 
