@@ -1,14 +1,12 @@
-<template>
-  <TheHeader />
-  <RouterView />
-</template>
+<template></template>
 
 <script>
-import TheHeader from '~/components/TheHeader'
-
 export default {
-  components: {
-    TheHeader
-  }
+  async created() {
+    await this.$store.dispatch('account/checkBankListCanChoice', {})
+    await this.$store.dispatch('account/connectAccount', {})
+    await this.$store.dispatch('account/ckeckAccountListandBalance', {})
+    // await this.$store.dispatch('account/closeAccount', {})
+  },
 }
 </script>
