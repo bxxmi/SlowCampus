@@ -1,14 +1,22 @@
 <template>
   <h1>Home page..</h1>
-  <h2>{{ heropyMessage }}</h2>
+  <h2>{{ getAccesstoken }}</h2>
+  <button v-on:click="setAccesstoken()">test</button>
 </template>
 
 <script>
+
 export default {
   computed: {
-    heropyMessage() {
-      return this.$store.state.heropy.message
+    getAccesstoken() {
+      return this.$store.state.token.data
+    }
+  },
+  methods: {
+    setAccesstoken(){
+      this.$store.commit('token/set','test2')
     }
   }
 }
+
 </script>

@@ -3,8 +3,8 @@
     <RouterLink to="/">
       Home.
     </RouterLink>
-    <RouterLink to="/about">
-      About.
+    <RouterLink to="/login">
+      Login.
     </RouterLink>
   </header>
 </template>
