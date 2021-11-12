@@ -61,7 +61,7 @@ export default {
             //img
             if(img_result) obj['profileImgBase64'] = img_result 
 
-            const accessToken = this.$store.state.token.accessToken
+            const accessToken = this.getCookie('accessToken')
 
 			//전송
 			const { data } = await axios({
@@ -74,9 +74,8 @@ export default {
                     Authorization : `Bearer ${accessToken}`,
 				},
 				data: obj
-			}).catch(e => console.log(e.response.data))
+			}).catch(e => alert('error: ' + e.response.data))
 			
-			console.log(data)
             document.getElementById("result").innerHTML = 'email: ' + data.email + '<br>' + 'name: '+ data.displayName + '<br>'
             + 'profile: ' + data.profileImg 
 
@@ -112,7 +111,22 @@ export default {
                 }
             };
 
-        }
+        },
+        getCookie: function(c_name){
+			let name = c_name + "=";
+  			let decodedCookie = decodeURIComponent(document.cookie);
+			let cookie_array = decodedCookie.split(';');
+			for(let i = 0; i <cookie_array.length; i++) {
+				let c = cookie_array[i];
+				while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
     },
 }
 

@@ -63,9 +63,8 @@ export default {
 					"displayName" : name,
 					"profileImgBase64" : img_result ? img_result : null
 				}
-			}).catch(e => console.log(e.response.data))
+			}).catch(e => alert('error: ' + e.response.data))
 			
-			console.log(data)
             document.getElementById("result").innerHTML = data 
 
         },

@@ -4,8 +4,7 @@
 			<br>
 			<p>password <input id="password" type="password"></p>
 			<br>
-			<p>AccessToken : {{ getAccesstoken }}</p>
-			<br>
+			<p id="result"></p>
 			<button v-on:click="logIn">Login</button>
 
 	</div>
@@ -22,11 +21,6 @@ import axios from 'axios';
 import CryptoJS from 'crypto-js'
 
 export default {
-  computed: {
-    getAccesstoken() {
-      return this.$store.state.token.accessToken
-    }
-  },
 	methods: {
 		logIn : async function() {
 			//로그인시 발급된 토큰은 24시간후 만료
@@ -40,8 +34,6 @@ export default {
             const iv = CryptoJS.enc.Base64.parse(key);
             const enc = CryptoJS.AES.encrypt(pw, keyutf, { iv: iv });
             const encStr = enc.toString();
-
-			console.log(key, email, encStr);
 			
 			//전송
 			const { data } = await axios({
@@ -58,11 +50,18 @@ export default {
 				}
 			}).catch(e => console.log(e.response.data))
 
-			this.setToken(data.accessToken)
+			this.setCookie('accessToken', data.accessToken,1)
+
+			document.getElementById("result").innerHTML = "Logged In!"
+
 		},
-		setToken : function(input){
-      this.$store.commit('token/setAccessToken',input)
-  	}
+		setCookie: function(c_name, c_value, ex_day){
+			const date = new Date()
+			//1day 단위
+			date.setTime(date.getTime() + (ex_day*24*60*60*1000))
+			let expires = "expires="+ date.toUTCString()
+			document.cookie = c_name + "=" + c_value + ";" + expires + ";path=/";
+		}
 	},
 }
 
