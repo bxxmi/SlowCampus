@@ -62,23 +62,28 @@ export default {
             if(img_result) obj['profileImgBase64'] = img_result 
 
             const accessToken = this.getCookie('accessToken')
+            
+            //전송
+            try {
+                const {
+                    data
+                } = await axios({
+                    url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
+                    method: 'PUT',
+                    headers: {
+                        "content-type": "application/json",
+                        "apikey": "FcKdtJs202110",
+                        "username": "pyc",
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    data: obj
+                })
 
-			//전송
-			const { data } = await axios({
-				url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
-				method: 'PUT',
-				headers: {
-					"content-type": "application/json",
-					"apikey": "FcKdtJs202110",
-					"username": "pyc",
-                    Authorization : `Bearer ${accessToken}`,
-				},
-				data: obj
-			}).catch(e => alert('error: ' + e.response.data))
-			
-            document.getElementById("result").innerHTML = 'email: ' + data.email + '<br>' + 'name: '+ data.displayName + '<br>'
-            + 'profile: ' + data.profileImg 
-
+                document.getElementById("result").innerHTML = 'email: ' + data.email + '<br>' + 'name: ' + data.displayName + '<br>' +
+                    'profile: ' + data.profileImg
+            } catch (error) {
+                alert('Error: ' + error.response.data)
+            }
         },
         imgCheck : function (event) {
 

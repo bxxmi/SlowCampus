@@ -48,24 +48,29 @@ export default {
             const encStr = enc.toString();
 
  
-			//전송
-			const { data } = await axios({
-				url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup',
-				method: 'POST',
-				headers: {
-					"content-type": "application/json",
-					"apikey": "FcKdtJs202110",
-					"username": "pyc"
-				},
-				data: {
-					"email": email,
-					"password" : encStr,
-					"displayName" : name,
-					"profileImgBase64" : img_result ? img_result : null
-				}
-			}).catch(e => alert('error: ' + e.response.data))
-			
-            document.getElementById("result").innerHTML = data 
+            try {
+                //전송
+                const { data } = await axios({
+                    url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/signup',
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json",
+                        "apikey": "FcKdtJs202110",
+                        "username": "pyc"
+                    },
+                    data: {
+                        "email": email,
+                        "password" : encStr,
+                        "displayName" : name,
+                        "profileImgBase64" : img_result ? img_result : null
+                    }
+                })
+                
+                document.getElementById("result").innerHTML = data 
+                
+            } catch (error) {
+                alert('Error: ' + error.response.data)
+            }
 
         },
         imgCheck : function (event) {

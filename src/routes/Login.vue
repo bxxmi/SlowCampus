@@ -34,26 +34,32 @@ export default {
             const iv = CryptoJS.enc.Base64.parse(key);
             const enc = CryptoJS.AES.encrypt(pw, keyutf, { iv: iv });
             const encStr = enc.toString();
+
+			try {
+				//전송
+				const {
+					data
+				} = await axios({
+					url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login',
+					method: 'POST',
+					headers: {
+						"content-type": "application/json",
+						"apikey": "FcKdtJs202110",
+						"username": "pyc"
+					},
+					data: {
+						"email": email,
+						"password": encStr,
+					}
+				})
+
+				this.setCookie('accessToken', data.accessToken, 1)
+				document.getElementById("result").innerHTML = "Logged In!"
+
+			} catch (error) {
+				alert('Error: ' + error.response.data)
+			}
 			
-			//전송
-			const { data } = await axios({
-				url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/login',
-				method: 'POST',
-				headers: {
-					"content-type": "application/json",
-					"apikey": "FcKdtJs202110",
-					"username": "pyc"
-				},
-				data: {
-					"email": email,
-					"password" : encStr,
-				}
-			}).catch(e => console.log(e.response.data))
-
-			this.setCookie('accessToken', data.accessToken,1)
-
-			document.getElementById("result").innerHTML = "Logged In!"
-
 		},
 		setCookie: function(c_name, c_value, ex_day){
 			const date = new Date()

@@ -16,19 +16,27 @@ export default {
 
             const accessToken = this.getCookie('accessToken')
             
-            //전송
-			const { data } = await axios({
-				url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout',
-				method: 'POST',
-				headers: {
-					"content-type": "application/json",
-					"apikey": "FcKdtJs202110",
-					"username": "pyc",
-					Authorization : `Bearer ${accessToken}`,
-				}
-			}).catch(e => alert('error: ' + e.response.data))
-			
-            document.getElementById("result").innerHTML = data 
+			try {
+				//전송
+				const {
+					data
+				} = await axios({
+					url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/logout',
+					method: 'POST',
+					headers: {
+						"content-type": "application/json",
+						"apikey": "FcKdtJs202110",
+						"username": "pyc",
+						Authorization: `Bearer ${accessToken}`,
+					}
+				})
+
+				document.getElementById("result").innerHTML = data
+
+			} catch (error) {
+				alert('Error: ' + error.response.data)
+			}
+
         },
 		getCookie: function(c_name){
 			let name = c_name + "=";
