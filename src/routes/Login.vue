@@ -55,7 +55,8 @@ export default {
 
 				this.setCookie('accessToken', data.accessToken, 1)
 				document.getElementById("result").innerHTML = "Logged In!"
-
+				this.$store.commit('token/changeLogged', true)
+				this.$router.push('/')
 			} catch (error) {
 				alert('Error: ' + error.response.data)
 			}

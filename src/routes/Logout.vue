@@ -33,6 +33,10 @@ export default {
 
 				document.getElementById("result").innerHTML = data
 
+				//쿠키 값 삭제
+				this.setCookie('accessToken',"",1)
+				this.$store.commit('token/changeLogged', false)
+				this.$router.push('/')
 			} catch (error) {
 				alert('Error: ' + error.response.data)
 			}
@@ -52,6 +56,13 @@ export default {
 				}
 			}
 			return "";
+		},
+		setCookie: function(c_name, c_value, ex_day){
+			const date = new Date()
+			//1day 단위
+			date.setTime(date.getTime() + (ex_day*24*60*60*1000))
+			let expires = "expires="+ date.toUTCString()
+			document.cookie = c_name + "=" + c_value + ";" + expires + ";path=/";
 		}
     },
 }
