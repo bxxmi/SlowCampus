@@ -9,6 +9,10 @@ export default {
     purchasedProductList: []
   }),
   getters: {
+    // 전체 상품 리스트
+    getAllProduct(state) {
+      return state.productList
+    },
     // 전체 상품 리스트에서 뽑아낼 아이디들
     getProductId(state) {
       return state.productList.map(product => product.id)
@@ -68,7 +72,7 @@ export default {
       console.log(data)
     },
     // 관리자 API: 전체 제품 조회
-    async showAllProduct({ commit }) {
+    async getAllProduct({ commit }) {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         method: 'GET',
