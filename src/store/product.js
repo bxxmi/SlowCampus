@@ -3,19 +3,16 @@ import axios from 'axios'
 export default {
   namespaced: true,
   state: () => ({
-    title: '',
-    price: '',
-    description: '',
-    tags: '',
-    show: false,
-    confirmBuy: false,
-    accountNumber: 'i3paQoIb2P34EPwa6cqs',
     // 등록한 제품들이 담길 배열 데이터
     productList: [],
     // 구매한 제품들이 담길 배열 데이터
     purchasedProductList: []
   }),
   getters: {
+    // 전체 상품 리스트
+    getAllProduct(state) {
+      return state.productList
+    },
     // 전체 상품 리스트에서 뽑아낼 아이디들
     getProductId(state) {
       return state.productList.map(product => product.id)
@@ -30,11 +27,14 @@ export default {
       Object.keys(payload).forEach(key => {
         state[key] = payload[key]
       })
+    },
+    addProduct(state, data) {
+      state.productList.push(data)
     }
   },
   actions: {
-     // 관리자 API : 제품 추가
-     async addProduct() {
+     // 관리자 API : 제품 추가 (완료)
+     async addProduct({ commit }, product) {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         method: 'POST',
@@ -42,15 +42,16 @@ export default {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
           'username': 'team2',
-          'masterKey': 'true'
+          'masterKey': true
         },
         data: {
-          'title': this.title,
-          'price': this.price,
-          'description': this.description,
-          'tags': this.tags
+          'title': product[0].title,
+          'price': product[0].price,
+          'description': product[0].description,
+          'tags': product[0].tags
         }
       })
+      commit('addProduct', data)
       console.log(data)
     },
     // 관리자 API: 제품 수정
@@ -71,8 +72,7 @@ export default {
       console.log(data)
     },
     // 관리자 API: 전체 제품 조회
-    async showAllProduct() {
-      this.show = !this.show
+    async getAllProduct({ commit }) {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         method: 'GET',
@@ -80,11 +80,10 @@ export default {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
           'username': 'team2',
-          'masterKey': 'true'
+          'masterKey': true
         }
       })
-      this.items = data
-      console.log(this.items)
+      commit('assignState', { productList: data })
     },
     // 관리자 API: 전체 판매 내역
     async soldProductList() {
