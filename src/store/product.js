@@ -1,22 +1,15 @@
 import axios from 'axios'
 
-// 참고) 기존 vue 파일에서 사용한 데이터 목록입니다.
-// data() {
-//   return {
-//     title: '',
-//     price: '',
-//     description: '',
-//     tags: '',
-//     show: false,
-//     confirmBuy: false,
-//     accountNumber: 'i3paQoIb2P34EPwa6cqs',
-//     items: [],
-//     buylists: []
-//   }
-// }
 export default {
   namespaced: true,
   state: () => ({
+    title: '',
+    price: '',
+    description: '',
+    tags: '',
+    show: false,
+    confirmBuy: false,
+    accountNumber: 'i3paQoIb2P34EPwa6cqs',
     // 등록한 제품들이 담길 배열 데이터
     productList: [],
     // 구매한 제품들이 담길 배열 데이터
@@ -33,13 +26,15 @@ export default {
     }
   },
   mutations: {
-    // assignState(state, payload) {
-    //   Object.keys(payload).forEach(key => {
-    //     state[key] = payload[key]
-    //   })
-    // },
-    // 관리자 API : 제품 추가
-    async addProduct() {
+    assignState(state, payload) {
+      Object.keys(payload).forEach(key => {
+        state[key] = payload[key]
+      })
+    }
+  },
+  actions: {
+     // 관리자 API : 제품 추가
+     async addProduct() {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
         method: 'POST',
@@ -74,9 +69,7 @@ export default {
         }
       })
       console.log(data)
-    }
-  },
-  actions: {
+    },
     // 관리자 API: 전체 제품 조회
     async showAllProduct() {
       this.show = !this.show
