@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
-import account from './account'
 import product from './product'
+import account from './account'
 
 export default createStore({
   modules: {
+    product,
     account,
-    product
   },
 })
