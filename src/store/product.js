@@ -59,7 +59,7 @@ export default {
       console.log(data)
     },
     // 관리자 API: 제품 수정
-    async editItem(itemId) {
+    async editProduct(itemId) {
       const { data } = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
         method: 'PUT',
@@ -78,7 +78,7 @@ export default {
   },
   actions: {
     // 관리자 API: 전체 제품 조회
-    async showAllItems() {
+    async showAllProduct() {
       this.show = !this.show
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
@@ -94,7 +94,7 @@ export default {
       console.log(this.items)
     },
     // 관리자 API: 전체 판매 내역
-    async soldItemList() {
+    async soldProductList() {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all',
         method: 'GET',
@@ -108,7 +108,7 @@ export default {
       console.log(data)
     },
     // 공용 API: 단일 제품 상세 조회
-    async moreInfo(itemId) {
+    async detailProductInfo(itemId) {
       const { data } = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
         method: 'GET',
@@ -121,7 +121,7 @@ export default {
       console.log(data)
     },
     // 사용자 API : 제품 구매 신청
-    async buyItem(itemId, accountNumber) {
+    async requestOrder(itemId, accountNumber) {
       const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy',
@@ -177,7 +177,7 @@ export default {
       console.log(data)
     },
     // 사용자 API : 사용자가 구매한 제품 전체 내역(구매 취소 내역까지 출력)
-    async buyItemList() {
+    async allBuyInfo() {
       const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details',
