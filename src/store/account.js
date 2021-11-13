@@ -17,9 +17,8 @@ export default {
         headers: {
           'Content-Type': 'application/json', // "Content-Type": "application/json"
           apikey: 'FcKdtJs202110',
-          username: 'team2',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NjE5MjYwLCJleHAiOjE2MzY3MDU2NjAsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.9zshV1fKrAqRDJ9q9r9-y2iM8ctiqwHWj8z7Cs3sJwA', // 발행된 액세스 토큰
+          username,
+          Authorization,
         },
       })
 
@@ -36,9 +35,8 @@ export default {
         headers: {
           'Content-Type': 'application/json', // "Content-Type": "application/json"
           apikey: 'FcKdtJs202110',
-          username: 'team2',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NjE5MjYwLCJleHAiOjE2MzY3MDU2NjAsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.9zshV1fKrAqRDJ9q9r9-y2iM8ctiqwHWj8z7Cs3sJwA', // 발행된 액세스 토큰
+          username,
+          Authorization, // 발행된 액세스 토큰
         },
       })
 
@@ -61,15 +59,14 @@ export default {
         headers: {
           'Content-Type': 'application/json', // "Content-Type": "application/json"
           apikey: 'FcKdtJs202110',
-          username: 'team2',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NjE5MjYwLCJleHAiOjE2MzY3MDU2NjAsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.9zshV1fKrAqRDJ9q9r9-y2iM8ctiqwHWj8z7Cs3sJwA', // 발행된 액세스 토큰
+          username,
+          Authorization, // 발행된 액세스 토큰
         },
         data: {
-          bankCode: '088', //KB국민은행으로 임시 설정
-          accountNumber: '111222333333', //
-          phoneNumber: '01012345678',
-          signature: true,
+          bankCode, //KB국민은행으로 임시 설정
+          accountNumber, //
+          phoneNumber,
+          signature,
         },
       })
 
@@ -85,13 +82,13 @@ export default {
         headers: {
           'Content-Type': 'application/json', // "Content-Type": "application/json"
           apikey: 'FcKdtJs202110',
-          username: 'team2',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NjE5MjYwLCJleHAiOjE2MzY3MDU2NjAsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.9zshV1fKrAqRDJ9q9r9-y2iM8ctiqwHWj8z7Cs3sJwA', // 발행된 액세스 토큰
+          username,
+          Authorization
+            , // 발행된 액세스 토큰
         },
         data: {
-          accountId: 'bxWpUcZxAFFB2ZBwnelu',
-          signature: true,
+          accountId,
+          signature,
         },
       })
 
