@@ -1,23 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from './Home'
-import About from './About'
-import Detail from './Detail'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 export default createRouter({
-  history: createWebHistory(),
-  scrollBehavior: () => ({ top: 0 }),
+  history: createWebHashHistory(),
   routes: [
-    {
-      path: '/',
-      component: Home
-    },
-    {
-      path: '/about',
-      component: About
-    },
-    {
-      path: '/detail/:id',
-      component: Detail
-    }
+    
   ]
 })
