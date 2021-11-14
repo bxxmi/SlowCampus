@@ -1,17 +1,8 @@
 <template>
-  <!-- <CreateProduct /> -->
-  <ProductList />
+  <RouterView />
 </template>
 
 <script>
-// import CreateProduct from './components/CreateProduct.vue'
-import ProductList from './components/ProductList.vue'
 
-export default {
-  components: {
-    // CreateProduct,
-    ProductList
-  }
-}
 </script>
 

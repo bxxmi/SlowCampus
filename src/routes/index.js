@@ -1,8 +1,17 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from './Home'
+import ProductDetail from '~/components/ProductDetail'
 
 export default createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
-    
+    {
+      path: '/',
+      component: Home,
+    },
+    {
+      path: '/productDetail/:id',
+      component: ProductDetail
+    }
   ]
 })
