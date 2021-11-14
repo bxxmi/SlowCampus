@@ -1,137 +1,107 @@
 <template>
-    <p>old pw <input id="old_pw" type="password" /></p>
+    <h1>유저정보</h1>
     <br>
-    <p>new pw <input id="new_pw" type="password" /></p>
+    <div>
+        <p>enail : {{store.logged_user.email}}</p>
+        <p>name : {{store.logged_user.displayName}}</p>
+        <p>profile</p>
+        <img :src="store.logged_user.profileImg ?store.logged_user.profileImg : 'basic.png'">
+    </div>
     <br>
-    <p>new name <input id="name" type="text" /></p>
-    <br>
-    <p>profile(1mb 이하의 파일만 가능) 
-        <input id="profile" type="file" @change="imgCheck"/>
-    </p>
-    <br>
+    <h1>정보 수정하기</h1>
 	<div>
-        <p>size : <span id="size">0</span>kb </p>
-	    <img id="preview" src="" />
+        <br>
+	    <div>
+            기존 비밀번호<input id="password" type="password" v-model="old_pw"/>
+        </div>
+        <div>
+            새로운 비밀번호(8자 이상) <input id="passwordCheck" type="password" v-model="new_pw"/>
+            <span class="material-icons">
+                {{ (pw_valid=pwCheck(new_pw)&&(old_pw != new_pw) ) 
+                ? "check" :"warning"}}
+            </span>
+        </div>
+        <br>
+	    <div>
+            새로운 이름(4자 이상)<input id="name" type="text" v-model="name"/>
+            <span class="material-icons">
+                {{ (name_valid=nameCheck(name)&&(name != store.logged_user.displayName)) ? "check" :"warning"}}
+            </span>
+        </div>
+        <br>
+	    <div>새로운 프로필(1mb 이하의 파일만 가능) 
+            <input id="profile" value="" type="file" v-on:change="imgCheck" />
+        </div>
+        <br>
+	    <div>
+            <p>size : 
+                <span id="size">{{this.img_obj.size}}</span>kb 
+            </p>
+	        <img id="preview"
+            :src="this.img_obj.url ? this.img_obj.url: 'basic.png'" />
+	    </div>
+        <br>
+	    <button v-on:click="editInfo">정보 수정하기</button>
 	</div>
-    <br>
-	    <button v-on:click="editInfo">Eidt Info</button>
-    <br>
-    <p id="result"></p>
 </template>
 
 <script>
 
-import axios from 'axios';
-import CryptoJS from 'crypto-js'
-
-let img_result = ""
+import authfunc from './authfunc'
 
 export default {
+    data() {
+        return {
+            //사용자 입력
+            old_pw : "",
+            new_pw : "",
+            name : "",
+            img_obj : {url:null,size:0},
+            //valid 검사
+            pw_valid : false,
+            name_valid : false,
+            store : this.$store.state.auth
+        };
+    },
+    created(){
+        this.nameCheck = authfunc.nameValidation
+        this.pwCheck = authfunc.pwValidation
+        this.imgCheck = function(event){
+            authfunc.imgCheck(event, this)
+        }
+    },
     methods: {
         editInfo : async function() {
-
-            let obj = {}
-
+            //dataobj 생성 및 validation
+            const data_obj = {}
+            //pw
+            //암호화
+            if(this.new_pw){
+                const enc_newpw = authfunc.encryptPW(this.new_pw)
+                const enc_oldpw = authfunc.encryptPW(this.old_pw)
+                if(this.pw_valid){
+                    data_obj['newPassword'] = enc_newpw;
+                    data_obj['oldPassword'] = enc_oldpw;
+                }
+                else
+                    alert('invalid pw')
+            }
             //name
-			const name = document.getElementById("name").value
-
-            if(name) obj['displayName'] = name 
-
-			//password
-            const old_pw = document.getElementById("old_pw").value
-            const new_pw = document.getElementById("new_pw").value
-
-            if(old_pw && new_pw){
-                if(old_pw != new_pw){
-                    const key = this.$store.state.token.encrypt_key
-                    const keyutf = CryptoJS.enc.Utf8.parse(key);
-                    const iv = CryptoJS.enc.Base64.parse(key);
-
-                    const old_enc = CryptoJS.AES.encrypt(old_pw, keyutf, { iv: iv });
-                    const old_encStr = old_enc.toString();
-
-                    const new_enc = CryptoJS.AES.encrypt(new_pw, keyutf, { iv: iv });
-                    const new_encStr = new_enc.toString();
-
-                    obj['oldPassword'] = old_encStr
-                    obj['newPassword'] = new_encStr
-                }
+            if(this.name){
+                this.name_valid 
+                ? data_obj['displayName']=this.name
+                : alert('invalid name')
+            }
+            //profile
+            if(this.img_obj.url){ 
+                data_obj['profileImgBase64']=this.img_obj.url
             }
 
-            //img
-            if(img_result) obj['profileImgBase64'] = img_result 
+            authfunc.editInfoAPI(data_obj)
 
-            const accessToken = this.getCookie('accessToken')
-            
-            //전송
-            try {
-                const {
-                    data
-                } = await axios({
-                    url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/user',
-                    method: 'PUT',
-                    headers: {
-                        "content-type": "application/json",
-                        "apikey": "FcKdtJs202110",
-                        "username": "pyc",
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                    data: obj
-                })
-
-                document.getElementById("result").innerHTML = 'email: ' + data.email + '<br>' + 'name: ' + data.displayName + '<br>' +
-                    'profile: ' + data.profileImg
-            } catch (error) {
-                alert('Error: ' + error.response.data)
-            }
-        },
-        imgCheck : function (event) {
-
-            const selectedFile = event.target.files[0];
-            const reader = new FileReader();
-
-            const imgtag = document.getElementById("preview");
-            imgtag.title = selectedFile.name;
-            
-            //to64base
-            reader.readAsDataURL(selectedFile);
-
-            reader.onload = function (event) {
-
-                //1MB이하 검사
-                img_result = reader.result
-                const length = img_result.length
-                const lastOf64 = img_result.slice(-2) == '==' ? 2 : 1
-                const size_byte = (length * (3/4))-lastOf64
-                const size = (size_byte/1024).toFixed(2)
-
-                if(size > 1024){
-                    alert('over 1MB')
-
-                    document.getElementById("profile").value = ""
-                }
-                else{
-                    imgtag.src = event.target.result
-                    document.getElementById("size").innerHTML = size
-                }
-            };
-
-        },
-        getCookie: function(c_name){
-			let name = c_name + "=";
-  			let decodedCookie = decodeURIComponent(document.cookie);
-			let cookie_array = decodedCookie.split(';');
-			for(let i = 0; i <cookie_array.length; i++) {
-				let c = cookie_array[i];
-				while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-				}
-				if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-				}
-			}
-			return "";
-		}
+            this.old_pw, this.new_pw, this.name = ""
+            this.img_obj = {url:null,size:0}
+        }
     },
 }
 

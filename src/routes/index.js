@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import Login from './Login'
-import Auth from './Auth'
-import Logout from './Logout'
 import Signup from './Signup'
 import Editinfo from './Editinfo'
 
@@ -21,14 +19,6 @@ export default createRouter({
     {
       path: '/login',
       component: Login
-    },
-    {
-      path: '/logout',
-      component: Logout
-    },
-    {
-      path: '/auth',
-      component: Auth
     },
     {
       path: '/editInfo',

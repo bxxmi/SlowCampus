@@ -1,26 +1,26 @@
 <template>
   <header>
     <RouterLink to="/">
-      Home.
+      <!--나중에 이미지로 대체-->
+      Slow Campus
     </RouterLink>
-    <template v-if="this.$store.state.token.logged_in">
-      <RouterLink to="/auth">
-        Auth.
-      </RouterLink>
-      <RouterLink to="/logout">
-        Logout.
-      </RouterLink>
-      <RouterLink to="/editinfo">
-        Editinfo.
-      </RouterLink>
+    <button>
+      <span class="material-icons">shopping_cart</span>
+    </button>
+    <button>
+      <span class="material-icons">favorite</span>
+    </button>
+
+    <template v-if="this.$store.state.auth.logged_in">
+      <button v-on:click="toEditinfo">
+        <span class="material-icons">account_circle</span>
+      </button>
+      <button v-on:click="logOut">로그아웃</button>
     </template>
+
     <template v-else>
-      <RouterLink to="/signup">
-        Signup.
-      </RouterLink>
-      <RouterLink to="/login">
-        Login.
-      </RouterLink>
+      <button v-on:click="toLogin">로그인</button>
+      <button v-on:click="toSignup">회원가입</button>
     </template>
   </header>
 </template>
@@ -28,65 +28,36 @@
 
 <script>
 import { onMounted } from '@vue/runtime-core';
-import axios from 'axios';
-import { computed } from 'vue';
-import { useStore } from 'vuex';
+import authfunc from '../routes/authfunc'
+import store from '../store'
+import router from '../routes'
 
 export default({
   setup() {
+    const accessToken = authfunc.getCookie('accessToken')
+
     // 로그인 여부 체크
-    // 쿠키의 유무
-    function getCookie(c_name){
-			let name = c_name + "=";
-  			let decodedCookie = decodeURIComponent(document.cookie);
-			let cookie_array = decodedCookie.split(';');
-			for(let i = 0; i <cookie_array.length; i++) {
-				let c = cookie_array[i];
-				while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-				}
-				if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-				}
-			}
-			return "";
-		}
-
-    const accessToken = getCookie('accessToken')
-    const store = useStore();
-
     if(accessToken){
-      //Auth
       onMounted(
         async () => {
-        console.log(store.state.token.logged_in)
+        const logged = authfunc.authAPI()
 
-        try {
-          const {
-            data
-          } = await axios({
-            url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me ',
-            method: 'POST',
-            headers: {
-              "content-type": "application/json",
-              "apikey": "FcKdtJs202110",
-              "username": "pyc",
-              Authorization: `Bearer ${accessToken}`,
-            }
-          })
-          data
-            ?store.commit('token/changeLogged', true)
-            :store.commit('token/changeLogged', false)
-          
-        } catch (error) {
-          console.log('Error: ' + error.response.data)
-        }
+        logged 
+        ?store.commit('auth/changeLogged', true)
+        :store.commit('auth/changeLogged', false)
       })
     }else{
-      store.commit('token/changeLogged', false)
+      store.commit('auth/changeLogged', false)
     }
+
     return
   },
+  created(){
+    this.toSignup = ()=>{router.push('/signup')}
+    this.toLogin = ()=>{router.push('/login')}
+    this.toEditinfo = ()=>{router.push('/editInfo')}
+    this.logOut = ()=>{authfunc.logoutAPI()}
+  }
 })
 </script>
 

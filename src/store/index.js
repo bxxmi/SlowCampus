@@ -1,8 +1,8 @@
 import { createStore } from 'vuex'
-import token from './token'
+import auth from './auth'
 
 export default createStore({
   modules: {
-    token
+    auth
   },
 })
