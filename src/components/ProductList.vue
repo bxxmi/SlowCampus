@@ -1,5 +1,4 @@
 <template>
-  <h1>등록된 모든 제품 리스트</h1>
   <ul>
     <ProductItem
       v-for="item in $store.state.product.allProduct"

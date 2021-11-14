@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
-import ProductDetail from './ProductDetail'
-import ProductList from './ProductList'
+import ProductDetail from '~/components/ProductDetail'
 
 export default createRouter({
   history: createWebHistory(),
@@ -9,10 +8,6 @@ export default createRouter({
     {
       path: '/',
       component: Home,
-    },
-    {
-      path: '/productList',
-      component: ProductList
     },
     {
       path: '/productDetail/:id',
