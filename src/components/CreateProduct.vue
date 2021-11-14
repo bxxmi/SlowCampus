@@ -32,7 +32,6 @@ export default {
     }
   },
   methods: {
-    // fix? 뭔가 코드가 아쉬운데 다르게 변경할 수는 없을까 고민해보자
     async addProduct() {
       const product = [{
         'title': this.productName,

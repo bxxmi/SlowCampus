@@ -3,17 +3,15 @@ import axios from 'axios'
 export default {
   namespaced: true,
   state: () => ({
-    // 등록한 제품들이 담길 배열 데이터
+    // 전체 제품 리스트
+    allProduct: [],
+    // 등록한 제품이 담길 배열 데이터
     productList: [],
     // 구매한 제품들이 담길 배열 데이터
     purchasedProductList: []
   }),
   getters: {
-    // 전체 상품 리스트
-    getAllProduct(state) {
-      return state.productList
-    },
-    // 전체 상품 리스트에서 뽑아낼 아이디들
+    // 전체 상품 리스트에서 상세 정보 보기를 위해 뽑아낼 아이디들
     getProductId(state) {
       return state.productList.map(product => product.id)
     },
@@ -52,7 +50,6 @@ export default {
         }
       })
       commit('addProduct', data)
-      console.log(data)
     },
     // 관리자 API: 제품 수정
     async editProduct(itemId) {
@@ -71,7 +68,7 @@ export default {
       })
       console.log(data)
     },
-    // 관리자 API: 전체 제품 조회
+    // 관리자 API: 전체 제품 조회 (완료)
     async getAllProduct({ commit }) {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products',
@@ -83,7 +80,8 @@ export default {
           'masterKey': true
         }
       })
-      commit('assignState', { productList: data })
+      commit('assignState', { allProduct: data })
+      console.log(data)
     },
     // 관리자 API: 전체 판매 내역
     async soldProductList() {
@@ -100,7 +98,7 @@ export default {
       console.log(data)
     },
     // 공용 API: 단일 제품 상세 조회
-    async detailProductInfo(itemId) {
+    async detailProduct(itemId) {
       const { data } = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
         method: 'GET',
@@ -129,8 +127,7 @@ export default {
           accountId: accountNumber
         }
       })
-      this.confirmBuy = data
-      console.log('confirmBuy:' + this.confirmBuy)
+      console.log(data)
     },
     // 사용자 API : 구매 취소
     async cancelOrder(itemId) {

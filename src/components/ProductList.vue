@@ -2,7 +2,7 @@
   <h1>등록된 모든 제품 리스트</h1>
   <ul>
     <ProductItem
-      v-for="item in itemList"
+      v-for="item in $store.state.product.allProduct"
       :key="item.detailId"
       :item="item" />
   </ul>
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     itemList() {
-      return this.$store.getters['product/getAllProduct']
+      return this.$store.dispatch('product/getAllProduct')
     }
   }
 }
