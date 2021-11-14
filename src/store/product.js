@@ -99,11 +99,10 @@ export default {
       })
       console.log(data)
     },
-    // 공용 API: 단일 제품 상세 조회
+    // 공용 API: 단일 제품 상세 조회 ()
     async detailProduct({ commit }, itemId) {
-      console.log(itemId)
       const { data } = await axios({
-        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId.id}`,
         method: 'GET',
         headers: {
           'content-type': 'application/json',
@@ -111,6 +110,7 @@ export default {
           'username': 'team2'
         }
       })
+      console.log(data)
       commit('assignState', { productInfo: data })
     },
     // 사용자 API : 제품 구매 신청

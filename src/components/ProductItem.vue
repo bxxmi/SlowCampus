@@ -19,6 +19,6 @@ export default {
       href: '/productDetail',
       id: this.item.id
     }
-  },
+  }
 }
 </script>

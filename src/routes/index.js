@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
-import About from './About'
 import ProductDetail from './ProductDetail'
+import ProductList from './ProductList'
 
 export default createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
     },
     {
-      path: '/about',
-      component: About
+      path: '/productList',
+      component: ProductList
     },
     {
       path: '/productDetail/:id',
