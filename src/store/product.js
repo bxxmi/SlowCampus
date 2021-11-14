@@ -8,13 +8,15 @@ export default {
     // 등록한 제품이 담길 배열 데이터
     productList: [],
     // 구매한 제품들이 담길 배열 데이터
-    purchasedProductList: []
+    purchasedProductList: [],
+    // 제품 상세 정보가 담길 객체 데이터
+    productInfo: {}
   }),
   getters: {
     // 전체 상품 리스트에서 상세 정보 보기를 위해 뽑아낼 아이디들
-    getProductId(state) {
-      return state.productList.map(product => product.id)
-    },
+    // getProductId(state) {
+    //   return state.productList.map(product => product.id)
+    // },
     // 구매한 제품 리스트에서 뽑아낼 아이디들
     getPurchasedProductId(state) {
       return state.purchasedProductList.map(purchased => purchased.detailId)
@@ -98,7 +100,8 @@ export default {
       console.log(data)
     },
     // 공용 API: 단일 제품 상세 조회
-    async detailProduct(itemId) {
+    async detailProduct({ commit }, itemId) {
+      console.log(itemId)
       const { data } = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
         method: 'GET',
@@ -108,7 +111,7 @@ export default {
           'username': 'team2'
         }
       })
-      console.log(data)
+      commit('assignState', { productInfo: data })
     },
     // 사용자 API : 제품 구매 신청
     async requestOrder(itemId, accountNumber) {

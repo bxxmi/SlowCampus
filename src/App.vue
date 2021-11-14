@@ -1,16 +1,13 @@
 <template>
-  <!-- <CreateProduct /> -->
-  <ProductList />
+  <Product />
 </template>
 
 <script>
-// import CreateProduct from './components/CreateProduct.vue'
-import ProductList from './components/ProductList.vue'
+import Product from './components/Product.vue'
 
 export default {
   components: {
-    // CreateProduct,
-    ProductList
+    Product
   }
 }
 </script>
