@@ -17,6 +17,11 @@ export default {
     unconnectedBanksInfo(state) {
       return state.bankListCanChoice && state.bankListCanChoice.filter(bank => !bank.disabled)
     },
+    bankCodeAndDigitsPair(state) {
+      return state.bankListCanChoice && state.bankListCanChoice.filter(bank => !bank.disabled).reduce((acc,el) => ({
+        ...acc, [el.code]:el.digits
+      }),{})
+    }
   },
   mutations: {
     setState(state,payload) {
