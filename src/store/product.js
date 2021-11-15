@@ -138,43 +138,55 @@ export default {
       console.log(data)
     },
     // 사용자 API : 구매 취소
-    async cancelOrder(itemId) {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
-      const { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel',
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
-        },
-        data: {
-          detailId: itemId
-        }
-      })
-      console.log(data)
+    async cancelOrder({ commit }, input) {
+      const { username,authorization,detailId } = input
+
+      try {
+        await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel',
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'apikey': 'FcKdtJs202110',
+            username,
+            authorization
+          },
+          data: {
+            detailId
+          }
+        })
+      } catch (e) {
+        commit('assignState',{
+          message: e.message
+        })
+      }
     },
     // 사용자 API : 구매 확정
-    async confirmOrder(itemId) {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
-      const { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok',
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
-        },
-        data: {
-          detailId: itemId
-        }
-      })
-      console.log(data)
+    async confirmOrder({ commit }, input) {
+      const { username,authorization,detailId } = input
+
+      try {
+        await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok',
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'apikey': 'FcKdtJs202110',
+            username,
+            authorization
+          },
+          data: {
+            detailId
+          }
+        })
+      } catch (e) {
+        commit('assignState',{
+          message: e.message
+        })
+      }
     },
     // 사용자 API : 사용자가 구매한 제품 전체 내역(구매 취소 내역까지 출력)
-    async allBuyInfo({commit},input) {
+    async allBuyInfo({ commit }, input) {
       const { username , authorization } = input
 
       commit('assignState',{
