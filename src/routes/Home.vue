@@ -1,5 +1,4 @@
 <template>
-  <Header/>
   <MainSlide />
   <SearchProduct />
   <SelectTagBar />
@@ -8,14 +7,12 @@
 
 <script>
 import MainSlide from '~/components/MainSlide'
-import SearchProduct from '~/components/SearchProduct'
-import SelectTagBar from '~/components/SelectTagBar'
-import ProductList from '~/components/ProductList'
-import Header from '~/components/Header'
+import SearchProduct from '~/components/products/SearchProduct'
+import SelectTagBar from '~/components/products/SelectTagBar'
+import ProductList from '~/components/products/ProductList'
 
 export default {
   components: {
-    Header,
     MainSlide,
     SearchProduct,
     SelectTagBar,

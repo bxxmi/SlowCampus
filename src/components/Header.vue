@@ -11,23 +11,29 @@
       <span class="material-icons">favorite</span>
     </button>
 
-    <template v-if="this.$store.state.auth.logged_in">
-      <button v-on:click="toEditinfo">
+    <template v-if="$store.state.auth.logged_in">
+      <button @click="toEditinfo">
         <span class="material-icons">account_circle</span>
       </button>
-      <button v-on:click="logOut">로그아웃</button>
+      <button @click="logOut">
+        로그아웃
+      </button>
     </template>
 
     <template v-else>
-      <button v-on:click="toLogin">로그인</button>
-      <button v-on:click="toSignup">회원가입</button>
+      <button @click="toLogin">
+        로그인
+      </button>
+      <button @click="toSignup">
+        회원가입
+      </button>
     </template>
   </header>
 </template>
 
 
 <script>
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from '@vue/runtime-core'
 import authfunc from '../store/authfunc'
 import store from '../store'
 import router from '../routes'
