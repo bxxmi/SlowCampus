@@ -17,6 +17,11 @@ export default {
     unconnectedBanksInfo(state) {
       return state.bankListCanChoice && state.bankListCanChoice.filter(bank => !bank.disabled)
     },
+    bankCodeAndDigitsPair(state) {
+      return state.bankListCanChoice && state.bankListCanChoice.filter(bank => !bank.disabled).reduce((acc,el) => ({
+        ...acc, [el.code]:el.digits
+      }),{})
+    }
   },
   mutations: {
     setState(state,payload) {
@@ -40,8 +45,8 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             apikey: 'FcKdtJs202110',
-            username: 'team2',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc',
+            username,
+            Authorization,
           },
         })
 
@@ -64,28 +69,27 @@ export default {
 
       try {
         const { data } = await axios({
-          //계좌 목록 및 잔액 조회
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-          method: 'get', // GET method
+          method: 'get',
           headers: {
-            'Content-Type': 'application/json', // "Content-Type": "application/json"
+            'Content-Type': 'application/json', 
             apikey: 'FcKdtJs202110',
-            username: 'team2',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc', // 발행된 액세스 토큰
+            username,
+            Authorization, 
           },
         })
 
         commit('setState',{
           accountListandBalance: data
         })
-      }catch (e){
+      } catch (e){
         commit('setState',{
           message: e.message
         })
       }
     },
 
-    async connectAccount(input) {
+    async connectAccount({ commit },input) {
       const {
         username,
         Authorization,
@@ -94,47 +98,67 @@ export default {
         phoneNumber,
         signature,
       } = input
-      const data = await axios({
-        //계좌 목록 및 잔액 조회
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-        method: 'post', // post method
-        headers: {
-          'Content-Type': 'application/json', // "Content-Type": "application/json"
-          apikey: 'FcKdtJs202110',
-          username,
-          Authorization, // 발행된 액세스 토큰
-        },
-        data: {
-          bankCode, //KB국민은행으로 임시 설정
-          accountNumber, //
-          phoneNumber,
-          signature,
-        },
-      })
 
-      console.log(data, 'connectAccount')
+      try {
+        const data = await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+          method: 'post', // post method
+          headers: {
+            'Content-Type': 'application/json', // "Content-Type": "application/json"
+            apikey: 'FcKdtJs202110',
+            username,
+            Authorization, // 발행된 액세스 토큰
+          },
+          data: {
+            bankCode, //KB국민은행으로 임시 설정
+            accountNumber, //
+            phoneNumber,
+            signature,
+          },
+        })
+
+        console.log(data, 'connectAccount')
+      } catch (e) {
+        commit('setState',{
+          message: e.message
+        })
+      }
     },
 
-    async closeAccount(input) {
+    async closeAccount({ commit },input) {
       const { username, Authorization, accountId, signature } = input
-      const data = await axios({
-        //계좌 목록 및 잔액 조회
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
-        method: 'delete', // GET method
-        headers: {
-          'Content-Type': 'application/json', // "Content-Type": "application/json"
-          apikey: 'FcKdtJs202110',
-          username,
-          Authorization
-            , // 발행된 액세스 토큰
-        },
-        data: {
-          accountId,
-          signature,
-        },
-      })
 
-      console.log(data,'closeAccout')
-    },
+      try {
+        const data = await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
+          method: 'delete', 
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: 'FcKdtJs202110',
+            username,
+            Authorization
+              , 
+          },
+          data: {
+            accountId,
+            signature,
+          },
+        })
+  
+        if(data){
+          commit('setState',{
+            message: '계좌해지가 정상적으로 처리되었습니다.'
+          })
+        } else {
+          commit('setState',{
+            message: '비정상적인 시도입니다.'
+          })
+        }
+      } catch(e) {
+        commit('setState',{
+          message: '비정상적인 시도입니다.'
+        })
+      }
+    }  
   },
 }
