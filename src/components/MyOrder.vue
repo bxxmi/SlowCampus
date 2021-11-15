@@ -1,6 +1,18 @@
 <template>
   <div>
-    <h1>MyOrder</h1>
-    <p>MyOrder</p>
+    <OrderedItem
+      v-for="orderedItem in orderedList"
+      :key="orderedItem.detailId"
+      ordered-item="orderedItem" />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    orderList() {
+      return this.$store.state.product.purchasedProductList
+    }
+  }
+}
+</script>

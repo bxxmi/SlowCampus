@@ -33,6 +33,9 @@ import MyAccount from '~/components/MyAccount'
 import Header from '~/components/Header'
 import MyInfo from '~/components/MyInfo'
 
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
     components: {
         Header,
@@ -50,17 +53,20 @@ export default {
             this.navChoice = 'auth'
         },
       async choiceOrder() {
-        await this.$store.dispatch('product/allBuyInfo')
+        await this.$store.dispatch('product/allBuyInfo',{
+          username: store.state.auth.APIheaderObj.username,
+          authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+        })
         this.navChoice = 'order'
       },
       async choiceAccount() {
         await this.$store.dispatch('account/checkBankListCanChoice',{
-          username: 'team2', //username 변수로 할당하는 코드 필요
-          Authorization :'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc', //액세스 토큰 변수로 할당하는 코드 필요
+          username: store.state.auth.APIheaderObj.username,
+          Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         })
         await this.$store.dispatch('account/checkAccountListandBalance',{
-          username: 'team2', //username 변수로 할당하는 코드 필요
-          Authorization :'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc', //액세스 토큰 변수로 할당하는 코드 필요
+          username: store.state.auth.APIheaderObj.username,
+          Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         })
         this.navChoice = 'account'
       }  
