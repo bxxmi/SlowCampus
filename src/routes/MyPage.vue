@@ -1,5 +1,5 @@
 <template>
-  <Header/>
+  <Header />
   <nav class="my-page-nav">
     <button
       type="button"
@@ -19,8 +19,8 @@
   </nav>
 
   <div class="my-page-display">
-    <div  v-show="navChoice==='auth'" >
-      <MyInfo/>
+    <div v-show="navChoice==='auth'">
+      <MyInfo />
     </div>
     <MyOrder v-show="navChoice==='order'" />
     <MyAccount v-show="navChoice==='account'" />
@@ -39,7 +39,6 @@ export default {
         MyInfo,
         MyOrder,
         MyAccount,
-
     },
     data() {
         return {
@@ -47,17 +46,39 @@ export default {
         }
     },
     methods: {
-        choiceAuth() {
+      async choiceAuth() {
             this.navChoice = 'auth'
         },
-        choiceOrder() {
-            this.navChoice = 'order'
-        },
-        async choiceAccount() {
-          await this.$store.dispatch('account/checkBankListCanChoice',{})
-          await this.$store.dispatch('account/checkAccountListandBalance',{})
-          this.navChoice = 'account'
-        }
-    }
+      async choiceOrder() {
+        await this.$store.dispatch('product/allBuyInfo')
+        this.navChoice = 'order'
+      },
+      async choiceAccount() {
+        await this.$store.dispatch('account/checkBankListCanChoice',{
+          username: 'team2', //username 변수로 할당하는 코드 필요
+          Authorization :'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc', //액세스 토큰 변수로 할당하는 코드 필요
+        })
+        await this.$store.dispatch('account/checkAccountListandBalance',{
+          username: 'team2', //username 변수로 할당하는 코드 필요
+          Authorization :'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2ODkwMjE1LCJleHAiOjE2MzY5NzY2MTUsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.Z90KRCeEVzuS0KwFDkPeVpwSi0orCn1fe7-zCcqbpTc', //액세스 토큰 변수로 할당하는 코드 필요
+        })
+        this.navChoice = 'account'
+      }  
+    } 
 }
 </script>
+
+<style lang="scss" scoped>
+@media screen and (min-width:769px) { //ipad 이후 디바이스 사이즈
+  .my-page {
+    display: flex;
+    flex-direction: row;
+
+    &-nav {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+</style>
+
