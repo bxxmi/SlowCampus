@@ -1,9 +1,41 @@
 <template>
   <div>
-    태그 검색 공간입니다
+    <input
+      v-model="itemName" />
+    <button @click="searchProduct(productName)">
+      검색
+    </button>
   </div>
 </template>
-
+<script>
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      itemName: ''
+    }
+    
+  },
+  method: {
+    async searchProduct(productName) {
+      console.log(productName)
+      let { data } = await axios({
+        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search',
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'apikey': 'FcKdtJs202110',
+          'username': 'team2'
+        },
+        data: {
+          'searchText': productName
+        }
+      })
+      console.log(data)
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 div {
   width: 100%;
