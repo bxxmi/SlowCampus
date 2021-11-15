@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <h1>회원가입하기</h1>
   <br />
   <div>
@@ -74,71 +73,67 @@
 
 <script>
 import authfunc from '../store/authfunc'
-import Header from '~/components/Header'
 import router from '../routes'
 
 export default {
-    components: {
-		Header
-	},
-    data() {
-        return {
-            //입력 저장용 data
-            email: '',
-            pw : '',
-            pw_ck : '',
-            name : '',
-            img_obj : {url:null, size:0},
-            //valid용 data
-            email_valid : false,
-            pw_valid : false,
-            pw_ck_valid : false,
-            name_valid : false,
-        }
+  data() {
+    return {
+      //입력 저장용 data
+      email: '',
+      pw : '',
+      pw_ck : '',
+      name : '',
+      img_obj : {url:null, size:0},
+      //valid용 data
+      email_valid : false,
+      pw_valid : false,
+      pw_ck_valid : false,
+      name_valid : false,
+    }
+  },
+  created(){
+    this.imgCheck = function(event){
+      authfunc.imgCheck(event, this)
+    }
+    this.emailCheck = authfunc.emailValidation
+    this.nameCheck = authfunc.nameValidation
+    this.pwCheck = authfunc.pwValidation
+  },
+  methods: {
+    signUp : async function() {
+    //validation check
+    const valid_result = this.email_valid 
+      && this.pw_valid
+      && this.name_valid
+      && this.pw_ck_valid
+
+    if(!valid_result){
+      alert('Invalid input!')
+      return
+    }
+
+    //비밀번호 암호화
+    const enc_pw = authfunc.encryptPW(this.pw)
+
+    //data 객체 생성
+    const data_obj = {
+      'email': this.email,
+      'password' : enc_pw,
+      'displayName' : this.name,
+      'profileImgBase64' : this.img_obj.url
+    }
+
+    //API 호출
+    const result = await authfunc.signUpAPI(data_obj)
+
+    if(result){
+      alert('회원가입 되었습니다')
+      router.push('/login')
+      }else{
+        alert('회원가입 실패...')
+      }
     },
-    created(){
-        this.imgCheck = function(event){
-            authfunc.imgCheck(event, this)
-        }
-        this.emailCheck = authfunc.emailValidation
-        this.nameCheck = authfunc.nameValidation
-        this.pwCheck = authfunc.pwValidation
-    },
-    methods: {
-        signUp : async function() {
-            //validation check
-            const valid_result = this.email_valid 
-            && this.pw_valid
-            && this.name_valid
-            && this.pw_ck_valid
-
-            if(!valid_result){
-                alert('Invalid input!')
-                return
-            }
-
-            //비밀번호 암호화
-            const enc_pw = authfunc.encryptPW(this.pw)
-
-            //data 객체 생성
-            const data_obj = {
-                'email': this.email,
-                'password' : enc_pw,
-                'displayName' : this.name,
-                'profileImgBase64' : this.img_obj.url
-            }
-
-            //API 호출
-            const result = await authfunc.signUpAPI(data_obj)
-
-            if(result){
-                alert('회원가입 되었습니다')
-                router.push('/login')
-            }else{
-                alert('회원가입 실패...')
-            }
-        },
-    },
+  },
 }
 
 </script>
