@@ -49,8 +49,6 @@ export default {
     productInfo() {
       return this.$store.state.product.productInfo
     }
-  },mounted() {
-    localStorage.getItem(localStorage.key)
   },
   created() {
     this.$store.dispatch('product/detailProduct', {
