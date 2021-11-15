@@ -26,6 +26,10 @@
 </template>
 
 <script>
+
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
@@ -43,8 +47,8 @@ export default {
       this.signature = true
 
       this.$store.dispatch('account/closeAccount',{
-        username: , //username 변수로 할당하는 코드 필요
-        Authorization :'Bearer '+, //액세스 토큰 변수로 할당하는 코드 필요
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         accountId:this.myAccountId, 
         signature: this.signature
       })
