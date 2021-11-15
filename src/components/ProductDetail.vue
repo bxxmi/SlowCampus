@@ -5,7 +5,9 @@
   <div class="section-area">
     <section>
       <div class="thumbnail">
-        {{ productInfo.thumbnail }}
+        <img
+          :src="productInfo.thumbnail"
+          alt="thumbnail" />
       </div>
       <div class="product-info-list">
         <button
@@ -92,7 +94,7 @@ nav {
   width: 100%;
   height: 606px;
   box-sizing: border-box;
-  padding: 200px;
+  padding: 100px;
   section {
     border: 1px solid red;
   }
@@ -105,5 +107,12 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.thumbnail {
+  img {
+    width: 400px;
+    height: 400px;
+  }
 }
 </style>

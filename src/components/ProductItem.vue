@@ -26,7 +26,6 @@ export default {
   },
   mounted() {
     const thumbnail = this.item.thumbnail
-    console.log(thumbnail)
   }
 }
 </script>

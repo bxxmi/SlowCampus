@@ -65,6 +65,7 @@ module.exports = (env, options) => {
       new VueLoaderPlugin()
     ],
     devServer: {
+      open: true,
       historyApiFallback: true
     }
   }
