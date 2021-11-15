@@ -3,7 +3,9 @@
     <input
       v-model="itemName" />
     <button @click="searchProduct(productName)">
-      검색
+      <span class="material-icons">
+        search
+      </span>
     </button>
   </div>
 </template>
