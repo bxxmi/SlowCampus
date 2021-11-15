@@ -22,6 +22,8 @@
     <MyOrder v-show="navChoice==='order'" />
     <MyAccount v-show="navChoice==='account'" />
   </div>
+
+  {{ systemAccountMessage }}
 </template>
 
 <script>
@@ -40,6 +42,11 @@ export default {
       navChoice: 'auth'
     }
   },
+  computed: {
+    systemAccountMessage() {
+      return this.$store.state.account.message
+    }
+  },
   methods: {
     choiceAuth() {
       this.navChoice = 'auth'
@@ -48,10 +55,18 @@ export default {
       this.navChoice = 'order'
     },
     async choiceAccount() {
-      await this.$store.dispatch('account/checkBankListCanChoice',{})
-      await this.$store.dispatch('account/checkAccountListandBalance',{})
+      await this.$store.dispatch('account/checkBankListCanChoice',{
+        username: , //username 변수로 할당하는 코드 필요
+        Authorization :'Bearer '+, //액세스 토큰 변수로 할당하는 코드 필요
+      })
+      await this.$store.dispatch('account/checkAccountListandBalance',{
+        username: , //username 변수로 할당하는 코드 필요
+        Authorization :'Bearer '+, //액세스 토큰 변수로 할당하는 코드 필요
+      })
       this.navChoice = 'account'
     }
   }
 }
 </script>
+
+
