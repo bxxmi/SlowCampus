@@ -28,7 +28,7 @@
 
 <script>
 import { onMounted } from '@vue/runtime-core';
-import authfunc from '../routes/authfunc'
+import authfunc from '../store/authfunc'
 import store from '../store'
 import router from '../routes'
 
@@ -55,7 +55,7 @@ export default({
   created(){
     this.toSignup = ()=>{router.push('/signup')}
     this.toLogin = ()=>{router.push('/login')}
-    this.toEditinfo = ()=>{router.push('/editInfo')}
+    this.toEditinfo = ()=>{router.push('/mypage')}
     this.logOut = ()=>{authfunc.logoutAPI()}
   }
 })

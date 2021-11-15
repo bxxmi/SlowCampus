@@ -1,4 +1,5 @@
 <template>
+    <Header/>
     <h1>회원가입하기</h1>
     <br>
 	<div>
@@ -47,9 +48,13 @@
 </template>
 
 <script>
-import authfunc from './authfunc'
+import authfunc from '../store/authfunc'
+import Header from '~/components/Header'
 
 export default {
+    components: {
+		Header
+	},
     data() {
         return {
             //입력 저장용 data

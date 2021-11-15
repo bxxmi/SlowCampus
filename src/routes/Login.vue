@@ -1,4 +1,5 @@
 <template>
+  	<Header/>
 	<h1>로그인하기</h1>
 	<br>
 	<div>
@@ -22,9 +23,13 @@ name: test
 username: team2
 */
 
-import authfunc from './authfunc'
+import authfunc from '../store/authfunc'
+import Header from '~/components/Header'
 
 export default {
+	components: {
+		Header
+	},
 	data() {
         return {
             email: "",

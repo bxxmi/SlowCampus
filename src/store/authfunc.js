@@ -1,7 +1,7 @@
-import store from '../store'
+import store from '.'
 import CryptoJS from 'crypto-js'
 import axios from 'axios';
-import router from './'
+import router from '../routes'
 
 export default{
     //[API]: 로그인, 로그아웃, 회원가입, 정보수정, 정보확인(auth)

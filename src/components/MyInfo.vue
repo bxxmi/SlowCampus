@@ -47,7 +47,7 @@
 
 <script>
 
-import authfunc from './authfunc'
+import authfunc from '../store/authfunc'
 
 export default {
     data() {

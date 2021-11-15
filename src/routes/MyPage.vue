@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <nav class="my-page-nav">
     <button
       type="button"
@@ -18,22 +19,27 @@
   </nav>
 
   <div class="my-page-display">
-    <MyAuth v-show="navChoice==='auth'" />
+    <div  v-show="navChoice==='auth'" >
+      <MyInfo/>
+    </div>
     <MyOrder v-show="navChoice==='order'" />
     <MyAccount v-show="navChoice==='account'" />
   </div>
 </template>
 
 <script>
-import MyAuth from '~/components/MyAuth'
 import MyOrder from '~/components/MyOrder'
 import MyAccount from '~/components/MyAccount'
+import Header from '~/components/Header'
+import MyInfo from '~/components/MyInfo'
 
 export default {
     components: {
-        MyAuth,
+        Header,
+        MyInfo,
         MyOrder,
-        MyAccount
+        MyAccount,
+
     },
     data() {
         return {
