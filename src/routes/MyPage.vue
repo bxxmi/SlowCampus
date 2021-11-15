@@ -53,7 +53,10 @@ export default {
             this.navChoice = 'auth'
         },
       async choiceOrder() {
-        await this.$store.dispatch('product/allBuyInfo')
+        await this.$store.dispatch('product/allBuyInfo',{
+          username: store.state.auth.APIheaderObj.username,
+          authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+        })
         this.navChoice = 'order'
       },
       async choiceAccount() {

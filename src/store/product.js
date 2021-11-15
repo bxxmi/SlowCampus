@@ -10,7 +10,9 @@ export default {
     // 구매한 제품들이 담길 배열 데이터
     purchasedProductList: [],
     // 제품 상세 정보가 담길 객체 데이터
-    productInfo: {}
+    productInfo: {},
+    //에러 메시지 저장
+    message: ''
   }),
   getters: {
     // 전체 상품 리스트에서 상세 정보 보기를 위해 뽑아낼 아이디들
@@ -136,56 +138,81 @@ export default {
       console.log(data)
     },
     // 사용자 API : 구매 취소
-    async cancelOrder(itemId) {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
-      const { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel',
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
-        },
-        data: {
-          detailId: itemId
-        }
-      })
-      console.log(data)
+    async cancelOrder({ commit }, input) {
+      const { username,authorization,detailId } = input
+
+      try {
+        await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel',
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'apikey': 'FcKdtJs202110',
+            username,
+            authorization
+          },
+          data: {
+            detailId
+          }
+        })
+      } catch (e) {
+        commit('assignState',{
+          message: e.message
+        })
+      }
     },
     // 사용자 API : 구매 확정
-    async confirmOrder(itemId) {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
-      const { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok',
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
-        },
-        data: {
-          detailId: itemId
-        }
-      })
-      console.log(data)
+    async confirmOrder({ commit }, input) {
+      const { username,authorization,detailId } = input
+
+      try {
+        await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok',
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'apikey': 'FcKdtJs202110',
+            username,
+            authorization
+          },
+          data: {
+            detailId
+          }
+        })
+      } catch (e) {
+        commit('assignState',{
+          message: e.message
+        })
+      }
     },
     // 사용자 API : 사용자가 구매한 제품 전체 내역(구매 취소 내역까지 출력)
-    async allBuyInfo() {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
-      const { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details',
-        method: 'GET',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
-        }
+    async allBuyInfo({ commit }, input) {
+      const { username , authorization } = input
+
+      commit('assignState',{
+        purchasedProductList: []
       })
-      this.buylists = data
-      console.log(this.buylists)
+
+      try {
+        const { data } = await axios({
+          url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/details',
+          method: 'GET',
+          headers: {
+            'content-type': 'application/json',
+            'apikey': 'FcKdtJs202110',
+            username,
+            authorization
+          }
+        })
+  
+        commit('assignState',{
+          purchasedProductList: data
+        })
+      } catch (e) {
+        commit('assignState',{
+          message: e.message
+        })
+      }
     },
     // 사용자 API : 단일 제품 구매 정보 상세 보기 
     async detailBuyInfo(itemId) {
