@@ -48,9 +48,12 @@ export default {
           'title': product[0].title,
           'price': product[0].price,
           'description': product[0].description,
-          'tags': product[0].tags
+          'tags': product[0].tags,
+          'thumbnailBase64': product[0].thumbnailBase64,
+          'photoBase64': product[0].photoBase64
         }
       })
+      console.log(data)
       commit('addProduct', data)
     },
     // 관리자 API: 제품 수정
@@ -83,7 +86,7 @@ export default {
         }
       })
       commit('assignState', { allProduct: data })
-      console.log(data)
+      // return this.addProduct
     },
     // 관리자 API: 전체 판매 내역
     async soldProductList() {
