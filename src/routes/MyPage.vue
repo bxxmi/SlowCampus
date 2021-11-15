@@ -30,28 +30,28 @@ import MyOrder from '~/components/MyOrder'
 import MyAccount from '~/components/MyAccount'
 
 export default {
-    components: {
-        MyAuth,
-        MyOrder,
-        MyAccount
-    },
-    data() {
-        return {
-            navChoice: 'auth'
-        }
-    },
-    methods: {
-        choiceAuth() {
-            this.navChoice = 'auth'
-        },
-        choiceOrder() {
-            this.navChoice = 'order'
-        },
-        async choiceAccount() {
-          await this.$store.dispatch('account/checkBankListCanChoice',{})
-          await this.$store.dispatch('account/checkAccountListandBalance',{})
-          this.navChoice = 'account'
-        }
+  components: {
+    MyAuth,
+    MyOrder,
+    MyAccount
+  },
+  data() {
+    return {
+      navChoice: 'auth'
     }
+  },
+  methods: {
+    choiceAuth() {
+      this.navChoice = 'auth'
+    },
+    choiceOrder() {
+      this.navChoice = 'order'
+    },
+    async choiceAccount() {
+      await this.$store.dispatch('account/checkBankListCanChoice',{})
+      await this.$store.dispatch('account/checkAccountListandBalance',{})
+      this.navChoice = 'account'
+    }
+  }
 }
 </script>
