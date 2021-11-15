@@ -1,7 +1,8 @@
 <template>
   <div class="tag-area">
     <ul class="tag-list">
-      <li class="tag-item">
+      <li
+        class="tag-item">
         👀 ALL
       </li>
       <li class="tag-item">
@@ -23,6 +24,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      clicked: true
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .tag-area {
   width: 100%;
@@ -31,6 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
   .tag-list {
     border: 1px solid red;
     display: flex;

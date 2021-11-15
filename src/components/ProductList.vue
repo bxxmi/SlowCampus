@@ -1,6 +1,5 @@
 <template>
-  <!-- <div>{{ itemList }}</div> -->
-  <ul>
+  <ul class="product-list">
     <ProductItem
       v-for="item in itemList"
       :key="item.detailId"
@@ -27,8 +26,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 40px;
-  text-align: center;
+.product-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
