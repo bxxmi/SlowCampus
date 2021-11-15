@@ -3,6 +3,7 @@
     <section>
       <div class="thumbnail">
         <img
+          ref="image"
           :src="productInfo.thumbnail"
           alt="thumbnail" />
       </div>
@@ -50,6 +51,12 @@ export default {
     this.$store.dispatch('product/detailProduct', {
       id: this.$route.params.id
     })
+  },
+  mounted() {
+    const thumbnail = this.productInfo.thumbnail
+    if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
   },
   methods: {
     clickLikeBtn() {

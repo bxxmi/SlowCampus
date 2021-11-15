@@ -3,6 +3,7 @@
     <RouterLink
       :to="`${href}/${id}`">
       <img
+        ref="image"
         :src="item.thumbnail"
         alt="thumbnail" />
       <p>{{ item.title }}</p>
@@ -26,6 +27,9 @@ export default {
   },
   mounted() {
     const thumbnail = this.item.thumbnail
+    if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
   }
 }
 </script>
