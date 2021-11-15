@@ -1,55 +1,81 @@
 <template>
-    <Header/>
-    <h1>회원가입하기</h1>
-    <br>
-	<div>
-	    <div>
-            e-mail <input id="email" type="email" v-model="email"/>
-            <span class="material-icons">
-                {{ (email_valid = emailCheck(email)) ? "check" :"warning"}}
-            </span>
-        </div>
-        <br>
-	    <div>
-            pw(8자 이상)<input id="password" type="password" v-model="pw"/>
-            <span class="material-icons">
-                {{ (pw_valid=pwCheck(pw)) ? "check" :"warning"}}
-            </span>
-        </div>
-        <div>
-            pw 체크 <input id="passwordCheck" type="password" v-model="pw_ck"/>
-            <span v-if="!pw" class="material-icons">warning</span>
-            <span v-else class="material-icons">
-                {{ (pw_ck_valid = pw == pw_ck) ? "check" :"warning"}}
-            </span>
-        </div>
-        <br>
-	    <div>
-            name(4자 이상)<input id="name" type="text" v-model="name"/>
-            <span class="material-icons">
-                {{ (name_valid=nameCheck(name)) ? "check" :"warning"}}
-            </span>
-        </div>
-        <br>
-	    <div>profile(1mb 이하의 파일만 가능) 
-            <input id="profile" value="" type="file" v-on:change="imgCheck" />
-        </div>
-        <br>
-	    <div>
-            <div>size : 
-                <span id="size">{{this.img_obj.size}}</span>kb
-            </div>
-	        <img id="preview"
-            :src="this.img_obj.url ? this.img_obj.url: 'basic.png'" />	    
-        </div>
-        <br>
-	    <button v-on:click="signUp">Singup</button>
-	</div>
+  <Header />
+  <h1>회원가입하기</h1>
+  <br />
+  <div>
+    <div>
+      e-mail <input
+        id="email"
+        v-model="email"
+        type="email" />
+      <span class="material-icons">
+        {{ (email_valid = emailCheck(email)) ? "check" :"warning" }}
+      </span>
+    </div>
+    <br />
+    <div>
+      pw(8자 이상)<input
+        id="password"
+        v-model="pw"
+        type="password" />
+      <span class="material-icons">
+        {{ (pw_valid=pwCheck(pw)) ? "check" :"warning" }}
+      </span>
+    </div>
+    <div>
+      pw 체크 <input
+        id="passwordCheck"
+        v-model="pw_ck"
+        type="password" />
+      <span
+        v-if="!pw"
+        class="material-icons">warning</span>
+      <span
+        v-else
+        class="material-icons">
+        {{ (pw_ck_valid = pw == pw_ck) ? "check" :"warning" }}
+      </span>
+    </div>
+    <br />
+    <div>
+      name(4자 이상)<input
+        id="name"
+        v-model="name"
+        type="text" />
+      <span class="material-icons">
+        {{ (name_valid=nameCheck(name)) ? "check" :"warning" }}
+      </span>
+    </div>
+    <br />
+    <div>
+      profile(1mb 이하의 파일만 가능) 
+      <input
+        id="profile"
+        value=""
+        type="file"
+        @change="imgCheck" />
+    </div>
+    <br />
+    <div>
+      <div>
+        size : 
+        <span id="size">{{ img_obj.size }}</span>kb
+      </div>
+      <img
+        id="preview"
+        :src="img_obj.url ? img_obj.url: 'basic.png'" />	    
+    </div>
+    <br />
+    <button @click="signUp">
+      Singup
+    </button>
+  </div>
 </template>
 
 <script>
 import authfunc from '../store/authfunc'
 import Header from '~/components/Header'
+import router from '../routes'
 
 export default {
     components: {
@@ -58,17 +84,17 @@ export default {
     data() {
         return {
             //입력 저장용 data
-            email: "",
-            pw : "",
-            pw_ck : "",
-            name : "",
+            email: '',
+            pw : '',
+            pw_ck : '',
+            name : '',
             img_obj : {url:null, size:0},
             //valid용 data
             email_valid : false,
             pw_valid : false,
             pw_ck_valid : false,
             name_valid : false,
-        };
+        }
     },
     created(){
         this.imgCheck = function(event){
@@ -96,10 +122,10 @@ export default {
 
             //data 객체 생성
             const data_obj = {
-                "email": this.email,
-                "password" : enc_pw,
-                "displayName" : this.name,
-                "profileImgBase64" : this.img_obj.url
+                'email': this.email,
+                'password' : enc_pw,
+                'displayName' : this.name,
+                'profileImgBase64' : this.img_obj.url
             }
 
             //API 호출

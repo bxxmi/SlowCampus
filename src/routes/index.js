@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
-import ProductDetail from '~/components/ProductDetail'
+import ProductDetail from '~/components/products/ProductDetail'
 import CreateProduct from './CreateProduct'
 import MyPage from '~/routes/MyPage'
 

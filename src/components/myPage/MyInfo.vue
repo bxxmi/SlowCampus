@@ -64,8 +64,7 @@
 </template>
 
 <script>
-
-import authfunc from '../store/authfunc'
+import authfunc from '../../store/authfunc'
 
 export default {
     data() {

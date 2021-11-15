@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import MyOrder from '~/components/MyOrder'
-import MyAccount from '~/components/MyAccount'
+import MyOrder from '~/components/myPage/MyOrder'
+import MyAccount from '~/components/myPage/MyAccount'
 import Header from '~/components/Header'
-import MyInfo from '~/components/MyInfo'
+import MyInfo from '~/components/myPage/MyInfo'
 
 import store from '~/store/'
 import authfunc from '~/store/authfunc.js'
