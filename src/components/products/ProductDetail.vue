@@ -1,7 +1,4 @@
 <template>
-  <nav>
-    네비게이션
-  </nav>
   <div class="section-area">
     <section>
       <div class="thumbnail">
@@ -35,9 +32,6 @@
       </div>
     </section>
   </div>
-  <footer>
-    푸터
-  </footer>
 </template>
 
 <script>
@@ -74,19 +68,11 @@ export default {
 
 .like-btn {
   background-color: transparent;
+  margin-bottom: 10px;
 }
 
 .like {
   color: red;
-}
-
-nav {
-  width: 100%;
-  height: 80px;
-  background-color: skyblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .section-area {
@@ -94,25 +80,48 @@ nav {
   width: 100%;
   height: 606px;
   box-sizing: border-box;
-  padding: 100px;
+  padding: 100px 300px;
   section {
     border: 1px solid red;
+    display: flex;
+      min-width: 650px;
+    .thumbnail {
+      img {
+      width: 400px;
+      height: 400px;
+      display: block;
+      margin-right: 20px;
+      }
+    }
+    .product-info-list {
+      border: 1px solid red;
+      width: 100%;
+      .product-tag {
+        width: 50px;
+        height: 20px;
+        background-color: #eaeaea;
+        color: #444444;
+        font-weight: 700;
+        line-height: 15px;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+      .product-title {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      .product-description {
+        color: #444444;
+        margin-bottom: 30px;
+      }
+    }
   }
 }
 
-footer {
-  width: 100%;
-  height: 80px;
-  background-color: skyblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.thumbnail {
-  img {
-    width: 400px;
-    height: 400px;
-  }
+.buy-btn {
+  border: 1px solid red;
 }
 </style>
