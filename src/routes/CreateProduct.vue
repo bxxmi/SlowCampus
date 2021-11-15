@@ -16,6 +16,12 @@
     v-model="productTag"
     type="text"
     placeholder="제품태그" />
+  <input
+    type="file"
+    @change="selectThumbnail" />
+  <input
+    type="file"
+    @change="selectDetailImage" />
   <button @click="addProduct">
     등록
   </button>
@@ -28,18 +34,41 @@ export default {
       productName: '',
       productPrice: '',
       productDescription: '',
-      productTag: ''
+      productTag: '',
+      productThumbnail: '',
+      productDetailImage: ''
     }
   },
   methods: {
+    selectThumbnail(event) {
+      const { files } = event.target
+      for (const file of files) {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.addEventListener('load', () => {
+          this.productThumbnail = reader.result
+        })
+      }
+    },
+    selectDetailImage(event) {
+      const { files } = event.target
+      for (const file of files) {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.addEventListener('load', () => {
+          this.productDetailImage = reader.result
+        })
+      }
+    },
     async addProduct() {
       const product = [{
         'title': this.productName,
         'price': this.productPrice,
         'description': this.productDescription,
-        'tags': this.productTag
+        'tags': this.productTag,
+        'thumbnailBase64': this.productThumbnail,
+        'photoBase64': this.productDetailImage
       }]
-
       await this.$store.dispatch('product/addProduct', product)
     }
   }

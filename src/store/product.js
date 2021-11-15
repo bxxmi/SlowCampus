@@ -8,13 +8,15 @@ export default {
     // 등록한 제품이 담길 배열 데이터
     productList: [],
     // 구매한 제품들이 담길 배열 데이터
-    purchasedProductList: []
+    purchasedProductList: [],
+    // 제품 상세 정보가 담길 객체 데이터
+    productInfo: {}
   }),
   getters: {
     // 전체 상품 리스트에서 상세 정보 보기를 위해 뽑아낼 아이디들
-    getProductId(state) {
-      return state.productList.map(product => product.id)
-    },
+    // getProductId(state) {
+    //   return state.productList.map(product => product.id)
+    // },
     // 구매한 제품 리스트에서 뽑아낼 아이디들
     getPurchasedProductId(state) {
       return state.purchasedProductList.map(purchased => purchased.detailId)
@@ -46,9 +48,12 @@ export default {
           'title': product[0].title,
           'price': product[0].price,
           'description': product[0].description,
-          'tags': product[0].tags
+          'tags': product[0].tags,
+          'thumbnailBase64': product[0].thumbnailBase64,
+          'photoBase64': product[0].photoBase64
         }
       })
+      console.log(data)
       commit('addProduct', data)
     },
     // 관리자 API: 제품 수정
@@ -81,7 +86,7 @@ export default {
         }
       })
       commit('assignState', { allProduct: data })
-      console.log(data)
+      // return this.addProduct
     },
     // 관리자 API: 전체 판매 내역
     async soldProductList() {
@@ -97,10 +102,10 @@ export default {
       })
       console.log(data)
     },
-    // 공용 API: 단일 제품 상세 조회
-    async detailProduct(itemId) {
+    // 공용 API: 단일 제품 상세 조회 ()
+    async detailProduct({ commit }, itemId) {
       const { data } = await axios({
-        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId.id}`,
         method: 'GET',
         headers: {
           'content-type': 'application/json',
@@ -109,6 +114,7 @@ export default {
         }
       })
       console.log(data)
+      commit('assignState', { productInfo: data })
     },
     // 사용자 API : 제품 구매 신청
     async requestOrder(itemId, accountNumber) {

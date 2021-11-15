@@ -1,15 +1,15 @@
 <template>
-  <h1>등록된 모든 제품 리스트</h1>
+  <!-- <div>{{ itemList }}</div> -->
   <ul>
     <ProductItem
-      v-for="item in $store.state.product.allProduct"
+      v-for="item in itemList"
       :key="item.detailId"
       :item="item" />
   </ul>
 </template>
 
 <script>
-import ProductItem from './ProductItem.vue'
+import ProductItem from '~/components/ProductItem.vue'
 
 export default {
   components: {
@@ -17,8 +17,11 @@ export default {
   },
   computed: {
     itemList() {
-      return this.$store.dispatch('product/getAllProduct')
+      return this.$store.state.product.allProduct
     }
+  },
+  mounted() {
+    this.$store.dispatch('product/getAllProduct')
   }
 }
 </script>
