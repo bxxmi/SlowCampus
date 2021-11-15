@@ -1,21 +1,21 @@
 <template>
   <MainSlide />
   <SearchProduct />
-  <SelectTagBar />
+  <SelectTagList />
   <ProductList />
 </template>
 
 <script>
 import MainSlide from '~/components/MainSlide'
 import SearchProduct from '~/components/products/SearchProduct'
-import SelectTagBar from '~/components/products/SelectTagBar'
+import SelectTagList from '~/components/products/SelectTagList'
 import ProductList from '~/components/products/ProductList'
 
 export default {
   components: {
     MainSlide,
     SearchProduct,
-    SelectTagBar,
+    SelectTagList,
     ProductList
   }
 }

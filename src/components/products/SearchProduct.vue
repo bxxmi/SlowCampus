@@ -5,7 +5,7 @@
       type="text" 
       placeholder="보고싶은 강의를 찾아보세요 😋" 
       @keyup.enter="searchProduct()" />
-    <button @click="searchProduct()">
+    <button @click="searchProduct">
       <span class="material-icons">
         search
       </span>
@@ -34,7 +34,6 @@ export default {
 div {
   width: 100%;
   height: 70px;
-  background-color: salmon;
   display: flex;
   justify-content: center;
   align-items: center;

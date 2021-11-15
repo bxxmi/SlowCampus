@@ -113,7 +113,7 @@ export default {
       console.log(data)
       commit('assignState', { productInfo: data })
     },
-    // 사용자 API: 제품 검색 
+    // 사용자 API: 제품 검색 - 키워드 (완료) 
     async searchProduct({ commit }, payload) {
       const { productName } = payload
       const { data } = await axios({
@@ -126,6 +126,21 @@ export default {
         }
       })
       const result = data.filter(name => name.title === productName)
+      commit('assignState', { allProduct: result})
+    },
+    // 사용자 API: 제품 검색 - 태그 (완료) 
+    async searchTag({ commit }, payload) {
+      const { tagName } = payload
+      const { data } = await axios({
+        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search',
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'apikey': 'FcKdtJs202110',
+          'username': 'team2'
+        }
+      })
+      const result = data.filter(name => name.tags === tagName)
       commit('assignState', { allProduct: result})
     },
     // 사용자 API : 제품 구매 신청
