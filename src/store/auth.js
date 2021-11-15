@@ -2,13 +2,14 @@ export default {
     namespaced: true,
     state: {
         encryptKey : "1234",
-        logged_in : false,
-        logged_user : {},
         APIheaderObj : {
             "content-type": "application/json",
             "apikey": "FcKdtJs202110",
             "username": "team2"
-        }
+        },
+        //변화되는 내용
+        logged_in : false,
+        logged_user : {},
     },
     mutations: {
       setUser(state, obj){
@@ -17,8 +18,5 @@ export default {
       changeLogged (state, val) {
         state.logged_in = val
       }
-    },
-    actions: {
-        
     }
   }
