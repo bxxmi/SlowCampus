@@ -51,6 +51,10 @@
 </template>
 
 <script>
+
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
@@ -117,8 +121,8 @@ export default {
     },
     submitAccountAdd() {
       this.$store.dispatch('account/connectAccount',{
-        username: , //username 변수로 할당하는 코드 필요
-        Authorization :'Bearer '+, //액세스 토큰 변수로 할당하는 코드 필요
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         bankCode: this.bankCode,
         accountNumber: this.accountNumber.replace(/[-]/g,''),
         phoneNumber: this.phoneNumber.replace(/-/g,''),
