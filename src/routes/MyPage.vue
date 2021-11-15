@@ -48,6 +48,8 @@ export default {
             this.navChoice = 'order'
         },
         async choiceAccount() {
+          await this.$store.dispatch('account/checkBankListCanChoice',{})
+          await this.$store.dispatch('account/checkAccountListandBalance',{})
           this.navChoice = 'account'
         }
     }
