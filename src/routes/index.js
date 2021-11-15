@@ -5,8 +5,7 @@ import Signup from './Signup'
 import Editinfo from './Editinfo'
 
 export default createRouter({
-  history: createWebHistory(),
-  scrollBehavior: () => ({ top: 0 }),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',

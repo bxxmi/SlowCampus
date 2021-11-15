@@ -1,14 +1,17 @@
 <template>
-  <TheHeader />
-  <RouterView />
+  <!-- <CreateProduct /> -->
+  <ProductList />
 </template>
 
 <script>
-import TheHeader from '~/components/TheHeader'
+// import CreateProduct from './components/CreateProduct.vue'
+import ProductList from './components/ProductList.vue'
 
 export default {
   components: {
-    TheHeader
+    // CreateProduct,
+    ProductList
   }
 }
 </script>
+
