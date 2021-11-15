@@ -8,9 +8,16 @@
         {{ productInfo.thumbnail }}
       </div>
       <div class="product-info-list">
-        <div class="like-btn">
-          <i class="far fa-heart"></i>
-        </div>
+        <button
+          class="btn like-btn"
+          @click="clickLikeBtn">
+          <i
+            v-if="like"
+            class="fas fa-heart"></i>
+          <i
+            v-else
+            class="far fa-heart"></i>
+        </button>
         <div class="product-tag">
           {{ productInfo.tags }}
         </div>
@@ -20,7 +27,9 @@
         <div class="product-description">
           {{ productInfo.description }}
         </div>
-        <button>구매하기</button>
+        <button class="btn buy-btn">
+          구매하기
+        </button>
       </div>
     </section>
   </div>
@@ -31,6 +40,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      like: false
+    }
+  },
   computed: {
     productInfo() {
       return this.$store.state.product.productInfo
@@ -40,11 +54,30 @@ export default {
     this.$store.dispatch('product/detailProduct', {
       id: this.$route.params.id
     })
+  },
+  methods: {
+    clickLikeBtn() {
+      this.like = !this.like
+      localStorage.setItem(this.like, this.like)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  border: none;
+  cursor: pointer;
+}
+
+.like-btn {
+  background-color: transparent;
+}
+
+.like {
+  color: red;
+}
+
 nav {
   width: 100%;
   height: 80px;
