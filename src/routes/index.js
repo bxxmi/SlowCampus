@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from './Home'
 import ProductDetail from '~/components/ProductDetail'
+import MyPage from '~/routes/MyPage'
 
 export default createRouter({
   history: createWebHistory(),
@@ -12,6 +13,10 @@ export default createRouter({
     {
       path: '/productDetail/:id',
       component: ProductDetail
+    },
+    {
+      path: '/mypage',
+      component: MyPage
     }
   ]
 })
