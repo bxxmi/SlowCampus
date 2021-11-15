@@ -1,50 +1,44 @@
 <template>
   <div>
     <input
-      v-model="itemName" />
-    <button @click="searchProduct(productName)">
+      v-model="productName"
+      type="text" 
+      placeholder="보고싶은 강의를 찾아보세요 😋" 
+      @keyup.enter="searchProduct()" />
+    <button @click="searchProduct">
       <span class="material-icons">
         search
       </span>
     </button>
   </div>
 </template>
+
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
-      itemName: ''
+      productName: ''
     }
-    
   },
-  method: {
-    async searchProduct(productName) {
-      console.log(productName)
-      let { data } = await axios({
-        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search',
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'apikey': 'FcKdtJs202110',
-          'username': 'team2'
-        },
-        data: {
-          'searchText': productName
-        }
+  methods: {
+    async searchProduct() {
+      this.$store.dispatch('product/searchProduct', {
+        productName: this.productName
       })
-      console.log(data)
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 div {
   width: 100%;
   height: 70px;
-  background-color: salmon;
   display: flex;
   justify-content: center;
   align-items: center;
+  input {
+    width: 200px;
+  }
 }
 </style>

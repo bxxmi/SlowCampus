@@ -15,10 +15,6 @@ export default {
     message: ''
   }),
   getters: {
-    // 전체 상품 리스트에서 상세 정보 보기를 위해 뽑아낼 아이디들
-    // getProductId(state) {
-    //   return state.productList.map(product => product.id)
-    // },
     // 구매한 제품 리스트에서 뽑아낼 아이디들
     getPurchasedProductId(state) {
       return state.purchasedProductList.map(purchased => purchased.detailId)
@@ -88,7 +84,6 @@ export default {
         }
       })
       commit('assignState', { allProduct: data })
-      // return this.addProduct
     },
     // 관리자 API: 전체 판매 내역
     async soldProductList() {
@@ -104,7 +99,7 @@ export default {
       })
       console.log(data)
     },
-    // 공용 API: 단일 제품 상세 조회 ()
+    // 공용 API: 단일 제품 상세 조회 (완료)
     async detailProduct({ commit }, itemId) {
       const { data } = await axios({
         url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId.id}`,
@@ -117,6 +112,36 @@ export default {
       })
       console.log(data)
       commit('assignState', { productInfo: data })
+    },
+    // 사용자 API: 제품 검색 - 키워드 (완료) 
+    async searchProduct({ commit }, payload) {
+      const { productName } = payload
+      const { data } = await axios({
+        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search',
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'apikey': 'FcKdtJs202110',
+          'username': 'team2'
+        }
+      })
+      const result = data.filter(name => name.title === productName)
+      commit('assignState', { allProduct: result})
+    },
+    // 사용자 API: 제품 검색 - 태그 (완료) 
+    async searchTag({ commit }, payload) {
+      const { tagName } = payload
+      const { data } = await axios({
+        url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/search',
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'apikey': 'FcKdtJs202110',
+          'username': 'team2'
+        }
+      })
+      const result = data.filter(name => name.tags === tagName)
+      commit('assignState', { allProduct: result})
     },
     // 사용자 API : 제품 구매 신청
     async requestOrder(itemId, accountNumber) {
