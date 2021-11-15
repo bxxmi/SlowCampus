@@ -1,29 +1,31 @@
 <template>
-  <nav class="my-page-nav">
-    <button
-      type="button"
-      @click="choiceAuth">
-      정보 수정
-    </button>
-    <button
-      type="button"
-      @click="choiceOrder">
-      주문 내역
-    </button>
-    <button
-      type="button"
-      @click="choiceAccount">
-      계좌
-    </button>
-  </nav>
+  <div class="my-page">
+    <nav class="my-page-nav">
+      <button
+        type="button"
+        @click="choiceAuth">
+        정보 수정
+      </button>
+      <button
+        type="button"
+        @click="choiceOrder">
+        주문 내역
+      </button>
+      <button
+        type="button"
+        @click="choiceAccount">
+        계좌
+      </button>
+    </nav>
 
-  <div class="my-page-display">
-    <MyAuth v-show="navChoice==='auth'" />
-    <MyOrder v-show="navChoice==='order'" />
-    <MyAccount v-show="navChoice==='account'" />
+    <div class="my-page-display">
+      <MyAuth v-show="navChoice==='auth'" />
+      <MyOrder v-show="navChoice==='order'" />
+      <MyAccount v-show="navChoice==='account'" />
+    </div>
+
+    {{ systemAccountMessage }}
   </div>
-
-  {{ systemAccountMessage }}
 </template>
 
 <script>
@@ -69,4 +71,16 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+@media screen and (min-width:769px) { //ipad 이후 디바이스 사이즈
+  .my-page {
+    display: flex;
+    flex-direction: row;
 
+    &-nav {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+</style>
