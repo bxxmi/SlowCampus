@@ -42,6 +42,9 @@
 </template>
 
 <script>
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
@@ -59,11 +62,16 @@ export default {
   },
   methods: {
     async buyProduct() {
-      await this.$store.dispatch('product/requestOrder',{
-        productId:this.productInfo.id,
-        accountId:this.myAccountId
-      })
-    }
+      if(this.signiture){
+        await store.dispatch('product/requestOrder',{
+          username: store.state.auth.APIheaderObj.username,
+          authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+          productId: this.productInfo.id,
+          accountId: this.myAccountId
+        })
+      }
+    },
   }
 }
 </script>
+
