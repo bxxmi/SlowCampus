@@ -46,18 +46,20 @@ $color-white: #fff;
   color: $color;
   background-color: $bgcolor;
   border: 1px solid $color-primary;
+  transition: all .7s;
 }
 
 @mixin order-btn($color, $bgcolor){
   width: 70px;
   padding: 3px;
-  border-radius: 10px;
+  border-radius: 5spx;
   text-decoration: none;
   text-align: center;
   font-size: $font-size-m;
   color: $color;
   background-color: $bgcolor;
   border: 1px solid $color-primary;
+  transition: all .5s;
 }
 
 @mixin confirm-btn{
@@ -68,6 +70,7 @@ $color-white: #fff;
   text-align: center;
   color: $color-white;
   background-color: $color-primary;
+  transition: all .5s;
 }
 
 @mixin flex ($content){

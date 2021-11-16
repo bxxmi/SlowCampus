@@ -1,24 +1,40 @@
 <template>
+  <DetailOrderModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent
+      :item="orderedItemInfo"
+      :time="productTimePaid"
+      :cancel="isCanceled"
+      :done="isDone" />
+  </DetailOrderModal>
   <div class="product">
-    <h1
-      class="product-title"
-      @click="isModalView = true">
-      {{ productTitle }}
-    </h1>
-    <div v-if="isDone">
-      주문확정
-    </div>
-    <div v-if="isCanceled">
-      주문취소
-    </div>
     <div class="product-image">
       <img
+        ref="image"
         :src="productImage"
         :alt="productTitle" />
     </div>
-    <strong class="product-price">{{ productPrice }}</strong>
-    <span class="product-time-paid">{{ productTimePaid }}</span>
-    <span class="product-id">{{ productId }}</span>
+    <div class="product-about">
+      <h1
+        class="product-title"
+        @click="isModalView = true">
+        {{ productTitle }}
+      </h1>
+      <strong class="product-price">{{ productPrice }}</strong>
+      <span class="product-time-paid">{{ productTimePaid }}</span>
+      <span class="product-id">{{ productId }}</span>
+    </div>
+    <div
+      v-if="isDone"
+      class="done">
+      주문확정
+    </div>
+    <div
+      v-if="isCanceled"
+      class="cancel">
+      주문취소
+    </div>
   </div>
 
   <div
@@ -35,11 +51,6 @@
       주문 취소
     </button>
   </div>
-  <DetailOrderModal
-    v-if="isModalView"
-    @close-modal="isModalView = false">
-    <ModalContent :item="orderedItemInfo" />
-  </DetailOrderModal>
 </template>
 
 <script>
@@ -113,32 +124,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .product{ 
-//   .product-title{
+.product { border: 1px solid red;
+  display:flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 5% 0 0 5%;
+  .product-image {
+    img{display:none;}
+  }
+  .product-about {
+    .product-title{
 
-//   }
-//   div{
+    }
+    .product-price{
 
-//   }
-   .product-image{
-     display:none;
-   }
-//   .product-price{
+    }
+    .product-time-paid{
 
-//   }
-//   .product-time-paid{
+    }
+    .product-id {
 
-//   }
-//   .product-id{
-
-//   }
-// }
-// .btn-group{
-//   .order-confirm{
-
-//   }
-//   .order-cancle{
-
-//   }
-// }
+    }
+  }
+  .done{
+    color: $color-success;
+  }
+  .cancel{
+    color: $color-danger;
+  }
+  
+}
+.btn-group{ border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  .order-confirm{
+    @include order-btn($color-white, $color-primary);
+        &:hover{
+        @include order-btn($color-primary, $color-white);
+        }
+  }
+  .order-cancle{
+    @include order-btn($color-white, $color-primary);
+        &:hover{
+        @include order-btn($color-primary, $color-white);
+        }
+  }
+}
 </style>

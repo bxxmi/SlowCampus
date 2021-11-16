@@ -42,12 +42,15 @@ export default {
 <style lang="scss">
   .top{
     display:flex;
-    flex-direction: row;
     border: 1px solid $color-secondary;
     border-radius: 15px;
     box-shadow: 0 1px 5px rgba(0 0 0 / 50%);
     width: 90%;
     padding: 5% 0;
     margin: 50px auto ;
+  }
+  .bottom{
+    border: 1px solid purple;
+    width: 100%;
   }
 </style>
