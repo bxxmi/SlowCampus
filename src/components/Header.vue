@@ -45,6 +45,41 @@
   </header>
 </template>
 
+<script>
+import { onMounted } from '@vue/runtime-core'
+import authfunc from '../store/authfunc'
+import store from '../store'
+import router from '../routes'
+
+export default({
+  setup() {
+    const accessToken = authfunc.getCookie('accessToken')
+
+    // 로그인 여부 체크
+    if(accessToken){
+      onMounted(
+        async () => {
+        const logged = authfunc.authAPI()
+
+        logged 
+        ?store.commit('auth/changeLogged', true)
+        :store.commit('auth/changeLogged', false)
+      })
+    }else{
+      store.commit('auth/changeLogged', false)
+    }
+
+    return
+  },
+  created(){
+    this.toSignup = ()=>{router.push('/signup')}
+    this.toLogin = ()=>{router.push('/login')}
+    this.tomypage = ()=>{router.push('/myinfo')}
+    this.logOut = ()=>{authfunc.logoutAPI()}
+  }
+})
+</script>
+
 <style lang="scss" scoped>
 header {
   padding: 20px 5%;
@@ -81,14 +116,14 @@ header {
     justify-content: space-between;
     width: 350px;
     button{
-      	background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        font-size: 18px;
-        cursor: pointer;
-        outline: inherit;
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      font-size: 18px;
+      cursor: pointer;
+      outline: inherit;
     }
     #cart{
       color: $color-blue;
@@ -123,37 +158,3 @@ header {
 </style>
 
 
-<script>
-import { onMounted } from '@vue/runtime-core'
-import authfunc from '../store/authfunc'
-import store from '../store'
-import router from '../routes'
-
-export default({
-  setup() {
-    const accessToken = authfunc.getCookie('accessToken')
-
-    // 로그인 여부 체크
-    if(accessToken){
-      onMounted(
-        async () => {
-        const logged = authfunc.authAPI()
-
-        logged 
-        ?store.commit('auth/changeLogged', true)
-        :store.commit('auth/changeLogged', false)
-      })
-    }else{
-      store.commit('auth/changeLogged', false)
-    }
-
-    return
-  },
-  created(){
-    this.toSignup = ()=>{router.push('/signup')}
-    this.toLogin = ()=>{router.push('/login')}
-    this.tomypage = ()=>{router.push('/mypage')}
-    this.logOut = ()=>{authfunc.logoutAPI()}
-  }
-})
-</script>

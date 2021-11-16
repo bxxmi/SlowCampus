@@ -20,21 +20,26 @@
     <span class="product-time-paid">{{ productTimePaid }}</span>
     <span class="product-id">{{ productId }}</span>
   </div>
-  <button
-    class="order-confirm"
-    @click="cofirmOrder">
-    주문 확정
-  </button>
-  <button
-    class="order-cancle"
-    @click="cancleOrder">
-    주문 취소
-  </button>
-  <DetailOrderModal
-    v-if="isModalView"
-    @close-modal="isModalView = false">
-    <ModalContent :item="orderedItemInfo" />
-  </DetailOrderModal>
+
+  <div
+    v-if="!(isDone||isCanceled)"
+    class="btn-group">
+    <button
+      class="order-confirm"
+      @click="cofirmOrder">
+      주문 확정
+    </button>
+    <button
+      class="order-cancle"
+      @click="cancleOrder">
+      주문 취소
+    </button>
+    <DetailOrderModal
+      v-if="isModalView"
+      @close-modal="isModalView = false">
+      <ModalContent :item="orderedItemInfo" />
+    </DetailOrderModal>
+  </div>
 </template>
 
 <script>
