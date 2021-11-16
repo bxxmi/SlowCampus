@@ -30,7 +30,7 @@
         <RouterLink to="/order">
           <button
             class="btn buy-btn"
-            @click="storeProductToBuyInfo">
+            @click="[storeProductToBuyInfo(),loadAccountInfo()]">
             구매하기
           </button>
         </RouterLink>
@@ -40,6 +40,9 @@
 </template>
 
 <script>
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
@@ -75,6 +78,16 @@ export default {
         image: this.productInfo.thumbnail, 
         id: this.productInfo.id, 
         price: this.productInfo.price                               
+      })
+    },
+    async loadAccountInfo() {
+      this.$store.dispatch('account/checkBankListCanChoice',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+      })
+      this.$store.dispatch('account/checkAccountListandBalance',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
       })
     }
   }
