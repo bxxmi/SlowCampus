@@ -25,12 +25,14 @@
       class="account-text-box">
       <input
         v-model="accountNumber"
+        class="number account"
         type="text"
         placeholder="계좌번호 (-를 제외하고 입력해주세요.)" 
         @keyup="getAccountMask(accountNumber)" />
       <input
         v-model="phoneNumber"
         type="text"
+        class="number"
         placeholder="핸드폰번호 (-를 제외하고 입력해주세요.)"
         @keyup="getPhoneMask(phoneNumber)" />
       <div class="submit-box">
@@ -137,18 +139,56 @@ export default {
 .add-box {
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 50px;
   .account-select-box {
     display: flex;
     flex-direction: row;
+    label {
+    line-height: 40px;
+    margin-right: 100px;
+    }
+    select {
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    }
   }
-
   .account-text-box {
+    width: 600px;
     display: flex;
     flex-direction: column;
+    border: 1px solid #0D6EFD;
+    background-color: #e9e9e9;
+    margin: 30px 50px;
+    .number {
+      border: none;
+      width: 550px;
+      height: 40px;
+      margin: 0  0 25px 20px;
+      background-color: #fbfbfb;
+    }
+    .account {
+      margin-top: 30px;
+    }
   }
 }
 .submit-box {
   display: flex;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  label {
+    font-size: 14px;
+  }
+  button {
+    height: 20px;
+    margin: 0 10px;
+    font-size: 12px;
+    color: white;
+    background-color: #0D6EFD;
+    border-radius: 5px;
+    border: none;
+  }
 }
 </style>

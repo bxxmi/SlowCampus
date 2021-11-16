@@ -33,5 +33,16 @@ export default {
 .check-box {
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
+  label {
+    line-height: 40px;
+    margin-right: 100px;
+  }
+  select {
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+  }
 }
 </style>
