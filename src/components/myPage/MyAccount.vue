@@ -1,9 +1,11 @@
 <template>
   <div>
-    <MyPageNav /> 
-    <Check>계좌확인</Check>
-    <Add>계좌추가</Add>
-    <Close>계좌해지</Close>
+    <MyPageNav />
+    <div class="account-area">
+      <Check>계좌확인</Check>
+      <Add>계좌추가</Add>
+      <Close>계좌해지</Close>
+    </div>
   </div>
 </template>
 
@@ -44,5 +46,9 @@ export default {
 div {
   display: flex;
   flex-direction: column;
+  .account-area {
+    font-size: 18px;
+    display: flex;
+  }
 }
 </style>
