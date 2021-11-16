@@ -33,7 +33,7 @@
   <DetailOrderModal
     v-if="isModalView"
     @close-modal="isModalView = false">
-    <ModalContent :item="item" />
+    <ModalContent :item="orderedItemInfo" />
   </DetailOrderModal>
 </template>
 

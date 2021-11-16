@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    {{ item }}
+    {{ item.title }}
   </div>
 </template>
 
@@ -11,6 +11,6 @@ export default {
       type: Object,
       default: () => ({})
     }
-  },
+  }
 }
 </script>
