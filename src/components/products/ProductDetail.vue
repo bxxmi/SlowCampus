@@ -8,7 +8,9 @@
           alt="thumbnail" />
       </div>
       <div class="product-info-list">
-        <button @click="addToCart">
+        <button
+          class="btn cart"
+          @click="addToCart">
           장바구니
         </button>
         <div class="product-tag">
@@ -30,31 +32,21 @@
     </section>
   </div>
   
-  <div v-show="cart">
-    ADD TO CART
-    장바구니 담기완료!
-    지금 장바구니를 확인하시겠어요?
-    <button
-      type="button"
-      @click="cart=!cart">
-      닫기
-    </button>
-    <RouterLink to="/cart">
-      장바구니 이동
-    </RouterLink>
-    <button
-      type="button"
-      @click="cart=!cart">
-      쇼핑계속하기
-    </button>
-  </div>
+  <AddToCartModal
+    :cart="cart"
+    :incart="isInCart"
+    @close="toggleModal" />
 </template>
 
 <script>
 import store from '~/store/'
 import authfunc from '~/store/authfunc.js'
+import AddToCartModal from '~/components/products/AddToCartModal'
 
 export default {
+  components: {
+    AddToCartModal
+  },
   data() {
     return {
       cart: false,
@@ -88,10 +80,13 @@ export default {
       })
       
       this.isInCart = true
-      this.cart = !this.cart
+      this.toggleModal()
       }else {
         alert('이미 추가한 상품입니다!')
       }
+    },
+    toggleModal(){
+      this.cart = !this.cart
     },
     storeProductToBuyInfo() {
       this.$store.commit('product/resetProductToOrderInfo')
@@ -117,67 +112,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn {
-  border: none;
-  cursor: pointer;
-}
+    .btn {
+    border: none;
+    cursor: pointer;
+    height: 36px;
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
 
-.like-btn {
-  background-color: transparent;
-  margin-bottom: 10px;
-}
+      &:hover {
+    opacity: .5;
+    }
+    }
 
-.section-area {
-  width: 100%;
-  height: 606px;
-  box-sizing: border-box;
-  padding: 100px 300px;
-  section {
+    .cart {
+    height: 30px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    }
+
+    .buy-btn {
     display: flex;
-      min-width: 650px;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    text-decoration: none;
+    }
+
+    .section-area {
+    width: 100%;
+    height: 606px;
+    box-sizing: border-box;
+    padding: 100px 300px;
+    section {
+    display: flex;
+    min-width: 650px;
     .thumbnail {
-      img {
-      width: 400px;
-      height: 400px;
-      object-fit: cover;
-      display: block;
-      margin-right: 20px;
-      }
+    img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    margin-right: 20px;
+    }
     }
     .product-info-list {
-      .product-tag {
-        height: 20px;
-        background-color: #eaeaea;
-        color: #444444;
-        font-weight: 700;
-        line-height: 15px;
-        text-align: center;
-        border-radius: 50px;
-        font-size: 12px;
-        margin-bottom: 20px;
-      }
-      .product-title {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 30px;
-      }
-      .product-description {
-        color: #444444;
-        margin-bottom: 30px;
-      }
+    .product-tag {
+    height: 20px;
+    background-color: #eaeaea;
+    color: #444444;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 20px;
     }
-  }
-}
+    .product-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    }
+    .product-description {
+    color: #444444;
+    margin-bottom: 30px;
+    }
+    }
+    }
+    }
 
-.fa-heart {
-  font-size: 24px;
-}
+    .fa-heart {
+    font-size: 24px;
+    }
 
-.fas.fa-heart {
-  color: #FE1694;
-}
+    .fas.fa-heart {
+    color: #FE1694;
+    }
 
-.far.fa-heart {
-  color: #eaeaea
-}
-</style>
+    .far.fa-heart {
+    color: #eaeaea
+    }
+    </style>
