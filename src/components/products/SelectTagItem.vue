@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     async searchTag() {
-      this.isBlue = true
+      this.isBlue = !this.isBlue
       this.$store.dispatch('product/searchTag', {
         tagName: this.item.tags
       })
