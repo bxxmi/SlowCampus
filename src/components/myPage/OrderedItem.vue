@@ -1,8 +1,16 @@
 <template>
   <div class="product">
-    <h1 class="product-title">
+    <h1
+      class="product-title"
+      @click="isModalView = true">
       {{ productTitle }}
     </h1>
+    <div v-if="isDone">
+      주문확정
+    </div>
+    <div v-if="isCanceled">
+      주문취소
+    </div>
     <div class="product-image">
       <img
         :src="productImage"
@@ -13,27 +21,47 @@
     <span class="product-id">{{ productId }}</span>
   </div>
 
-  <button
-    class="order-confirm"
-    @click="confirmOrder">
-    주문 확정
-  </button>
-  <button
-    class="order-cancle"
-    @click="cancleOrder">
-    주문 취소
-  </button>
+  <div
+    v-if="!(isDone||isCanceled)"
+    class="btn-group">
+    <button
+      class="order-confirm"
+      @click="cofirmOrder">
+      주문 확정
+    </button>
+    <button
+      class="order-cancle"
+      @click="cancleOrder">
+      주문 취소
+    </button>
+  </div>
+  <DetailOrderModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent :item="orderedItemInfo" />
+  </DetailOrderModal>
 </template>
 
 <script>
 import store from '~/store/'
 import authfunc from '~/store/authfunc.js'
+import DetailOrderModal from './DetailOrderModal.vue'
+import ModalContent from './ModalContent.vue'
 
 export default {
+    components: {
+      DetailOrderModal,
+      ModalContent
+    },
     props: {
       item: {
         type: Object,
         default: () => ({})
+      }
+    },
+    data() {
+      return {
+        isModalView: false
       }
     },
     computed: {
@@ -58,18 +86,23 @@ export default {
       detailId(){
         return this.item.detailId
       },
-      //done하고 isCancle이 뭐지?
+      isCanceled(){
+        return this.item.isCanceled
+      },
+      isDone(){
+        return this.item.done
+      }
     },
     methods: {
-      cofirmOrder() {
-        this.$store.dispatch('product/confirmOrder',{
+      async cofirmOrder() {
+        await this.$store.dispatch('product/confirmOrder',{
           username: store.state.auth.APIheaderObj.username,
           authorization :'Bearer '+ authfunc.getCookie('accessToken'),
           detailId:this.detailId
         })
       },
-      cancleOrder() {
-        this.$store.dispatch('product/cancelOrder',{
+      async cancleOrder() {
+        await this.$store.dispatch('product/cancelOrder',{
           username: store.state.auth.APIheaderObj.username,
           authorization :'Bearer '+ authfunc.getCookie('accessToken'),
           detailId:this.detailId

@@ -5,7 +5,9 @@
       type="text" 
       placeholder="보고싶은 강의를 찾아보세요 😋" 
       @keyup.enter="searchProduct()" />
-    <button @click="searchProduct">
+    <button
+      class="search-btn"
+      @click="searchProduct">
       <span class="material-icons">
         search
       </span>
@@ -38,11 +40,26 @@ div {
   margin: 50px auto;
   input {
     width: 300px;
+<<<<<<< HEAD
     height: 100%;
     border: none;
     background-color: $color-bg;
     padding: 0;
     @include flex(center);
+=======
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    background-color: #eaeaea;
+    font-weight: 700;
+  }
+  .search-btn {
+    border: none;
+    background:transparent;
+    cursor: pointer;
+    color:#0D6EFD;
+    margin-left: -50px;
+>>>>>>> 90cee11b20a20cf3caf271fefea4bb9321010a0b
   }
   button{
     cursor: pointer;

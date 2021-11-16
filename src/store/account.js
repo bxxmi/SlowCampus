@@ -21,13 +21,20 @@ export default {
       return state.bankListCanChoice && state.bankListCanChoice.filter(bank => !bank.disabled).reduce((acc,el) => ({
         ...acc, [el.code]:el.digits
       }),{})
-    }
+    },
   },
   mutations: {
     setState(state,payload) {
       Object.keys(payload).forEach(key => {
         state[key] = payload[key]
       })
+    },
+    addAccount(state,payload) {
+      state.accountListandBalance.accounts.push(payload)
+    },
+    removeAccount(state,payload) {
+      const idx = state.accountListandBalance.accounts.findIndex(el => el.id === payload)
+      delete state.accountListandBalance.accounts[idx]
     }
   },
   actions: {
@@ -100,7 +107,7 @@ export default {
       } = input
 
       try {
-        const data = await axios({
+        const { data } = await axios({
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/account',
           method: 'post', // post method
           headers: {
@@ -117,11 +124,14 @@ export default {
           },
         })
 
-        console.log(data, 'connectAccount')
-      } catch (e) {
-        commit('setState',{
-          message: e.message
+        commit('addAccount',{
+          data
         })
+        alert('계좌 추가가 완료되었습니다.')
+      } catch (e) {
+        alert('비정상적인 시도입니다.')
+      } finally {
+        location.reload()
       }
     },
 
@@ -146,18 +156,15 @@ export default {
         })
   
         if(data){
-          commit('setState',{
-            message: '계좌해지가 정상적으로 처리되었습니다.'
-          })
+          commit('removeAccount', accountId)
+          alert('정상적으로 계좌가 해지되었습니다.')
         } else {
-          commit('setState',{
-            message: '비정상적인 시도입니다.'
-          })
+          alert('비정상적인 시도입니다.')
         }
       } catch(e) {
-        commit('setState',{
-          message: '비정상적인 시도입니다.'
-        })
+        alert('비정상적인 시도입니다.')
+      } finally {
+        location.reload()
       }
     }  
   },

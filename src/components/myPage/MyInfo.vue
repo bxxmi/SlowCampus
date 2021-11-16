@@ -1,4 +1,5 @@
 <template>
+  <MyPageNav /> 
   <h1>유저정보</h1>
   <br />
   <div>
@@ -65,8 +66,12 @@
 
 <script>
 import authfunc from '../../store/authfunc'
+import MyPageNav from '~/components/myPage/MyPageNav'
 
 export default {
+    components: {
+      MyPageNav
+    },
     data() {
         return {
             //사용자 입력

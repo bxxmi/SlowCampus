@@ -33,12 +33,12 @@
       v-model="signiture"
       type="checkbox" />
   </div>
-  
-  <button
-    type="button"
+
+  <RouterLink
+    to="/afterorder"
     @click="buyProduct">
     구매하기
-  </button>
+  </RouterLink>
 </template>
 
 <script>
@@ -60,6 +60,9 @@ export default {
       return this.$store.getters['account/myAccountsNameIdNumberInfo']
     },
   },
+  created() {
+    this.loadMyAccount()
+  },
   methods: {
     async buyProduct() {
       if(this.signiture){
@@ -71,6 +74,17 @@ export default {
         })
       }
     },
+    async loadMyAccount() {
+        await this.$store.dispatch('account/checkBankListCanChoice',{
+          username: this.$store.state.auth.APIheaderObj.username,
+          Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+        })
+        await this.$store.dispatch('account/checkAccountListandBalance',{
+          username: this.$store.state.auth.APIheaderObj.username,
+          Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+        })
+        this.navChoice = 'account'
+      }
   }
 }
 </script>

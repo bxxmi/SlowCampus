@@ -4,8 +4,11 @@ import Login from './Login'
 import Signup from './Signup'
 import ProductDetail from '~/components/products/ProductDetail'
 import CreateProduct from './CreateProduct'
-import MyPage from '~/routes/MyPage'
+import MyInfo from '~/components/myPage/MyInfo'
+import MyOrder from '~/components/myPage/MyOrder'
+import MyAccount from '~/components/myPage/MyAccount'
 import Order from '~/routes/Order'
+import AfterOrder from '~/routes/AfterOrder'
 
 export default createRouter({
   history: createWebHistory(),
@@ -31,12 +34,24 @@ export default createRouter({
       component: CreateProduct
     },
     {
-      path: '/mypage',
-      component: MyPage
+      path: '/myinfo',
+      component: MyInfo
+    },
+    {
+      path: '/myorder',
+      component: MyOrder
+    },
+    {
+      path: '/myaccount',
+      component: MyAccount
     },
     {
       path: '/order',
       component: Order,
+    },
+    {
+      path: '/afterorder',
+      component: AfterOrder
     }
   ]
 })
