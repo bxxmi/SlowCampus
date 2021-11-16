@@ -19,7 +19,7 @@
             class="far fa-heart"></i>
         </button>
         <div class="product-tag">
-          {{ productInfo.tags }}
+          # {{ productInfo.tags }}
         </div>
         <div class="product-title">
           {{ productInfo.title }}
@@ -27,19 +27,26 @@
         <div class="product-description">
           {{ productInfo.description }}
         </div>
-        <button class="btn buy-btn">
-          구매하기
-        </button>
+        <RouterLink to="/order">
+          <button
+            class="btn buy-btn"
+            @click="[storeProductToBuyInfo(),loadAccountInfo()]">
+            구매하기
+          </button>
+        </RouterLink>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
-      like: false
+      like: false,
     }
   },
   computed: {
@@ -61,7 +68,27 @@ export default {
   methods: {
     clickLikeBtn() {
       this.like = !this.like
+      console.log(this.like)
       localStorage.setItem(this.like, this.like)
+    },
+    storeProductToBuyInfo() {
+      this.$store.commit('product/resetProductToOrderInfo')
+      this.$store.commit('product/setProductToOrderInfo',{
+        title: this.productInfo.title,
+        image: this.productInfo.thumbnail, 
+        id: this.productInfo.id, 
+        price: this.productInfo.price                               
+      })
+    },
+    async loadAccountInfo() {
+      this.$store.dispatch('account/checkBankListCanChoice',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+      })
+      this.$store.dispatch('account/checkAccountListandBalance',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+      })
     }
   }
 }
@@ -78,33 +105,25 @@ export default {
   margin-bottom: 10px;
 }
 
-.like {
-  color: red;
-}
-
 .section-area {
-  border: 1px solid red;
   width: 100%;
   height: 606px;
   box-sizing: border-box;
   padding: 100px 300px;
   section {
-    border: 1px solid red;
     display: flex;
       min-width: 650px;
     .thumbnail {
       img {
       width: 400px;
       height: 400px;
+      object-fit: cover;
       display: block;
       margin-right: 20px;
       }
     }
     .product-info-list {
-      border: 1px solid red;
-      width: 100%;
       .product-tag {
-        width: 50px;
         height: 20px;
         background-color: #eaeaea;
         color: #444444;
@@ -128,7 +147,15 @@ export default {
   }
 }
 
-.buy-btn {
-  border: 1px solid red;
+.fa-heart {
+  font-size: 24px;
+}
+
+.fas.fa-heart {
+  color: #FE1694;
+}
+
+.far.fa-heart {
+  color: #eaeaea
 }
 </style>
