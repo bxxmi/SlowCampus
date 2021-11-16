@@ -7,12 +7,11 @@
       </div>
     </RouterLink>
     <div id="buttons">     
-      <button id="cart">
+      <RouterLink
+        id="cart"
+        to="/cart">
         <span class="material-icons">shopping_cart</span>
-      </button>
-      <button id="favorite">
-        <span class="material-icons">favorite</span>
-      </button>
+      </RouterLink>
 
       <template v-if="$store.state.auth.logged_in">
         <button
