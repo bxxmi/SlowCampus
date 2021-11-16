@@ -1,18 +1,35 @@
 <template>
-  <div class="content-area">
-    <img
-      ref="image"
-      :src="item.thumbnail"
-      alt="thumbnail" />
-    <p>강의명 : {{ item.title }}</p>
-    <p>결제 금액 : {{ item.price }}원</p> 
-    <p>결제 시간 : {{ time }}</p>
-    <p v-if="cancel">
-      주문 여부 : 주문 취소
-    </p>
-    <p v-else>
-      주문 여부 : 주문 확정
-    </p>
+  <div class="card-area">
+    <div class="order-logo">
+      <p>주문하신 상품의 상세 내역입니다</p>
+      <i class="fas fa-receipt"></i>
+    </div>
+    <ul class="order-info">
+      <li class="order">
+        <span class="title">강의명</span>
+        <span>{{ item.title }}</span>
+      </li>
+      <li class="order">
+        <span class="title">결제 금액</span>
+        <span>{{ item.price }} 원</span>
+      </li> 
+      <li class="order">
+        <span class="title">결제 시간</span>
+        <span>{{ time }}</span>
+      </li>
+      <li
+        v-if="cancel"
+        class="order">
+        <span class="title">주문 여부</span>
+        <span>주문 취소</span>
+      </li>
+      <li
+        v-else
+        class="order">
+        <span class="title">주문 여부</span>
+        <span>주문 확정</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -35,19 +52,41 @@ export default {
       type: String,
       default: ''
     }
-  },
-  mounted() {
-    const thumbnail = this.item.thumbnail
-    if (!thumbnail) {
-      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
-    }
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-img {
-  width: 200px;
-  height: 100px;
+.card-area {
+  width: 450px;
+  margin: 65px auto;
+  .order-logo {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto 20px;
+    display: block;
+    p {
+      margin-bottom: 40px;
+      font-size: 13px;
+      color: #888888;
+    }
+    .fa-receipt {
+      font-size: 92px;
+      color:#0D6EFD;
+    }
+  }
+  .order-info {
+    width: 300px;
+    margin: 0 auto;
+    .order {
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+    .title {
+      margin-right: 40px;
+      font-weight: 700;
+    }
+  }
 }
 </style>
