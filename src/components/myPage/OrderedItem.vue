@@ -34,12 +34,12 @@
       @click="cancleOrder">
       주문 취소
     </button>
-    <DetailOrderModal
-      v-if="isModalView"
-      @close-modal="isModalView = false">
-      <ModalContent :item="orderedItemInfo" />
-    </DetailOrderModal>
   </div>
+  <DetailOrderModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent :item="orderedItemInfo" />
+  </DetailOrderModal>
 </template>
 
 <script>
