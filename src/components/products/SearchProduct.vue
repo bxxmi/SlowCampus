@@ -32,13 +32,27 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px;
+  width: 350px;
+  height: 40px;
+  @include flex(center);
+  margin: 50px auto;
   input {
-    width: 200px;
+    width: 300px;
+    height: 100%;
+    border: none;
+    background-color: $color-bg;
+    padding: 0;
+    @include flex(center);
   }
+  button{
+    cursor: pointer;
+    border: none;
+    width: 50px;
+    height: 100%;
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    @include flex(center);
+  }
+
 }
 </style>
