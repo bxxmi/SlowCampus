@@ -1,35 +1,126 @@
 <template>
   <header>
     <RouterLink to="/">
-      <!--나중에 이미지로 대체-->
-      Slow Campus
+      <div id="logo">
+        <img src="logo.svg" />
+        <span> Slow Campus</span>
+      </div>
     </RouterLink>
-    <button>
-      <span class="material-icons">shopping_cart</span>
-    </button>
-    <button>
-      <span class="material-icons">favorite</span>
-    </button>
+    <div id="buttons">     
+      <button id="cart">
+        <span class="material-icons">shopping_cart</span>
+      </button>
+      <button id="favorite">
+        <span class="material-icons">favorite</span>
+      </button>
 
-    <template v-if="$store.state.auth.logged_in">
-      <button @click="toEditinfo">
-        <span class="material-icons">account_circle</span>
-      </button>
-      <button @click="logOut">
-        로그아웃
-      </button>
-    </template>
+      <template v-if="$store.state.auth.logged_in">
+        <button
+          id="mypage"
+          @click="tomypage">
+          <span class="material-icons">account_circle</span>
+        </button>
+        <button
+          class="text-button"
+          @click="logOut">
+          로그아웃
+        </button>
+      </template>
 
-    <template v-else>
-      <button @click="toLogin">
-        로그인
-      </button>
-      <button @click="toSignup">
-        회원가입
-      </button>
-    </template>
+      <template v-else>
+        <button
+          id="login"
+          class="text-button"
+          @click="toLogin">
+          로그인
+        </button>
+        <button
+          id="signup"
+          class="text-button"
+          @click="toSignup">
+          회원가입
+        </button>
+      </template>
+    </div>
   </header>
 </template>
+
+<style lang="scss" scoped>
+header {
+  padding: 20px 5%;
+  border-bottom: 1px solid black;
+  height: 10%;
+  width: 90%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  a{
+    text-decoration: none;
+  }
+  div{
+    display: inline-block;
+  }
+  #logo{
+    width: 150px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span{
+      color: $color-blue;
+      font-weight: $font-weight-bold;
+    }
+    img{
+      width: 30px;
+    }
+  }
+  #buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+    button{
+      	background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        font-size: 18px;
+        cursor: pointer;
+        outline: inherit;
+    }
+    #cart{
+      color: $color-blue;
+    }
+    #favorite{
+      color: $color-punch;
+    }
+    #cart:hover{
+      color: $color-lightblue;
+    }
+    #favorite:hover{
+      color: $color-pink;
+    }
+    #mypage:hover{
+      color: $color-lightblue;
+    }
+    .text-button{
+      display: inline-block;
+      padding: 5px;
+      width: 100px;
+      
+      background-color: $color-blue;
+      color: white;
+    }
+    .text-button:hover{
+      border: 1px solid $color-blue;
+      background-color: white;
+      color: $color-blue;;
+    }
+  }
+}
+</style>
 
 
 <script>
@@ -61,20 +152,8 @@ export default({
   created(){
     this.toSignup = ()=>{router.push('/signup')}
     this.toLogin = ()=>{router.push('/login')}
-    this.toEditinfo = ()=>{router.push('/mypage')}
+    this.tomypage = ()=>{router.push('/mypage')}
     this.logOut = ()=>{authfunc.logoutAPI()}
   }
 })
 </script>
-
-
-<style lang="scss" scoped>
-header {
-  padding: 20px 20px;
-  border-bottom: 1px solid $color-primary;
-  a {
-    margin-right: 10px;
-    line-height: 1;
-  }
-}
-</style>
