@@ -21,10 +21,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('product/getAllProduct')
-    window.addEventListener('scroll', this.onScroll)
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.onScroll)
   }
 }
 </script>
