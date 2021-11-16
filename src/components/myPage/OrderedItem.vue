@@ -1,6 +1,8 @@
 <template>
   <div class="product">
-    <h1 class="product-title">
+    <h1
+      class="product-title"
+      @click="isModalView = true">
       {{ productTitle }}
     </h1>
     <div v-if="isDone">
@@ -18,7 +20,6 @@
     <span class="product-time-paid">{{ productTimePaid }}</span>
     <span class="product-id">{{ productId }}</span>
   </div>
-
   <button
     class="order-confirm"
     @click="cofirmOrder">
@@ -29,17 +30,33 @@
     @click="cancleOrder">
     주문 취소
   </button>
+  <DetailOrderModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent :item="orderedItemInfo" />
+  </DetailOrderModal>
 </template>
 
 <script>
 import store from '~/store/'
 import authfunc from '~/store/authfunc.js'
+import DetailOrderModal from './DetailOrderModal.vue'
+import ModalContent from './ModalContent.vue'
 
 export default {
+    components: {
+      DetailOrderModal,
+      ModalContent
+    },
     props: {
       item: {
         type: Object,
         default: () => ({})
+      }
+    },
+    data() {
+      return {
+        isModalView: false
       }
     },
     computed: {
