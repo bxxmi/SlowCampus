@@ -5,6 +5,12 @@
       @click="isModalView = true">
       {{ productTitle }}
     </h1>
+    <div v-if="isDone">
+      주문확정
+    </div>
+    <div v-if="isCanceled">
+      주문취소
+    </div>
     <div class="product-image">
       <img
         :src="productImage"
@@ -16,7 +22,7 @@
   </div>
   <button
     class="order-confirm"
-    @click="confirmOrder">
+    @click="cofirmOrder">
     주문 확정
   </button>
   <button
@@ -75,18 +81,23 @@ export default {
       detailId(){
         return this.item.detailId
       },
-      //done하고 isCancle이 뭐지?
+      isCanceled(){
+        return this.item.isCanceled
+      },
+      isDone(){
+        return this.item.done
+      }
     },
     methods: {
-      cofirmOrder() {
-        this.$store.dispatch('product/confirmOrder',{
+      async cofirmOrder() {
+        await this.$store.dispatch('product/confirmOrder',{
           username: store.state.auth.APIheaderObj.username,
           authorization :'Bearer '+ authfunc.getCookie('accessToken'),
           detailId:this.detailId
         })
       },
-      cancleOrder() {
-        this.$store.dispatch('product/cancelOrder',{
+      async cancleOrder() {
+        await this.$store.dispatch('product/cancelOrder',{
           username: store.state.auth.APIheaderObj.username,
           authorization :'Bearer '+ authfunc.getCookie('accessToken'),
           detailId:this.detailId
