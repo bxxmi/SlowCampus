@@ -19,16 +19,20 @@
     <span class="product-id">{{ productId }}</span>
   </div>
 
-  <button
-    class="order-confirm"
-    @click="cofirmOrder">
-    주문 확정
-  </button>
-  <button
-    class="order-cancle"
-    @click="cancleOrder">
-    주문 취소
-  </button>
+  <div
+    v-if="!(isDone||isCanceled)"
+    class="btn-group">
+    <button
+      class="order-confirm"
+      @click="cofirmOrder">
+      주문 확정
+    </button>
+    <button
+      class="order-cancle"
+      @click="cancleOrder">
+      주문 취소
+    </button>
+  </div>
 </template>
 
 <script>
