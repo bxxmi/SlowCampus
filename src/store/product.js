@@ -164,7 +164,7 @@ export default {
       commit('assignState', { allProduct: result })
     },
     // 사용자 API : 제품 구매 신청
-    async requestOrder(input) {
+    async requestOrder({ commit },input) {
       const { username, authorization, productId, accountId } = input
   
       const { data } = await axios({
