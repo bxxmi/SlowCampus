@@ -27,19 +27,26 @@
         <div class="product-description">
           {{ productInfo.description }}
         </div>
-        <button class="btn buy-btn">
-          구매하기
-        </button>
+        <RouterLink to="/order">
+          <button
+            class="btn buy-btn"
+            @click="[storeProductToBuyInfo(),loadAccountInfo()]">
+            구매하기
+          </button>
+        </RouterLink>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import store from '~/store/'
+import authfunc from '~/store/authfunc.js'
+
 export default {
   data() {
     return {
-      like: false
+      like: false,
     }
   },
   computed: {
@@ -63,6 +70,25 @@ export default {
       this.like = !this.like
       console.log(this.like)
       localStorage.setItem(this.like, this.like)
+    },
+    storeProductToBuyInfo() {
+      this.$store.commit('product/resetProductToOrderInfo')
+      this.$store.commit('product/setProductToOrderInfo',{
+        title: this.productInfo.title,
+        image: this.productInfo.thumbnail, 
+        id: this.productInfo.id, 
+        price: this.productInfo.price                               
+      })
+    },
+    async loadAccountInfo() {
+      this.$store.dispatch('account/checkBankListCanChoice',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+      })
+      this.$store.dispatch('account/checkAccountListandBalance',{
+        username: store.state.auth.APIheaderObj.username,
+        Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
+      })
     }
   }
 }

@@ -11,6 +11,13 @@ export default {
     purchasedProductList: [],
     // 제품 상세 정보가 담길 객체 데이터
     productInfo: {},
+    //구매할 제품의 정보가 담길 객체 데이터
+    productToOrderInfo: {
+      title: '',
+      image: '',
+      id: '',
+      price: 0
+    },
     //에러 메시지 저장
     message: ''
   }),
@@ -28,6 +35,19 @@ export default {
     },
     addProduct(state, data) {
       state.productList.push(data)
+    },
+    setProductToOrderInfo(state, data) {
+      const { title, image, id, price } = data
+      state.productToOrderInfo.title = title
+      state.productToOrderInfo.image = image
+      state.productToOrderInfo.id = id
+      state.productToOrderInfo.price = price
+    },
+    resetProductToOrderInfo(state) {
+      state.productToOrderInfo.title = ''
+      state.productToOrderInfo.image = ''
+      state.productToOrderInfo.id = ''
+      state.productToOrderInfo.price = 0
     }
   },
   actions: {
@@ -144,20 +164,21 @@ export default {
       commit('assignState', { allProduct: result })
     },
     // 사용자 API : 제품 구매 신청
-    async requestOrder(itemId, accountNumber) {
-      const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InFEM2M0dnp3RXByS2hrOExtWU9GIiwiaWF0IjoxNjM2NzI2MzE3LCJleHAiOjE2MzY4MTI3MTcsImlzcyI6InRoZXNlY29uQGdtYWlsLmNvbSJ9.x-gfpmPzEnEKWL2nHq8H_LO32lLsy2rNBLVSSk-oeBI'
+    async requestOrder(input) {
+      const { username, authorization, productId, accountId } = input
+  
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy',
         method: 'POST',
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
-          authorization: `Bearer ${accessToken}`
+          username,
+          authorization
         },
         data: {
-          productId: itemId,
-          accountId: accountNumber
+          productId,
+          accountId
         }
       })
       console.log(data)
