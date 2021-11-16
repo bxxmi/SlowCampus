@@ -11,7 +11,7 @@
 import ProductItem from '~/components/products/ProductItem.vue'
 
 export default {
-  components: {
+   components: {
     ProductItem
   },
   computed: {
@@ -21,6 +21,17 @@ export default {
   },
   mounted() {
     this.$store.dispatch('product/getAllProduct')
+    window.addEventListener('scroll', this.onScroll)
+  },
+  unmounted() {
+    window.removeEventListener('scroll', this.onScroll)
+  },
+  methods: {
+    onScroll(event) {
+      if((window.innerHeight + window.scrollY) >= document.documentElement.offsetHeight) {
+        console.log('야호')
+      }
+    }
   }
 }
 </script>

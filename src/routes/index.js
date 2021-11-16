@@ -6,7 +6,6 @@ import ProductDetail from '~/components/products/ProductDetail'
 import CreateProduct from './CreateProduct'
 import MyPage from '~/routes/MyPage'
 
-
 export default createRouter({
   history: createWebHistory(),
   routes: [
