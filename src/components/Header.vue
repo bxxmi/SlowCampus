@@ -94,7 +94,7 @@ header {
       color: $color-blue;
     }
     #favorite{
-      color: $color-punch;
+      color: $color-red;
     }
     #cart:hover{
       color: $color-lightblue;
