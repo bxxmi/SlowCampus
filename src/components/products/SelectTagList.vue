@@ -3,7 +3,7 @@
     <ul class="tag-list">
       <SelectTagItem 
         v-for="item in itemList"
-        :key="item.detailId"
+        :key="item"
         :item="item" />
     </ul>
   </div>
@@ -16,19 +16,17 @@ export default {
   components: {
     SelectTagItem
   },
-  data() {
-    return {
-      isShow: false
-    }
-  },
   computed: {
     itemList() {
-      return this.$store.state.product.allProduct
-    }
-  },
-  methods: {
-    toggle() {
-      this.isShow = !this.isShow
+      const tagList = this.$store.state.product.allProduct
+      const newArray = []
+
+      tagList.forEach((tag) => {
+        if (!newArray.includes(tag.tags)) {
+          newArray.push(tag.tags)
+        }
+      })
+      return newArray
     }
   }
 }
