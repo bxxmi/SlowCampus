@@ -175,7 +175,7 @@ export default {
 }
 .submit-box {
   display: flex;
-  height: 100px;
+  height: 45px;
   display: flex;
   justify-content: flex-end;
   label {
