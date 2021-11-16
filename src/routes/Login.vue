@@ -34,7 +34,7 @@ body{
     align-items: center;
     font-size: 18px;
     padding: 5px 0;
-    margin-top: 60px;
+    margin-top: 10%;
     img{
       width: 70px;
     }
@@ -47,16 +47,16 @@ body{
     }
   }
   #login-submit{
-    margin-top: 50px;
     display:flex;
     flex-direction: column;
     align-items: center;
 
     padding: 30px 0;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 10%;
 
     *{
-      width: 70%;
+      width: 60%;
       height: 20%;
       font-size: 20px;
       display: inline-block;
