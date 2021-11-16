@@ -3,7 +3,7 @@
     class="tag-item"
     :class="{ blue: isBlue }"
     @click="searchTag">
-    # {{ item.tags }}
+    # {{ item }}
   </li>
 </template>
 
@@ -11,8 +11,8 @@
 export default {
   props: {
     item: {
-      type: Object,
-      default: () => ({})
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -24,7 +24,7 @@ export default {
     async searchTag() {
       this.isBlue = !this.isBlue
       this.$store.dispatch('product/searchTag', {
-        tagName: this.item.tags
+        tagName: this.item
       })
     }
   }
