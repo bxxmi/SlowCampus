@@ -1,4 +1,13 @@
 <template>
+  <DetailOrderModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent
+      :item="orderedItemInfo"
+      :time="productTimePaid"
+      :cancel="isCanceled"
+      :done="isDone" />
+  </DetailOrderModal>
   <div class="product">
     <h1
       class="product-title"
@@ -13,6 +22,7 @@
     </div>
     <div class="product-image">
       <img
+        ref="image"
         :src="productImage"
         :alt="productTitle" />
     </div>
@@ -35,11 +45,6 @@
       주문 취소
     </button>
   </div>
-  <DetailOrderModal
-    v-if="isModalView"
-    @close-modal="isModalView = false">
-    <ModalContent :item="orderedItemInfo" />
-  </DetailOrderModal>
 </template>
 
 <script>
@@ -93,6 +98,12 @@ export default {
         return this.item.done
       }
     },
+    mounted() {
+      const thumbnail = this.productImage
+      if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
+    },
     methods: {
       async cofirmOrder() {
         await this.$store.dispatch('product/confirmOrder',{
@@ -115,5 +126,7 @@ export default {
 <style lang="scss" scoped>
 img {
   display: block;
+  width: 150px;
+  height: 100px;
 }
 </style>

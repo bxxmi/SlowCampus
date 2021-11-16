@@ -12,7 +12,7 @@
 <style lang="scss" scoped>
 .modal-area {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   .overlay {
   width: 100%;
@@ -20,16 +20,13 @@
   position: fixed;
   left: 0;
   top: 0;
+  opacity: 0.3;
+  background-color: black;
   }
 }
 
-.overlay {
-  opacity: 0.3;
-  background-color: black;
-}
-
 .modal-card {
-  position: relative;
+  position: fixed;
   width: 800px;
   height: 400px;
   left: 50%;
