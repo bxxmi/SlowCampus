@@ -31,14 +31,14 @@ import authfunc from '~/store/authfunc.js'
 
 export default {
     props: {
-      orderedItem: {
+      item: {
         type: Object,
         default: () => ({})
       }
     },
     computed: {
       orderedItemInfo(){
-        return this.orderedItem.product
+        return this.item.product
       },
       productTitle(){
         return this.orderedItemInfo.title
@@ -50,13 +50,13 @@ export default {
         return this.orderedItemInfo.thumbnail
       },
       productTimePaid(){
-        return this.orderedItem.timePaid
+        return this.item.timePaid
       },
       productId(){
         return this.orderedItemInfo.productId
       },
       detailId(){
-        return this.orderedItem.detailId
+        return this.item.detailId
       },
       //done하고 isCancle이 뭐지?
     },
