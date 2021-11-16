@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-    {{ item.title }}
+    {{ item }}
+    {{ item.title }} / {{ item.thumbnail }}
   </div>
 </template>
 
