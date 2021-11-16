@@ -1,7 +1,9 @@
 <template>
-  <Header />
-  <RouterView />
-  <Footer />
+  <div class="app__inner">
+    <Header />
+    <RouterView />
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -16,3 +18,11 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.app__inner {
+  font-size: $font-size-m;
+  line-height: 1.4;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: $color-font;
+}
+</style>
