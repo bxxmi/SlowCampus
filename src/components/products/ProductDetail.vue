@@ -27,12 +27,11 @@
         <div class="product-description">
           {{ productInfo.description }}
         </div>
-        <RouterLink to="/order">
-          <button
-            class="btn buy-btn"
-            @click="[storeProductToBuyInfo(),loadAccountInfo()]">
-            구매하기
-          </button>
+        <RouterLink
+          class="btn buy-btn"
+          to="/order"
+          @click="[storeProductToBuyInfo(),loadAccountInfo()]">
+          구매하기
         </RouterLink>
       </div>
     </section>
