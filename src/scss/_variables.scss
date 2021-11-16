@@ -6,6 +6,9 @@ $color-warning: #ffc107;
 $color-info: #0dcaf0;
 $color-like: #FE1694;
 
+$color-font: #333;
+$color-bg: #f7f7f7;
+
 $font-size-sm: 12px;
 $font-size-m: 14px;
 $font-size-lg: 18px;
@@ -22,7 +25,7 @@ $color-purple: #6f42c1;
 $color-pink: #F699CD;
 $color-rose: #FC94AF;
 $color-coral: #FE7D6A;
-$color-punch: #F25278;
+$color-punch: #ffffff;
 $color-red: #E3242B;
 $color-orange: #fd7e14;
 $color-yellow: #ffc107;
@@ -31,4 +34,28 @@ $color-teal: #20c997;
 $color-cyan: #0dcaf0;
 $color-grey: #0dcaf0;
 $color-black: #0dcaf0;
-$color-white: #0dcaf0;
+$color-white: #fff;
+
+@mixin main-btn($color, $bgcolor){
+  width: 130px;
+  height: 40px;
+  padding: 10px;
+  color: $color;
+  background-color: $bgcolor;
+  border: 1px solid $color-primary;
+}
+
+@mixin confirm-btn{
+  width: 50px;
+  height: 25px;
+  padding: 5px;
+  color: $color-white;
+  background-color: $color-primary;
+}
+
+@mixin flex ($content){
+  display: flex;
+  justify-content: $content;
+  align-items: center;
+
+}
