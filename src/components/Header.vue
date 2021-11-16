@@ -18,7 +18,8 @@
         <button
           id="mypage"
           @click="tomypage">
-          <span class="material-icons">account_circle</span>
+          <img v-if="(this.$store.state.auth.logged_user.profileImg != '')" :src='this.$store.state.auth.logged_user.profileImg' />
+          <img v-else src="basic.png" />
         </button>
         <button
           class="text-button"
@@ -90,6 +91,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  img{
+    width: 40px;
+  }
+
   a{
     text-decoration: none;
   }
@@ -105,9 +111,6 @@ header {
     span{
       color: $color-blue;
       font-weight: $font-weight-bold;
-    }
-    img{
-      width: 30px;
     }
   }
   #buttons{
@@ -137,8 +140,13 @@ header {
     #favorite:hover{
       color: $color-pink;
     }
+    #mypage{
+      img{
+        border-radius: 15px;
+      }
+    }
     #mypage:hover{
-      color: $color-lightblue;
+      filter: blur(1px);
     }
     .text-button{
       display: inline-block;
