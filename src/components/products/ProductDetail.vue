@@ -8,15 +8,8 @@
           alt="thumbnail" />
       </div>
       <div class="product-info-list">
-        <button
-          class="btn like-btn"
-          @click="clickLikeBtn">
-          <i
-            v-if="like"
-            class="fas fa-heart"></i>
-          <i
-            v-else
-            class="far fa-heart"></i>
+        <button @click="addToCart">
+          장바구니
         </button>
         <div class="product-tag">
           # {{ productInfo.tags }}
@@ -36,6 +29,25 @@
       </div>
     </section>
   </div>
+  
+  <div v-show="cart">
+    ADD TO CART
+    장바구니 담기완료!
+    지금 장바구니를 확인하시겠어요?
+    <button
+      type="button"
+      @click="cart=!cart">
+      닫기
+    </button>
+    <RouterLink to="/cart">
+      장바구니 이동
+    </RouterLink>
+    <button
+      type="button"
+      @click="cart=!cart">
+      쇼핑계속하기
+    </button>
+  </div>
 </template>
 
 <script>
@@ -45,7 +57,8 @@ import authfunc from '~/store/authfunc.js'
 export default {
   data() {
     return {
-      like: false,
+      cart: false,
+      isInCart: false
     }
   },
   computed: {
@@ -65,10 +78,20 @@ export default {
     }
   },
   methods: {
-    clickLikeBtn() {
-      this.like = !this.like
-      console.log(this.like)
-      localStorage.setItem(this.like, this.like)
+    addToCart() {
+      if(!this.isInCart){
+        this.$store.commit('product/addCart',{
+        title: this.productInfo.title,
+        image: this.productInfo.thumbnail, 
+        id: this.productInfo.id, 
+        price: this.productInfo.price
+      })
+      
+      this.isInCart = true
+      this.cart = !this.cart
+      }else {
+        alert('이미 추가한 상품입니다!')
+      }
     },
     storeProductToBuyInfo() {
       this.$store.commit('product/resetProductToOrderInfo')

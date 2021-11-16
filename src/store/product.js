@@ -18,8 +18,9 @@ export default {
       id: '',
       price: 0
     },
+    cart: [],
     //에러 메시지 저장
-    message: ''
+    message: '',
   }),
   getters: {
     // 구매한 제품 리스트에서 뽑아낼 아이디들
@@ -56,6 +57,15 @@ export default {
     confirmPurchasedProduct(state,detailId) {
       const idx = state.purchasedProductList.findIndex(item => item.detailId === detailId)
       state.purchasedProductList[idx].done = true
+    },
+    addCart(state,item) {
+      state.cart.push(item)
+    },
+    removeCart(state,id) {
+      state.cart = state.cart.filter(item => item.id !== id)
+    },
+    resetCart(state) {
+      state.cart = []
     }
   },
   actions: {
