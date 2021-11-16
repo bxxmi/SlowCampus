@@ -1,10 +1,12 @@
 <template>
-  <MyPageNav /> 
-  <div>
-    <OrderedItem
-      v-for="item in orderedList"
-      :key="item.detailId"
-      :item="item" />
+  <div class="top">
+    <MyPageNav /> 
+    <div class="bottom">
+      <OrderedItem
+        v-for="item in orderedList"
+        :key="item.detailId"
+        :item="item" />
+    </div>
   </div>
 </template>
 
@@ -36,3 +38,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .top{
+    display:flex;
+    flex-direction: row;
+    border: 1px solid $color-secondary;
+    border-radius: 15px;
+    box-shadow: 0 1px 5px rgba(0 0 0 / 50%);
+    width: 90%;
+    padding: 5% 0;
+    margin: 50px auto ;
+  }
+</style>

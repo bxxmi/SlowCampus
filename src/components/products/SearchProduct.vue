@@ -40,13 +40,7 @@ div {
   margin: 50px auto;
   input {
     width: 300px;
-<<<<<<< HEAD
-    height: 100%;
-    border: none;
-    background-color: $color-bg;
-    padding: 0;
-    @include flex(center);
-=======
+
     padding: 15px 20px;
     border-radius: 50px;
     border: none;
@@ -59,7 +53,6 @@ div {
     cursor: pointer;
     color:#0D6EFD;
     margin-left: -50px;
->>>>>>> 90cee11b20a20cf3caf271fefea4bb9321010a0b
   }
   button{
     cursor: pointer;

@@ -113,7 +113,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  display: block;
-}
+// .product{ 
+//   .product-title{
+
+//   }
+//   div{
+
+//   }
+   .product-image{
+     display:none;
+   }
+//   .product-price{
+
+//   }
+//   .product-time-paid{
+
+//   }
+//   .product-id{
+
+//   }
+// }
+// .btn-group{
+//   .order-confirm{
+
+//   }
+//   .order-cancle{
+
+//   }
+// }
 </style>
