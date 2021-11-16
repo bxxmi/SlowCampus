@@ -1,5 +1,6 @@
 <template>
-  <li class="product-item">
+  <li
+    class="product-item">
     <RouterLink
       :to="`${href}/${id}`">
       <img
