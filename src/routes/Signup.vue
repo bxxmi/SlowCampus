@@ -1,74 +1,98 @@
 <template>
-  <h1>회원가입하기</h1>
-  <br />
-  <div>
-    <div>
-      e-mail <input
-        id="email"
-        v-model="email"
-        type="email" />
-      <span class="material-icons">
-        {{ (email_valid = emailCheck(email)) ? "check" :"warning" }}
-      </span>
+  <body>
+    <div id="signup-top">
+      <img src="logo.svg" />
+      <p>이미 회원이신가요?<a href="/login">로그인하기</a></p>
     </div>
-    <br />
-    <div>
-      pw(8자 이상)<input
-        id="password"
-        v-model="pw"
-        type="password" />
-      <span class="material-icons">
-        {{ (pw_valid=pwCheck(pw)) ? "check" :"warning" }}
-      </span>
-    </div>
-    <div>
-      pw 체크 <input
-        id="passwordCheck"
-        v-model="pw_ck"
-        type="password" />
-      <span
-        v-if="!pw"
-        class="material-icons">warning</span>
-      <span
-        v-else
-        class="material-icons">
-        {{ (pw_ck_valid = pw == pw_ck) ? "check" :"warning" }}
-      </span>
-    </div>
-    <br />
-    <div>
-      name(4자 이상)<input
-        id="name"
-        v-model="name"
-        type="text" />
-      <span class="material-icons">
-        {{ (name_valid=nameCheck(name)) ? "check" :"warning" }}
-      </span>
-    </div>
-    <br />
-    <div>
-      profile(1mb 이하의 파일만 가능) 
-      <input
-        id="profile"
-        value=""
-        type="file"
-        @change="imgCheck" />
-    </div>
-    <br />
-    <div>
-      <div>
-        size : 
-        <span id="size">{{ img_obj.size }}</span>kb
+
+    <div id="signup-submit">
+      <div class="input">
+        <p>E-mail</p>
+        <input
+          v-model="email"
+          type="email"
+          placeholder="email을 입력하세요." />
+        <div v-if="email != ''">
+          <span
+            v-if="(email_valid = emailCheck(email))"
+            class="material-icons">check</span>
+          <p v-else>
+            <span class="material-icons">warning</span> 올바른 이메일을 입력하세요.
+          </p>
+        </div>
       </div>
-      <img
-        id="preview"
-        :src="img_obj.url ? img_obj.url: 'basic.png'" />	    
+
+      <div class="input">
+        <p>password</p>
+        <input
+          v-model="pw"
+          type="password"
+          placeholder="비밀번호를 입력하세요." />
+        <div v-if="pw != ''">
+          <span
+            v-if="(pw_valid=pwCheck(pw))"
+            class="material-icons">check</span>
+          <p v-else>
+            <span class="material-icons">warning</span> 8자리 이상의 영어와 숫자, 그리고 특수문자로 이루어진 비밀번호를 입력하세요.
+          </p>
+        </div>
+      </div>
+
+      <div class="input">
+        <p>password 확인</p>
+        <input
+          v-model="pw_ck"
+          type="password"
+          placeholder="이전과 동일한 비밀번호를 입력하세요." />
+        <div v-if="pw_ck != ''">
+          <span
+            v-if="(pw_ck_valid = pw == pw_ck)"
+            class="material-icons">check</span>
+          <p v-else>
+            <span class="material-icons">warning</span> 동일한 비밀번호를 입력하세요
+          </p>
+        </div>
+      </div>
+
+      <div class="input">
+        <p>name</p>
+        <input
+          v-model="name"
+          type="password"
+          placeholder="사용할 이름을 입력하세요." />
+        <div v-if="name != ''">
+          <span
+            v-if="(name_valid=nameCheck(name))"
+            class="material-icons">check</span>
+          <p v-else>
+            <span class="material-icons">warning</span> 4자리 이상의 올바른 이름을 입력하세요
+          </p>
+        </div>
+      </div>
+
+      <p>profile</p>
+      <div id="profile">
+        <div id="input">
+          <input
+            id="file"
+            value=""
+            type="file"
+            @change="imgCheck" />
+          <div>
+            <span><img :src="img_obj.url ? img_obj.url: 'basic.png'" /></span>
+            <span> 파일 크기 : {{ img_obj.size }}kb</span>
+          </div>
+        </div>
+        <p v-if="img_obj.size > 1024">
+          <span class="material-icons">warning</span> 1mb 이하의 파일만 가능합니다
+        </p>
+      </div>
+
+      <button @click="signUp">
+        Singup
+      </button>
     </div>
-    <br />
-    <button @click="signUp">
-      Singup
-    </button>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -83,7 +107,7 @@ export default {
       pw : '',
       pw_ck : '',
       name : '',
-      img_obj : {url:null, size:0},
+      img_obj : {url:'', size:0},
       //valid용 data
       email_valid : false,
       pw_valid : false,
@@ -120,7 +144,9 @@ export default {
       'email': this.email,
       'password' : enc_pw,
       'displayName' : this.name,
-      'profileImgBase64' : this.img_obj.url
+    }
+    if(this.img_obj.url != ''){
+      data_obj['profileImgBase64'] = this.img_obj.url
     }
 
     //API 호출
@@ -137,3 +163,99 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+body{
+  #signup-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    padding: 5px 0;
+    margin-top: 10%;
+    img{
+      width: 70px;
+    }
+    p{
+      margin-top: 15px;
+      a{
+        text-decoration: none;
+        color: $color-pink;
+      }
+    }
+  }
+  #signup-submit{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 30px 0;
+    margin-top: 50px;
+    margin-bottom: 10%;
+
+    *{
+      width: 60%;
+      height: 20%;
+      font-size: 18px;
+    }
+
+    .input{
+      margin-bottom: 25px;
+      *{
+        width: 98%;
+        margin: 5px 0;
+      }
+      input{
+        padding: 15px 1%;
+        margin: 0 auto;
+      }
+      div{
+        p{
+          color: $color-danger;
+        }
+      }
+      span{
+        display: inline;
+      }
+    }
+
+    #profile{
+      height: 20%;
+      margin-bottom: 15px;
+      
+      #input{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        div{
+          span{
+            vertical-align: middle;
+          }
+          img{
+            width: 20%;
+          }
+        }
+      }
+
+      p{
+        color: red;
+        *{
+          display: inline;
+        }
+      }
+    }
+
+    button{
+      padding: 15px 0;
+      background-color: $color-blue;
+      color: white;
+      border: 1px $color-blue solid;
+    }
+    button:hover{
+      background-color: white;
+      color: $color-blue;
+      border: 1px $color-blue solid;
+    }
+  }
+}
+</style>
