@@ -52,6 +52,7 @@ div {
     background:transparent;
     cursor: pointer;
     color:#0D6EFD;
+    margin-left: -50px;
   }
 }
 </style>
