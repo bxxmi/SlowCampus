@@ -48,6 +48,14 @@ export default {
       state.productToOrderInfo.image = ''
       state.productToOrderInfo.id = ''
       state.productToOrderInfo.price = 0
+    },
+    canclePurchasedProduct(state,detailId) {
+      const idx = state.purchasedProductList.findIndex(item => item.detailId === detailId)
+      state.purchasedProductList[idx].isCanceled = true
+    },
+    confirmPurchasedProduct(state,detailId) {
+      const idx = state.purchasedProductList.findIndex(item => item.detailId === detailId)
+      state.purchasedProductList[idx].done = true
     }
   },
   actions: {
@@ -188,7 +196,7 @@ export default {
       const { username,authorization,detailId } = input
 
       try {
-        await axios({
+        const { data } = await axios({
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/cancel',
           method: 'POST',
           headers: {
@@ -201,6 +209,10 @@ export default {
             detailId
           }
         })
+
+        if(data){
+          commit('canclePurchasedProduct',detailId)
+        }
       } catch (e) {
         commit('assignState',{
           message: e.message
@@ -212,7 +224,7 @@ export default {
       const { username,authorization,detailId } = input
 
       try {
-        await axios({
+        const { data } = await axios({
           url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/ok',
           method: 'POST',
           headers: {
@@ -225,6 +237,10 @@ export default {
             detailId
           }
         })
+
+        if(data){
+          commit('canclePurchasedProduct',detailId)
+        }
       } catch (e) {
         commit('assignState',{
           message: e.message
