@@ -164,7 +164,7 @@ export default{
 
                 const result = {
                     url : "",
-                    size : 0
+                    size : size
                 }
 
                 Object.assign(vm.img_obj, result)

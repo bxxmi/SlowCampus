@@ -26,6 +26,43 @@
   </body>
 </template>
 
+<script>
+/*
+email : test@test.com
+pw : testtest
+name: test
+
+username: team2
+*/
+
+import authfunc from '../store/authfunc'
+
+export default {
+	data() {
+        return {
+            email: '',
+            pw : '',
+        }
+    },
+	methods: {
+		logIn : async function() {
+
+			//로그인
+			const enc_pw = authfunc.encryptPW(this.pw)
+
+			const data_obj = {
+                'email': this.email,
+                'password' : enc_pw
+			}
+
+			await authfunc.loginAPI(data_obj)
+
+		}
+	},
+}
+
+</script>
+
 <style lang="scss" scoped>
 body{
   #login-top{
@@ -92,41 +129,3 @@ body{
 }
 
 </style>
-
-<script>
-/*
-email : test@test.com
-pw : testtest
-name: test
-
-username: team2
-*/
-
-import authfunc from '../store/authfunc'
-
-export default {
-	data() {
-        return {
-            email: '',
-            pw : '',
-        }
-    },
-	methods: {
-		logIn : async function() {
-
-			//로그인
-			const enc_pw = authfunc.encryptPW(this.pw)
-
-			const data_obj = {
-                'email': this.email,
-                'password' : enc_pw
-			}
-
-			await authfunc.loginAPI(data_obj)
-
-		}
-	},
-}
-
-</script>
-

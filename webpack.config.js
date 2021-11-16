@@ -66,7 +66,7 @@ module.exports = (env, options) => {
     ],
     devServer: {
       open: true,
-      historyApiFallback: true
+      historyApiFallback: true,
     }
   }
 }
