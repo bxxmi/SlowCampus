@@ -141,7 +141,7 @@ export default {
         }
       })
       const result = data.filter(name => name.tags === tagName)
-      commit('assignState', { allProduct: result})
+      commit('assignState', { allProduct: result })
     },
     // 사용자 API : 제품 구매 신청
     async requestOrder(itemId, accountNumber) {

@@ -16,9 +16,19 @@ export default {
   components: {
     SelectTagItem
   },
+  data() {
+    return {
+      isShow: false
+    }
+  },
   computed: {
     itemList() {
       return this.$store.state.product.allProduct
+    }
+  },
+  methods: {
+    toggle() {
+      this.isShow = !this.isShow
     }
   }
 }
@@ -27,13 +37,13 @@ export default {
 <style lang="scss" scoped>
 .tag-area {
   width: 100%;
-  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   .tag-list {
-    display: flex;
+    width: 500px;
+    margin: 0 auto;
   }
 }
 </style>
