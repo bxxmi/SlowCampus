@@ -5,6 +5,7 @@ import Signup from './Signup'
 import ProductDetail from '~/components/products/ProductDetail'
 import CreateProduct from './CreateProduct'
 import MyPage from '~/routes/MyPage'
+import Order from '~/routes/Order'
 
 
 export default createRouter({
@@ -24,7 +25,7 @@ export default createRouter({
     },
     {
       path: '/productDetail/:id',
-      component: ProductDetail
+      component: ProductDetail,
     },
     {
       path: '/createProduct',
@@ -33,6 +34,10 @@ export default createRouter({
     {
       path: '/mypage',
       component: MyPage
+    },
+    {
+      path: '/order',
+      component: Order,
     }
   ]
 })
