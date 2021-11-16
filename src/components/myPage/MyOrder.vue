@@ -1,16 +1,21 @@
 <template>
   <div>
     <OrderedItem
-      v-for="orderedItem in orderedList"
-      :key="orderedItem.detailId"
-      ordered-item="orderedItem" />
+      v-for="item in orderedList"
+      :key="item.detailId"
+      :item="item" />
   </div>
 </template>
 
 <script>
+import OrderedItem from '~/components/myPage/OrderedItem'
+
 export default {
+  components: {
+    OrderedItem
+  },
   computed: {
-    orderList() {
+    orderedList() {
       return this.$store.state.product.purchasedProductList
     }
   }
