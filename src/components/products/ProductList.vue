@@ -25,13 +25,6 @@ export default {
   },
   unmounted() {
     window.removeEventListener('scroll', this.onScroll)
-  },
-  methods: {
-    onScroll(event) {
-      if((window.innerHeight + window.scrollY) >= document.documentElement.offsetHeight) {
-        console.log('야호')
-      }
-    }
   }
 }
 </script>
