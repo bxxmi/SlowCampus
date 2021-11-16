@@ -19,7 +19,7 @@
             class="far fa-heart"></i>
         </button>
         <div class="product-tag">
-          {{ productInfo.tags }}
+          # {{ productInfo.tags }}
         </div>
         <div class="product-title">
           {{ productInfo.title }}
@@ -65,6 +65,7 @@ export default {
   methods: {
     clickLikeBtn() {
       this.like = !this.like
+      console.log(this.like)
       localStorage.setItem(this.like, this.like)
     },
     storeProductToBuyInfo() {
@@ -91,33 +92,25 @@ export default {
   margin-bottom: 10px;
 }
 
-.like {
-  color: red;
-}
-
 .section-area {
-  border: 1px solid red;
   width: 100%;
   height: 606px;
   box-sizing: border-box;
   padding: 100px 300px;
   section {
-    border: 1px solid red;
     display: flex;
       min-width: 650px;
     .thumbnail {
       img {
       width: 400px;
       height: 400px;
+      object-fit: cover;
       display: block;
       margin-right: 20px;
       }
     }
     .product-info-list {
-      border: 1px solid red;
-      width: 100%;
       .product-tag {
-        width: 50px;
         height: 20px;
         background-color: #eaeaea;
         color: #444444;
@@ -141,7 +134,15 @@ export default {
   }
 }
 
-.buy-btn {
-  border: 1px solid red;
+.fa-heart {
+  font-size: 24px;
+}
+
+.fas.fa-heart {
+  color: #FE1694;
+}
+
+.far.fa-heart {
+  color: #eaeaea
 }
 </style>

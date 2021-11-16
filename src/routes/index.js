@@ -7,7 +7,6 @@ import CreateProduct from './CreateProduct'
 import MyPage from '~/routes/MyPage'
 import Order from '~/routes/Order'
 
-
 export default createRouter({
   history: createWebHistory(),
   routes: [
