@@ -160,7 +160,7 @@ export default {
           'username': 'adminteam2'
         }
       })
-      const result = data.filter(name => name.title === productName)
+      const result = data.filter(name => name.title.includes(productName))
       if (Object.keys(result).length === 0) {
         alert('검색하신 강의는 존재하지 않습니다. 😭')
         return
