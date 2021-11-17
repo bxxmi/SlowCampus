@@ -63,8 +63,6 @@ a {
     overflow: hidden;
     
     img {
-      position: relative;
-      bottom: 100px;
       display: block;
       width: 100%;
     }
