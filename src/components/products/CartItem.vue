@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="cart-info">
     <h1 class="product-title">
       {{ item.title }}
     </h1>
     <div class="product-image">
       <img
+        ref="image"
         :src="item.image"
         :alt="item.title" />
     </div>
     <strong class="product-price">{{ item.price }}</strong>
-
     <button
       type="button"
       @click="removeAtCart">
@@ -20,16 +20,29 @@
 
 <script>
 export default {
-    props: {
-        item: {
-            type: Object,
-            default: () => ({})
-        }
-    },
-    methods: {
-     removeAtCart() {
-        this.$store.commit('product/removeCart',this.item.id)
-      },
+  props: {
+      item: {
+          type: Object,
+          default: () => ({})
+      }
+  },
+  mounted() {
+    const thumbnail = this.item.image
+    if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
     }
+  },
+  methods: {
+    removeAtCart() {
+      this.$store.commit('product/removeCart',this.item.id)
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+img {
+  width: 200px;
+  height: 200px;
+}
+</style>

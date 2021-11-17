@@ -1,55 +1,55 @@
 <template>
-  <strong class="totalPrice">총 상품 금액: {{ totalPrice }}원</strong>
-  <button
-    type="button"
-    @click="resetCart">
-    전체 삭제
-  </button>
-
-  <div
-    v-if="totalPrice!=='0'"
-    class="payment">
-    <CartItem
-      v-for="item in cart"
-      :key="item"
-      :item="item" />
-
-    <div class="account-selector">
-      <label for="accountSelect">결제수단</label>
-      <select
-        id="accountSelect"
-        v-model="myAccountId"
-        name="myAccount">
-        <option value="">
-          결제 수단을 선택하세요.
-        </option>
-        <option
-          v-for="info in myAccountsNameIdNumberInfo"
-          :key="info.name"
-          :value="info.id">
-          {{ info.name }} {{ info.accountNumber }}
-        </option>
-      </select>
+  <div class="cart-area">
+    <div class="cart-title">
+      장바구니
     </div>
-
-    <div class="signiture">
-      <label for="">이용약관에 동의합니까?</label>
-      <input
-        v-model="signiture"
-        type="checkbox" />
+    <div
+      v-if="totalPrice!=='0'"
+      class="payment">
+      <CartItem
+        v-for="item in cart"
+        :key="item"
+        :item="item" />
+      <div class="account-selector">
+        <label for="accountSelect">결제수단</label>
+        <select
+          id="accountSelect"
+          v-model="myAccountId"
+          name="myAccount">
+          <option value="">
+            결제 수단을 선택하세요.
+          </option>
+          <option
+            v-for="info in myAccountsNameIdNumberInfo"
+            :key="info.name"
+            :value="info.id">
+            {{ info.name }} {{ info.accountNumber }}
+          </option>
+        </select>
+      </div>
+      <strong class="totalPrice">총 상품 금액: {{ totalPrice }}원</strong>
+      <button
+        type="button"
+        @click="resetCart">
+        전체 삭제
+      </button>
+      <div class="signiture">
+        <label for="">이용약관에 동의합니까?</label>
+        <input
+          v-model="signiture"
+          type="checkbox" />
+      </div>
+      <RouterLink
+        to="/afterorder"
+        @click="[buyProductAll(),resetCart()]">
+        구매하기
+      </RouterLink>
     </div>
-
-    <RouterLink
-      to="/afterorder"
-      @click="[buyProductAll(),resetCart()]">
-      구매하기
-    </RouterLink>
-  </div>
-
-  <div
-    v-else
-    class="skeleton">
-    장바구니가 비어있습니다.
+    <div
+      v-else
+      class="skeleton">
+      장바구니가 비어있습니다.
+    </div>
   </div>
 </template>
 
@@ -97,3 +97,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.cart-area {
+  border: 1px solid red;
+  padding: 60px;
+  .cart-title {
+    border: 1px solid blue;
+    font-size: 34px;
+    color: #cdcdcd;
+  }
+}
+</style>
