@@ -130,8 +130,6 @@ export default {
         alert('계좌 추가가 완료되었습니다.')
       } catch (e) {
         alert('비정상적인 시도입니다.')
-      } finally {
-        location.reload()
       }
     },
 
@@ -163,8 +161,6 @@ export default {
         }
       } catch(e) {
         alert('비정상적인 시도입니다.')
-      } finally {
-        location.reload()
       }
     }  
   },
