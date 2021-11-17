@@ -47,7 +47,7 @@ export default {
     box-shadow: 0 1px 5px rgba(0 0 0 / 50%);
     width: 90%;
     padding: 5% 0;
-    margin: 50px auto ;
+    margin: 50px auto;
     .bottom{
       width: 80%;
     }

@@ -77,14 +77,14 @@ export default {
     }
   }
   .order-info {
-    width: 300px;
+    width: 350px;
     margin: 0 auto;
     .order {
       margin-bottom: 25px;
       font-size: 16px;
     }
     .title {
-      margin-right: 40px;
+      margin-right: 20px;
       font-weight: 700;
     }
   }

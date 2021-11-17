@@ -36,7 +36,6 @@
       <strong class="product-price">{{ productPrice }}</strong>
       <span class="product-time-paid">구매 일자: {{ productTimePaid }}</span>
     </div>
-
     <div
       v-if="!(isDone||isCanceled)"
       class="btn-group">
@@ -197,11 +196,11 @@ export default {
   }
 
   .btn-group{ 
-  position: absolute;
-  right: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
   .order-confirm{
     margin-bottom: 10px;
