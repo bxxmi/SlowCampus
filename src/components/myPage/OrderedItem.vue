@@ -153,6 +153,7 @@ export default {
   @include flex(flex-start);
   width: 80%;
   margin: 5%;
+  position: relative;
   .product-area {
     width: 100%;
     padding: 20px;
@@ -165,64 +166,64 @@ export default {
       width:100px;
     }
   }
-  }
+}
 
-  .product-about {
-    .product-top {
-      display: flex;
-      align-items: center;
-    }
-    .product-title{
-      font-weight: 700;
-      cursor: pointer;
-      margin-right: 5px;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    .product-price {
-      display: block;
-      font-size: 13px;
-    }
-    .product-time-paid {
-      font-size: $font-size-m;
-    .product-title{
-      font-size: $font-size-lg;
-    }
-  }
- }
- .done{
-    font-size: 10px;
-    color: $color-success;
-  }
-  .cancel{
-    font-size: 10px;
-    color: $color-danger;
-  }
-
-  .btn-group{ 
-    position: absolute;
-    right: 20px;
+.product-about {
+  .product-top {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-  .order-confirm{
-    margin-bottom: 10px;
-    cursor: pointer;
-    @include order-btn($color-white, $color-primary);
-        &:hover{
-        @include order-btn($color-primary, $color-white);
-        }
+    align-items: center;
   }
-  .order-cancle{
+  .product-title{
+    font-weight: 700;
     cursor: pointer;
-    @include order-btn($color-white, $color-primary);
-        &:hover{
-        @include order-btn($color-primary, $color-white);
-        }
+    margin-right: 5px;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
+  .product-price {
+    display: block;
+    font-size: 13px;
+  }
+  .product-time-paid {
+    font-size: $font-size-m;
+  .product-title{
+    font-size: $font-size-lg;
+  }
+}
+}
+.done{
+  font-size: 10px;
+  color: $color-success;
+}
+.cancel{
+  font-size: 10px;
+  color: $color-danger;
+}
+
+.btn-group{ 
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+.order-confirm{
+  margin-bottom: 10px;
+  cursor: pointer;
+  @include order-btn($color-white, $color-primary);
+      &:hover{
+      @include order-btn($color-primary, $color-white);
+      }
+}
+.order-cancle{
+  cursor: pointer;
+  @include order-btn($color-white, $color-primary);
+      &:hover{
+      @include order-btn($color-primary, $color-white);
+    }
+  }
+}
 }
 </style>
