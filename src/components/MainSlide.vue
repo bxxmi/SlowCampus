@@ -1,7 +1,6 @@
 <template>
   <div class="slide-area">
     <swiper
-      @swiper="onSwiper"
       @slide-change="onSlideChange">
       <swiper-slide>
         <img
@@ -33,18 +32,6 @@
     components: {
       Swiper,
       SwiperSlide,
-    },
-    setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper)
-      }
-      const onSlideChange = () => {
-        console.log('slide change')
-      }
-      return {
-        onSwiper,
-        onSlideChange,
-      }
     },
   }
 </script>
