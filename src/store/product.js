@@ -89,7 +89,6 @@ export default {
           'photoBase64': product[0].photoBase64
         }
       })
-      console.log(data)
       commit('addProduct', data)
     },
     // 관리자 API: 제품 수정
@@ -107,7 +106,6 @@ export default {
           'price': 2000
         }
       })
-      console.log(data)
     },
     // 관리자 API: 전체 제품 조회 (완료)
     async getAllProduct({ commit }) {
@@ -135,7 +133,6 @@ export default {
           'masterKey': 'true'
         }
       })
-      console.log(data)
     },
     // 공용 API: 단일 제품 상세 조회 (완료)
     async detailProduct({ commit }, itemId) {
@@ -148,7 +145,6 @@ export default {
           'username': 'team2'
         }
       })
-      console.log(data)
       commit('assignState', { productInfo: data })
     },
     // 사용자 API: 제품 검색 - 키워드 (완료) 
@@ -203,7 +199,6 @@ export default {
           accountId
         }
       })
-      console.log(data)
     },
     // 사용자 API : 구매 취소
     async cancelOrder({ commit }, input) {
@@ -306,7 +301,6 @@ export default {
           detailId: itemId
         }
       }) 
-      console.log(data)
     }
   }
 }
