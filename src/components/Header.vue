@@ -86,9 +86,15 @@ export default({
 
 <style lang="scss" scoped>
 header {
+  position:fixed;
+  top:0;
+  overflow: hidden;
+  z-index: 10;
+  background-color: $color-bg;
+
   padding: 20px 5%;
-  border-bottom: 1px solid rgb(230, 230, 230);
-  height: 10%;
+
+  height: 5%;
   width: 90%;
 
   display: flex;

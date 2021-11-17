@@ -1,7 +1,9 @@
 <template>
   <div class="app__inner">
     <Header />
-    <RouterView />
+    <div class="main">
+      <RouterView  />
+    </div>
     <Footer />
   </div>
 </template>
@@ -24,5 +26,8 @@ export default {
   line-height: 1.4;
   font-family: 'Noto Sans KR', sans-serif;
   color: $color-font;
+}
+.main{
+  margin-top:10%;
 }
 </style>
