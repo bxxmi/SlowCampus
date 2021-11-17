@@ -153,7 +153,9 @@ export default {
   @include flex(flex-start);
   width: 80%;
   margin: 5%;
+  position: relative;
   .product-area {
+    border: 1px solid red;
     width: 100%;
     padding: 20px;
     display: flex;
