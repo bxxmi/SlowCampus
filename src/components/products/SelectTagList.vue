@@ -35,13 +35,18 @@ export default {
 <style lang="scss" scoped>
 .tag-area {
   width: 100%;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
   .tag-list {
-    width: 500px;
+    padding-top: 10px;
+    padding-left: 10px ;
+    border-radius: 7px;
+    width:70%;
     margin: 0 auto;
+    box-shadow: 2px 5px 8px #888888;
+    background-color:#89cff0;
   }
 }
 </style>
