@@ -77,7 +77,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
+          'username': 'adminteam2',
           'masterKey': true
         },
         data: {
@@ -90,6 +90,7 @@ export default {
         }
       })
       commit('addProduct', data)
+      alert('제품 추가 완료')
     },
     // 관리자 API: 제품 수정
     async editProduct(itemId) {
