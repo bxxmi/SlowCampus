@@ -10,6 +10,7 @@ import MyAccount from '~/components/myPage/MyAccount'
 import Order from '~/routes/Order'
 import AfterOrder from '~/routes/AfterOrder'
 import ShoppingCart from '~/routes/ShoppingCart'
+import authfunc from '../store/authfunc'
 
 export default createRouter({
   history: createWebHistory(),
@@ -32,7 +33,13 @@ export default createRouter({
     },
     {
       path: '/createProduct',
-      component: CreateProduct
+      component: CreateProduct,
+      beforeEnter: (to, from, next) => {
+        if (authfunc.getCookie('accessToken')) {
+          alert('유효한 사용자가 아닙니다.')
+          next('/')
+        }
+      }
     },
     {
       path: '/myinfo',
