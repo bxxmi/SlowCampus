@@ -179,7 +179,9 @@ export default {
       font-size: 13px;
     }
     .product-time-paid {
-      font-size: 10px;
+      font-size: $font-size-m;
+    .product-title{
+      font-size: $font-size-lg;
     }
     .done{
       font-size: 10px;
