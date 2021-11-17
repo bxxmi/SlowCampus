@@ -1,6 +1,6 @@
 import store from '.'
 import CryptoJS from 'crypto-js'
-import axios from 'axios';
+import axios from 'axios'
 import router from '../routes'
 
 export default{
@@ -68,7 +68,7 @@ export default{
             })
 
             //쿠키
-            this.setCookie('accessToken',"",1)
+            this.setCookie('accessToken','',1)
 
             //flag
             store.commit('auth/changeLogged', false)
@@ -145,11 +145,11 @@ export default{
     //이미지의 크기 검사 및 변환
     imgCheck(event, vm){
         //기능 : 프로필 이미지 크기검사와 64base로 변환
-        const selectedFile = event.target.files[0];
-        const reader = new FileReader();
+        const selectedFile = event.target.files[0]
+        const reader = new FileReader()
 
         //64base로 변환
-        reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(selectedFile)
 
         reader.onload = function (event) {
             //1MB이하인지 검사
@@ -163,7 +163,7 @@ export default{
                 alert('over 1MB')
 
                 const result = {
-                    url : "",
+                    url : '',
                     size : size
                 }
 
@@ -177,7 +177,7 @@ export default{
 
                 Object.assign(vm.img_obj, result)
             }
-        };
+        }
     },
     //이메일 체크
     emailValidation(data){
@@ -220,24 +220,24 @@ export default{
         const date = new Date()
         //하루 단위
         date.setTime(date.getTime() + (ex_day*24*60*60*1000))
-        let expires = "expires="+ date.toUTCString()
-        document.cookie = c_name + "=" + c_value + ";" + expires + ";path=/";
+        let expires = 'expires='+ date.toUTCString()
+        document.cookie = c_name + '=' + c_value + ';' + expires + ';path=/'
     },
     //쿠키 정보 가져오기
     getCookie (c_name){
-        let name = c_name + "=";
-          let decodedCookie = decodeURIComponent(document.cookie);
-        let cookie_array = decodedCookie.split(';');
+        let name = c_name + '='
+          let decodedCookie = decodeURIComponent(document.cookie)
+        let cookie_array = decodedCookie.split(';')
         for(let i = 0; i <cookie_array.length; i++) {
-            let c = cookie_array[i];
+            let c = cookie_array[i]
             while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+            c = c.substring(1)
             }
             if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+            return c.substring(name.length, c.length)
             }
         }
-        return "";
+        return ''
     },
     
 }

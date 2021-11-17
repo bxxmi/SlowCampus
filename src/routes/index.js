@@ -10,6 +10,7 @@ import MyAccount from '~/components/myPage/MyAccount'
 import Order from '~/routes/Order'
 import AfterOrder from '~/routes/AfterOrder'
 import ShoppingCart from '~/routes/ShoppingCart'
+import authfunc from '~/store/authfunc'
 
 export default createRouter({
   history: createWebHistory(),
@@ -48,7 +49,7 @@ export default createRouter({
     },
     {
       path: '/order',
-      component: Order,
+      component: Order
     },
     {
       path: '/afterorder',
