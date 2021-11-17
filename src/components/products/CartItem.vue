@@ -1,20 +1,24 @@
 <template>
   <div class="cart-info">
-    <h1 class="product-title">
-      {{ item.title }}
-    </h1>
-    <div class="product-image">
-      <img
-        ref="image"
-        :src="item.image"
-        :alt="item.title" />
+    <div class="product-info">
+      <div class="product-image">
+        <img
+          ref="image"
+          :src="item.image"
+          :alt="item.title" />
+      </div>
+      <div class="product-title">
+        {{ item.title }}
+      </div>
+      <div class="product-price">
+        <strong>{{ item.price }}원</strong>
+      </div>
+      <button
+        type="button"
+        @click="removeAtCart">
+        <i class="fas fa-trash-alt"></i>
+      </button>
     </div>
-    <strong class="product-price">{{ item.price }}</strong>
-    <button
-      type="button"
-      @click="removeAtCart">
-      삭제하기
-    </button>
   </div>
 </template>
 
@@ -42,11 +46,36 @@ export default {
 
 <style lang="scss" scoped>
 .cart-info {
-  border: 1px solid red;
-  clear: both;
-}
-img {
-  width: 200px;
-  height: 200px;
+  margin-bottom: 30px;
+  .product-info {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    .product-image{
+      margin-right: 80px;
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .product-title {
+      font-size: 18px;
+      line-height: 100px;
+      margin-right: 85px;
+    }
+    .product-price {
+      font-size: 18px;
+      line-height: 100px;
+      margin-right: 340px;
+    }
+    button {
+      font-size: 18px;
+      color: #444444;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }
 </style>
