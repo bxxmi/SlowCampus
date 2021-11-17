@@ -9,46 +9,48 @@
       :done="isDone" />
   </DetailOrderModal>
   <div class="product">
-    <div class="product-image">
-      <img
-        ref="image"
-        :src="productImage"
-        :alt="productTitle" />
-    </div>
-    <div class="product-about">
-      <div class="product-top">
-        <h1
-          class="product-title"
-          @click="isModalView = true">
-          {{ productTitle }}
-        </h1>
-        <div
-          v-if="isDone"
-          class="done">
-          주문확정
-        </div>
-        <div
-          v-if="isCanceled"
-          class="cancel">
-          주문취소
-        </div>
+    <div class="product-area">
+      <div class="product-image">
+        <img
+          ref="image"
+          :src="productImage"
+          :alt="productTitle" />
       </div>
-      <strong class="product-price">{{ productPrice }}</strong>
-      <span class="product-time-paid">구매 일자: {{ productTimePaid }}</span>
-    </div>
-    <div
-      v-if="!(isDone||isCanceled)"
-      class="btn-group">
-      <button
-        class="order-confirm"
-        @click="cofirmOrder">
-        주문 확정
-      </button>
-      <button
-        class="order-cancle"
-        @click="cancleOrder">
-        주문 취소
-      </button>
+      <div class="product-about">
+        <div class="product-top">
+          <h1
+            class="product-title"
+            @click="isModalView = true">
+            {{ productTitle }}
+          </h1>
+          <div
+            v-if="isDone"
+            class="done">
+            주문확정
+          </div>
+          <div
+            v-if="isCanceled"
+            class="cancel">
+            주문취소
+          </div>
+        </div>
+        <strong class="product-price">{{ productPrice }}</strong>
+        <span class="product-time-paid">구매 일자: {{ productTimePaid }}</span>
+      </div>
+      <div
+        v-if="!(isDone||isCanceled)"
+        class="btn-group">
+        <button
+          class="order-confirm"
+          @click="cofirmOrder">
+          주문 확정
+        </button>
+        <button
+          class="order-cancle"
+          @click="cancleOrder">
+          주문 취소
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -146,21 +148,25 @@ export default {
 @import '~/scss/_variables.scss';
 
 .product {
-  position: relative;
-  border:none;
   border-radius: 15px;
   background-color: $color-bg;
   @include flex(flex-start);
   width: 80%;
-  padding:20px;
   margin: 5%;
-  .product-image {
+  .product-area {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    position: relative;
+    .product-image {
     margin-right: 40px;
     img {
       display: block;
       width:100px;
     }
   }
+  }
+
   .product-about {
     .product-top {
       display: flex;
@@ -197,19 +203,21 @@ export default {
 
   .btn-group{ 
     position: absolute;
-    right: 30px;
+    right: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
 
   .order-confirm{
     margin-bottom: 10px;
+    cursor: pointer;
     @include order-btn($color-white, $color-primary);
         &:hover{
         @include order-btn($color-primary, $color-white);
         }
   }
   .order-cancle{
+    cursor: pointer;
     @include order-btn($color-white, $color-primary);
         &:hover{
         @include order-btn($color-primary, $color-white);
