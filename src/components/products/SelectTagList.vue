@@ -66,22 +66,21 @@ export default {
     height: 50px;
     overflow: hidden;
     margin: 0 auto;
-    box-shadow: 2px 5px 8px #e6e6e6;
-    background-color:#89cff0;
-
+    box-shadow: 2px 1px 8px rgba($color: #000000, $alpha: .4);
+    // border: 1px solid #0d6efd;
     .material-icons {
       position: absolute;
-      top: 12px;
+      top: 8px;
       right: 7px;
       padding: 5px;
+      font-size: 36px;
       cursor: pointer;
       transition: .5s;
+      color:#0d6efd;
     }
-
     &.full {
       height: auto;
       overflow: visible;
-      
       .material-icons {
         transform: rotate(180deg);
       }
