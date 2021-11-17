@@ -52,6 +52,8 @@ export default {
         accountId:this.myAccountId, 
         signature: this.signature
       })
+      
+      this.signature = false
     }
   }
 }

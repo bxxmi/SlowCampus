@@ -130,6 +130,11 @@ export default {
         phoneNumber: this.phoneNumber.replace(/-/g,''),
         signature: this.signature,
       })
+
+      this.bankCode = '',
+      this.accountNumber = null,
+      this.phoneNumber = null,
+      this.signature = false
     }
   },
 }

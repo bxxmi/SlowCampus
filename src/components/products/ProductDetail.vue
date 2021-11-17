@@ -143,7 +143,8 @@ a {
       }
     }
     .product-info-list {
-      width: 250px;
+      min-width: 250px;
+      max-width: 600px;
       .product-tag {
         width: 30%;
         height: 25px;
@@ -197,6 +198,7 @@ a {
     display: flex;
     flex-direction: column;
     height: 400px;
+    margin-left: 20px;
   }
 }
 </style>

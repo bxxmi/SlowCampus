@@ -249,7 +249,7 @@ export default {
         })
 
         if(data){
-          commit('canclePurchasedProduct',detailId)
+          commit('confirmPurchasedProduct',detailId)
         }
       } catch (e) {
         commit('assignState',{
