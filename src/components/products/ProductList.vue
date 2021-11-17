@@ -1,9 +1,9 @@
 <template>
   <div class="product-list">
     <ProductItem
-      v-for="item in itemListArray.slice(0,$store.state.auth.range)"
+      class='box'
+      v-for="item in itemListArray.slice(0,this.$store.state.auth.range)"
       :key="item.detailId"
-      class="box"
       :item="item" />
   </div>
 </template>
@@ -64,15 +64,8 @@ export default {
   display: flex;
   flex-direction: column;
   
-  background-color:#89cff0;
   width: 70%;
-  height: 700px;
   margin: 10px auto;
-  border-radius: 15px;
-
-  overflow-y: scroll;
-
-  //스크롤 디자인 제거
 
   .box{
     filter: blur(5px);
