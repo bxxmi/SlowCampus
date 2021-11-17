@@ -3,6 +3,11 @@
     <div class="cart-title">
       장바구니
     </div>
+    <button
+      type="button"
+      @click="resetCart">
+      전체 삭제
+    </button>
     <div
       v-if="totalPrice!=='0'"
       class="payment">
@@ -28,11 +33,6 @@
         </select>
       </div>
       <strong class="totalPrice">총 상품 금액: {{ totalPrice }}원</strong>
-      <button
-        type="button"
-        @click="resetCart">
-        전체 삭제
-      </button>
       <div class="signiture">
         <label for="">이용약관에 동의합니까?</label>
         <input
@@ -106,6 +106,17 @@ export default {
     border: 1px solid blue;
     font-size: 34px;
     color: #cdcdcd;
+  }
+  button {
+    float: right;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #0D6EFD;
+    cursor: pointer;
+    margin: 15px 0;
   }
 }
 </style>

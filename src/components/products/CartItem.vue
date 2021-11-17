@@ -41,6 +41,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cart-info {
+  border: 1px solid red;
+  clear: both;
+}
 img {
   width: 200px;
   height: 200px;
