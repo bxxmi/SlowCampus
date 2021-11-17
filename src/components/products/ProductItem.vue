@@ -3,10 +3,12 @@
     class="product-item">
     <RouterLink
       :to="`${href}/${id}`">
-      <img
-        ref="image"
-        :src="item.thumbnail"
-        alt="thumbnail" />
+      <div class="product-image">
+        <img
+          ref="image"
+          :src="item.thumbnail"
+          alt="thumbnail" />
+      </div>
       <p>{{ item.title }}</p>
     </RouterLink>
   </li>
@@ -53,10 +55,19 @@ a {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   overflow: hidden;
-  img {
-  width: 600px;
-  height: 300px;
-  display: block;
+  .product-image {
+    width: 600px;
+    height: 300px;
+    display: block;
+    object-fit: cover;
+    overflow: hidden;
+    
+    img {
+      position: relative;
+      bottom: 100px;
+      display: block;
+      width: 100%;
+    }
   }
   p {
     padding: 20px 30px;
