@@ -34,13 +34,13 @@ export default {
 
 <style lang="scss" scoped>
 div {
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px;
+  width: 350px;
+  height: 40px;
+  @include flex(center);
+  margin: 50px auto;
   input {
     width: 300px;
+
     padding: 15px 20px;
     border-radius: 50px;
     border: none;
@@ -54,5 +54,15 @@ div {
     color:#0D6EFD;
     margin-left: -50px;
   }
+  button{
+    cursor: pointer;
+    border: none;
+    width: 50px;
+    height: 100%;
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    @include flex(center);
+  }
+
 }
 </style>
