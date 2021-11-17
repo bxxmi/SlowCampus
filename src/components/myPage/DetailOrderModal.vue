@@ -17,7 +17,7 @@
 <style lang="scss" scoped>
 .modal-area {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   .overlay {
   width: 100%;
@@ -33,15 +33,14 @@
 .modal-card {
   width: 600px;
   height: 500px;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
   position: fixed;
-  z-index: 1;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
   .close-btn {
   width: 30px;
   height: 30px;

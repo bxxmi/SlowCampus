@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="top">
     <MyPageNav />
     <div class="account-area">
       <Check>계좌확인</Check>
@@ -43,12 +43,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
-  display: flex;
-  flex-direction: column;
+.top{
+  display:flex;
+  border: 1px solid $color-secondary;
+  border-radius: 15px;
+  box-shadow: 0 1px 5px rgba(0 0 0 / 50%);
+  width: 90%;
+  padding: 5% 0;
+  margin: 50px auto;
   .account-area {
+    width: 60%;
     font-size: 18px;
-    display: flex;
+    margin-left: 100px;
   }
 }
 </style>
