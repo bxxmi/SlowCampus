@@ -47,7 +47,7 @@ $color-white: #fff;
   color: $color;
   background-color: $bgcolor;
   border: 1px solid $color-primary;
-  transition: all .7s;
+  transition: all .5s;
 }
 
 @mixin order-btn($color, $bgcolor) {
