@@ -48,9 +48,9 @@ export default {
     width: 90%;
     padding: 5% 0;
     margin: 50px auto ;
+    .bottom{
+      width: 80%;
+    }
   }
-  .bottom{
-    border: 1px solid purple;
-    width: 100%;
-  }
+  
 </style>

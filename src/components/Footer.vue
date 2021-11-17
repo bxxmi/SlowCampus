@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
  footer {
    padding: 2%;
-   background: $color-bg;
+   background: $color-footer;
    display:block;
    .person{
      @include flex(space-around);

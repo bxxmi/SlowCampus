@@ -24,32 +24,32 @@
       <strong class="product-price">{{ productPrice }}</strong>
       <span class="product-time-paid">{{ productTimePaid }}</span>
       <span class="product-id">{{ productId }}</span>
+      <div
+        v-if="isDone"
+        class="done">
+        주문확정
+      </div>
+      <div
+        v-if="isCanceled"
+        class="cancel">
+        주문취소
+      </div>
     </div>
-    <div
-      v-if="isDone"
-      class="done">
-      주문확정
-    </div>
-    <div
-      v-if="isCanceled"
-      class="cancel">
-      주문취소
-    </div>
-  </div>
 
-  <div
-    v-if="!(isDone||isCanceled)"
-    class="btn-group">
-    <button
-      class="order-confirm"
-      @click="cofirmOrder">
-      주문 확정
-    </button>
-    <button
-      class="order-cancle"
-      @click="cancleOrder">
-      주문 취소
-    </button>
+    <div
+      v-if="!(isDone||isCanceled)"
+      class="btn-group">
+      <button
+        class="order-confirm"
+        @click="cofirmOrder">
+        주문 확정
+      </button>
+      <button
+        class="order-cancle"
+        @click="cancleOrder">
+        주문 취소
+      </button>
+    </div>
   </div>
 </template>
 
@@ -124,13 +124,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product { border: 1px solid red;
-  display:flex;
-  flex-direction: column;
-  width: 70%;
-  margin: 5% 0 0 5%;
+.product { 
+  border:none;
+  border-radius: 15px;
+  background-color: $color-bg;
+  @include flex(space-around);
+  width: 80%;
+  padding:20px;
+  margin: 5%;
   .product-image {
-    img{display:none;}
+    img{
+      display: block;
+      width:100px;}
   }
   .product-about {
     .product-title{
@@ -145,19 +150,20 @@ export default {
     .product-id {
 
     }
+    .done{
+      color: $color-success;
+    }
+    .cancel{
+      color: $color-danger;
+    }
   }
-  .done{
-    color: $color-success;
-  }
-  .cancel{
-    color: $color-danger;
-  }
-  
-}
-.btn-group{ border: 1px solid green;
+  .btn-group{ 
   display: flex;
+  justify-content: center;
   flex-direction: column;
+
   .order-confirm{
+    margin-bottom: 10px;
     @include order-btn($color-white, $color-primary);
         &:hover{
         @include order-btn($color-primary, $color-white);
@@ -170,4 +176,6 @@ export default {
         }
   }
 }
+}
+
 </style>

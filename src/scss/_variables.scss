@@ -7,7 +7,8 @@ $color-info: #0dcaf0;
 $color-like: #FE1694;
 
 $color-font: #333;
-$color-bg: #f7f7f7;
+$color-bg: #eaeaea;
+$color-footer: #f7f7f7;
 
 $font-size-sm: 12px;
 $font-size-m: 14px;
@@ -52,7 +53,7 @@ $color-white: #fff;
 @mixin order-btn($color, $bgcolor){
   width: 70px;
   padding: 3px;
-  border-radius: 5spx;
+  border-radius: 7px;
   text-decoration: none;
   text-align: center;
   font-size: $font-size-m;
