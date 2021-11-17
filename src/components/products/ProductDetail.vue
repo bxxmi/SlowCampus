@@ -124,11 +124,15 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   height: 67vh;
   box-sizing: border-box;
+  margin: 0 auto 50px;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.4);
   section {
+    width: 80%;
     display: flex;
+    justify-content: space-between;
     .thumbnail {
       img {
         width: 400px;
@@ -139,8 +143,9 @@ a {
       }
     }
     .product-info-list {
+      width: 250px;
       .product-tag {
-        width: 50%;
+        width: 30%;
         height: 25px;
         background-color: #eaeaea;
         color: #444444;
@@ -152,7 +157,7 @@ a {
         margin-bottom: 20px;
       }
       .product-title {
-        font-size: 48px;
+        font-size: 24px;
         font-weight: 700;
         margin-bottom: 30px;
         text-overflow: ellipsis;
@@ -182,7 +187,7 @@ a {
         &.buy {
           text-align: center;
           line-height: 40px;
-          margin-right: 30px;
+          margin-right: 10px;
         }
       }
     }
