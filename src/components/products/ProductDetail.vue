@@ -9,14 +9,9 @@
       </div>
       <div class="product-info-list">
         <button
-          class="btn like-btn"
-          @click="clickLikeBtn">
-          <i
-            v-if="like"
-            class="fas fa-heart"></i>
-          <i
-            v-else
-            class="far fa-heart"></i>
+          class="btn cart"
+          @click="addToCart">
+          장바구니
         </button>
         <div class="product-tag">
           # {{ productInfo.tags }}
@@ -36,16 +31,26 @@
       </div>
     </section>
   </div>
+  
+  <AddToCartModal
+    :cart="cart"
+    :incart="isInCart"
+    @close="toggleModal" />
 </template>
 
 <script>
 import store from '~/store/'
 import authfunc from '~/store/authfunc.js'
+import AddToCartModal from '~/components/products/AddToCartModal'
 
 export default {
+  components: {
+    AddToCartModal
+  },
   data() {
     return {
-      like: false,
+      cart: false,
+      isInCart: false
     }
   },
   computed: {
@@ -65,10 +70,23 @@ export default {
     }
   },
   methods: {
-    clickLikeBtn() {
-      this.like = !this.like
-      console.log(this.like)
-      localStorage.setItem(this.like, this.like)
+    addToCart() {
+      if(!this.isInCart){
+        this.$store.commit('product/addCart',{
+        title: this.productInfo.title,
+        image: this.productInfo.thumbnail, 
+        id: this.productInfo.id, 
+        price: this.productInfo.price
+      })
+      
+      this.isInCart = true
+      this.toggleModal()
+      }else {
+        alert('이미 추가한 상품입니다!')
+      }
+    },
+    toggleModal(){
+      this.cart = !this.cart
     },
     storeProductToBuyInfo() {
       this.$store.commit('product/resetProductToOrderInfo')
@@ -94,67 +112,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn {
-  border: none;
-  cursor: pointer;
-}
+    .btn {
+    border: none;
+    cursor: pointer;
+    height: 36px;
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
 
-.like-btn {
-  background-color: transparent;
-  margin-bottom: 10px;
-}
+      &:hover {
+    opacity: .5;
+    }
+    }
 
-.section-area {
-  width: 100%;
-  height: 606px;
-  box-sizing: border-box;
-  padding: 100px 300px;
-  section {
+    .cart {
+    height: 30px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    }
+
+    .buy-btn {
     display: flex;
-      min-width: 650px;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    text-decoration: none;
+    }
+
+    .section-area {
+    width: 100%;
+    height: 606px;
+    box-sizing: border-box;
+    padding: 100px 300px;
+    section {
+    display: flex;
+    min-width: 650px;
     .thumbnail {
-      img {
-      width: 400px;
-      height: 400px;
-      object-fit: cover;
-      display: block;
-      margin-right: 20px;
-      }
+    img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    margin-right: 20px;
+    }
     }
     .product-info-list {
-      .product-tag {
-        height: 20px;
-        background-color: #eaeaea;
-        color: #444444;
-        font-weight: 700;
-        line-height: 15px;
-        text-align: center;
-        border-radius: 50px;
-        font-size: 12px;
-        margin-bottom: 20px;
-      }
-      .product-title {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 30px;
-      }
-      .product-description {
-        color: #444444;
-        margin-bottom: 30px;
-      }
+    .product-tag {
+    height: 20px;
+    background-color: #eaeaea;
+    color: #444444;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 20px;
     }
-  }
-}
+    .product-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    }
+    .product-description {
+    color: #444444;
+    margin-bottom: 30px;
+    }
+    }
+    }
+    }
 
-.fa-heart {
-  font-size: 24px;
-}
+    .fa-heart {
+    font-size: 24px;
+    }
 
-.fas.fa-heart {
-  color: #FE1694;
-}
+    .fas.fa-heart {
+    color: #FE1694;
+    }
 
-.far.fa-heart {
-  color: #eaeaea
-}
-</style>
+    .far.fa-heart {
+    color: #eaeaea
+    }
+    </style>

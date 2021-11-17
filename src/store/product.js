@@ -18,8 +18,9 @@ export default {
       id: '',
       price: 0
     },
+    cart: [],
     //에러 메시지 저장
-    message: ''
+    message: '',
   }),
   getters: {
     // 구매한 제품 리스트에서 뽑아낼 아이디들
@@ -56,6 +57,15 @@ export default {
     confirmPurchasedProduct(state,detailId) {
       const idx = state.purchasedProductList.findIndex(item => item.detailId === detailId)
       state.purchasedProductList[idx].done = true
+    },
+    addCart(state,item) {
+      state.cart.push(item)
+    },
+    removeCart(state,id) {
+      state.cart = state.cart.filter(item => item.id !== id)
+    },
+    resetCart(state) {
+      state.cart = []
     }
   },
   actions: {
@@ -154,6 +164,10 @@ export default {
         }
       })
       const result = data.filter(name => name.title === productName)
+      if (Object.keys(result).length === 0) {
+        alert('검색하신 강의는 존재하지 않습니다. 😭')
+        return
+      }
       commit('assignState', { allProduct: result})
     },
     // 사용자 API: 제품 검색 - 태그 (완료) 

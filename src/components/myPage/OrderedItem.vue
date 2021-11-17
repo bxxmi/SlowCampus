@@ -104,6 +104,12 @@ export default {
         return this.item.done
       }
     },
+    mounted() {
+      const thumbnail = this.productImage
+      if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
+    },
     methods: {
       async cofirmOrder() {
         await this.$store.dispatch('product/confirmOrder',{
