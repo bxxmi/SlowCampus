@@ -5,7 +5,7 @@ export default {
         APIheaderObj : {
             "content-type": "application/json",
             "apikey": "FcKdtJs202110",
-            "username": "team2"
+            "username": "adminteam2"
         },
         //변화되는 내용
         logged_in : false,
