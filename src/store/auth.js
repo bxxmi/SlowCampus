@@ -10,6 +10,7 @@ export default {
         //변화되는 내용
         logged_in : false,
         logged_user : {},
+        range : 5
     },
     mutations: {
       setUser(state, obj){
@@ -17,6 +18,9 @@ export default {
       },
       changeLogged (state, val) {
         state.logged_in = val
+      },
+      setRange(state){
+        state.range += 2
       }
     }
   }

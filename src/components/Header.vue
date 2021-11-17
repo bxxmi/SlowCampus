@@ -3,7 +3,7 @@
     <RouterLink to="/">
       <div id="logo">
         <img src="logo.svg" />
-        <span> Slow Campus</span>
+        <span class="slogan"> Slow Campus</span>
       </div>
     </RouterLink>
     <div id="buttons">     
@@ -17,8 +17,12 @@
         <button
           id="mypage"
           @click="tomypage">
-          <img v-if="(this.$store.state.auth.logged_user.profileImg != '')" :src='this.$store.state.auth.logged_user.profileImg' />
-          <img v-else src="basic.png" />
+          <img
+            v-if="($store.state.auth.logged_user.profileImg != '')"
+            :src="$store.state.auth.logged_user.profileImg" />
+          <img
+            v-else
+            src="basic.png" />
         </button>
         <button
           class="text-button"
@@ -82,9 +86,15 @@ export default({
 
 <style lang="scss" scoped>
 header {
+  position:fixed;
+  top:0;
+  overflow: hidden;
+  z-index: 10;
+  background-color: $color-bg;
+
   padding: 20px 5%;
-  border-bottom: 1px solid black;
-  height: 10%;
+
+  height: 5%;
   width: 90%;
 
   display: flex;
@@ -115,9 +125,14 @@ header {
   #buttons{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 300px;
     min-width: 250px;
+
+    > * {
+      margin-right: 20px;
+    }
+    
     button{
       background: none;
       color: inherit;
@@ -129,29 +144,37 @@ header {
       outline: inherit;
     }
     #cart{
+      display: flex;
+      align-items: center;
       color: $color-blue;
       transition: 0.2s;
     }
     #cart:hover{
-      filter: blur(1px);
+      opacity: .7;
     }
     #mypage{
+      display: flex;
+      align-items: center;
+
       img{
+        width: 24px;
+        height: 24px;
         border-radius: 15px;
       }
       transition: 0.2s;
     }
     #mypage:hover{
-      filter: blur(1px);
+      opacity: .7;
     }
     .text-button{
       display: inline-block;
       padding: 5px;
       width: 100px;
+      border-radius: 4px;
       
       background-color: $color-blue;
       color: white;
-      transition: 1s;
+      transition: .5s;
     }
     .text-button:hover{
       border: 1px solid $color-blue;
