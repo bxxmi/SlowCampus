@@ -58,7 +58,7 @@
         </div>
         <RouterLink
           class="btn"
-          to="/afterorder"
+          :to="href"
           @click="[buyProductAll(),resetCart()]">
           구매하기
         </RouterLink>
@@ -96,6 +96,13 @@ export default {
     myAccountsNameIdNumberInfo() {
       return this.$store.getters['account/myAccountsNameIdNumberInfo']
     },
+    href() {
+      if(this.signiture && this.myAccountId){
+        return '/afterorder'
+      }else {
+        return '/order'
+      }
+    }
   },
   methods: {
     resetCart() {
