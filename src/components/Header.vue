@@ -90,7 +90,7 @@ header {
   top:0;
   overflow: hidden;
   z-index: 10;
-  background-color: $color-bg;
+  background-color: $color-footer;
 
   padding: 20px 5%;
 
@@ -146,7 +146,7 @@ header {
     #cart{
       display: flex;
       align-items: center;
-      color: $color-blue;
+      color: $color-primary;
       transition: 0.2s;
     }
     #cart:hover{
@@ -168,18 +168,10 @@ header {
     }
     .text-button{
       display: inline-block;
-      padding: 5px;
-      width: 100px;
-      border-radius: 4px;
-      
-      background-color: $color-blue;
-      color: white;
-      transition: .5s;
-    }
-    .text-button:hover{
-      border: 1px solid $color-blue;
-      background-color: white;
-      color: $color-blue;;
+      @include main-btn($color-white, $color-primary);
+      &:hover{
+      @include main-btn($color-primary, $color-white);
+      }
     }
   }
 }
