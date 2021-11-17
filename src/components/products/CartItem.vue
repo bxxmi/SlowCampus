@@ -11,7 +11,7 @@
         {{ item.title }}
       </div>
       <div class="product-price">
-        <strong>{{ item.price }}원</strong>
+        <strong>{{ item.price ? item.price : 0 }}원</strong>
       </div>
       <button
         type="button"
@@ -53,13 +53,14 @@ export default {
     display: flex;
     justify-content: space-between;
     .product-image{
-      margin-right: 80px;
+      margin-right: 40px;
       img {
         width: 100px;
         height: 100px;
       }
     }
     .product-title {
+      width: 110px;
       font-size: 18px;
       line-height: 100px;
       margin-right: 85px;
