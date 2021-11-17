@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     removeAtCart() {
+      alert('장바구니에서 삭제하시겠습니까?')
       this.$store.commit('product/removeCart',this.item.id)
     }
   }
