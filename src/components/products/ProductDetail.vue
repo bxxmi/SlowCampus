@@ -120,10 +120,11 @@ export default {
     color: #fff;
     border-radius: 8px;
     font-size: 14px;
+    transition: 0.2s;
 
       &:hover {
-    opacity: .5;
-    }
+        opacity: .5;
+      }
     }
 
     .cart {

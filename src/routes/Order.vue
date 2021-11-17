@@ -168,6 +168,7 @@ export default {
     text-decoration: none;
     font-size: 15px;
     border-radius: 4px;
+    transition: 0.2s;
 
     &:hover {
       opacity: .7;
