@@ -250,7 +250,7 @@ body{
       background-color: $color-blue;
       color: white;
       border: 1px $color-blue solid;
-      transition: 1s;
+      transition: .5s;
     }
     button:hover{
       background-color: white;

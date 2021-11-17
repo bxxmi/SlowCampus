@@ -40,7 +40,7 @@ export default {
       const io = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add('visible')
             io.unobserve(entry.target)
             if(this.$store.state.auth.range < this.itemListArray.length){
               count += 1
@@ -52,7 +52,7 @@ export default {
         })
       })
 
-      document.querySelectorAll('.box').forEach((box) => io.observe(box));
+      document.querySelectorAll('.box').forEach((box) => io.observe(box))
     })
   }
 }
