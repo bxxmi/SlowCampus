@@ -42,7 +42,7 @@
     </div>
 
     <RouterLink
-      to="/afterorder"
+      :to="href"
       class="buy-btn"
       @click="buyProduct">
       구매하기
@@ -57,8 +57,9 @@ import authfunc from '~/store/authfunc.js'
 export default {
   data() {
     return {
-      myAccountId: '',
-      signiture: false
+      myAccountId: null,
+      signiture: false,
+      href: '/order'
     }
   },
   computed: {
@@ -74,13 +75,16 @@ export default {
   },
   methods: {
     async buyProduct() {
-      if(this.signiture){
+      if(this.signiture && this.myAccountId){
         await store.dispatch('product/requestOrder',{
           username: store.state.auth.APIheaderObj.username,
           authorization :'Bearer '+ authfunc.getCookie('accessToken'),
           productId: this.productInfo.id,
           accountId: this.myAccountId
         })
+        this.href='/afterorder'
+      } else {
+        alert('계좌번호와 이용약관 동의를 확인해주세요!')
       }
     },
     async loadMyAccount() {
