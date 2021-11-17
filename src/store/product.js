@@ -99,7 +99,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
+          'username': 'adminteam2',
           'masterKey': 'true'
         },
         data: {
@@ -115,7 +115,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
+          'username': 'adminteam2',
           'masterKey': true
         }
       })
@@ -129,7 +129,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
+          'username': 'adminteam2',
           'masterKey': 'true'
         }
       })
@@ -142,7 +142,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2'
+          'username': 'adminteam2'
         }
       })
       commit('assignState', { productInfo: data })
@@ -156,7 +156,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2'
+          'username': 'adminteam2'
         }
       })
       const result = data.filter(name => name.title === productName)
@@ -175,7 +175,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2'
+          'username': 'adminteam2'
         }
       })
       const result = data.filter(name => name.tags === tagName)
@@ -294,7 +294,7 @@ export default {
         headers: {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
-          'username': 'team2',
+          'username': 'adminteam2',
           authorization: `Bearer ${accessToken}`
         },
         data: {
