@@ -104,6 +104,12 @@ export default {
         return this.item.done
       }
     },
+    mounted() {
+      const thumbnail = this.productImage
+      if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
+    },
     methods: {
       async cofirmOrder() {
         await this.$store.dispatch('product/confirmOrder',{
@@ -138,17 +144,9 @@ export default {
       width:100px;}
   }
   .product-about {
+    font-size: $font-size-m;
     .product-title{
-
-    }
-    .product-price{
-
-    }
-    .product-time-paid{
-
-    }
-    .product-id {
-
+      font-size: $font-size-lg;
     }
     .done{
       color: $color-success;
@@ -158,24 +156,25 @@ export default {
     }
   }
   .btn-group{ 
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-  .order-confirm{
-    margin-bottom: 10px;
-    @include order-btn($color-white, $color-primary);
-        &:hover{
-        @include order-btn($color-primary, $color-white);
-        }
-  }
-  .order-cancle{
-    @include order-btn($color-white, $color-primary);
-        &:hover{
-        @include order-btn($color-primary, $color-white);
-        }
+    .order-confirm{
+      margin-bottom: 10px;
+      @include order-btn($color-white, $color-primary);
+          &:hover{
+          @include order-btn($color-primary, $color-white);
+          }
+    }
+    .order-cancle{
+      @include order-btn($color-white, $color-primary);
+          &:hover{
+          @include order-btn($color-primary, $color-white);
+          }
+    }
   }
 }
-}
+
 
 </style>

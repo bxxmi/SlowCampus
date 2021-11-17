@@ -61,15 +61,27 @@ export default {
 .close-box {
   display: flex;
   flex-direction: row;
-
+  margin-bottom: 50px;
   label {
-    display: block;
-  }
-  select {
-    display: block;
-  }
+    line-height: 40px;
+    margin-right: 100px;
+    }
+    select {
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    margin-right: 15px;
+    padding: 0 10px;
+    }
   button {
     display: block;
+    width: 60px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #0D6EFD;
+    border: none;
+    color: white;
+    border-radius: 5px;
   }
 }
 </style>

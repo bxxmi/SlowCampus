@@ -7,12 +7,11 @@
       </div>
     </RouterLink>
     <div id="buttons">     
-      <button id="cart">
+      <RouterLink
+        id="cart"
+        to="/cart">
         <span class="material-icons">shopping_cart</span>
-      </button>
-      <button id="favorite">
-        <span class="material-icons">favorite</span>
-      </button>
+      </RouterLink>
 
       <template v-if="$store.state.auth.logged_in">
         <button
@@ -117,7 +116,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 350px;
+    width: 300px;
+    min-width: 250px;
     button{
       background: none;
       color: inherit;
@@ -130,20 +130,16 @@ header {
     }
     #cart{
       color: $color-blue;
-    }
-    #favorite{
-      color: $color-red;
+      transition: 0.2s;
     }
     #cart:hover{
-      color: $color-lightblue;
-    }
-    #favorite:hover{
-      color: $color-pink;
+      filter: blur(1px);
     }
     #mypage{
       img{
         border-radius: 15px;
       }
+      transition: 0.2s;
     }
     #mypage:hover{
       filter: blur(1px);
@@ -155,6 +151,7 @@ header {
       
       background-color: $color-blue;
       color: white;
+      transition: 1s;
     }
     .text-button:hover{
       border: 1px solid $color-blue;
