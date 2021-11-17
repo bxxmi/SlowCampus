@@ -1,8 +1,8 @@
 <template>
   <MainSlide />
-  <SearchProduct />
-  <SelectTagList />
-  <ProductList />
+  <SearchProduct/>
+  <SelectTagList class='tag'/>
+  <ProductList/>
 </template>
 
 <script>
@@ -17,6 +17,20 @@ export default {
     SearchProduct,
     SelectTagList,
     ProductList
-  }
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+
+  .tag{
+    position: sticky;
+    top: 9%;
+    z-index: 10;
+
+    padding: 10px 0;
+
+    overflow: hidden;
+    background-color: $color-punch;
+  }
+</style>
