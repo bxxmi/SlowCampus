@@ -7,7 +7,8 @@ $color-info: #0dcaf0;
 $color-like: #FE1694;
 
 $color-font: #333;
-$color-bg: #f7f7f7;
+$color-bg: #eaeaea;
+$color-footer: #f7f7f7;
 
 $font-size-sm: 12px;
 $font-size-m: 14px;
@@ -37,20 +38,40 @@ $color-black: #0dcaf0;
 $color-white: #fff;
 
 @mixin main-btn($color, $bgcolor){
-  width: 130px;
-  height: 40px;
-  padding: 10px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-size: $font-size-lg;
   color: $color;
   background-color: $bgcolor;
   border: 1px solid $color-primary;
+  transition: all .7s;
+}
+
+@mixin order-btn($color, $bgcolor){
+  width: 70px;
+  padding: 3px;
+  border-radius: 7px;
+  text-decoration: none;
+  text-align: center;
+  font-size: $font-size-m;
+  color: $color;
+  background-color: $bgcolor;
+  border: 1px solid $color-primary;
+  transition: all .5s;
 }
 
 @mixin confirm-btn{
   width: 50px;
-  height: 25px;
-  padding: 5px;
+  padding:2px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
   color: $color-white;
   background-color: $color-primary;
+  transition: all .5s;
 }
 
 @mixin flex ($content){
