@@ -31,7 +31,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 63vh;
+  height: 66vh;
   
   .after-msg {
     font-size: 50px;

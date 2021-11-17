@@ -121,13 +121,14 @@ a {
 }
 
 .section-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 606px;
+  height: 67vh;
   box-sizing: border-box;
-  padding: 100px 300px;
   section {
     display: flex;
-    min-width: 650px;
     .thumbnail {
       img {
         width: 400px;
@@ -154,17 +155,18 @@ a {
         font-size: 48px;
         font-weight: 700;
         margin-bottom: 30px;
+        text-overflow: ellipsis;
       }
       .product-description {
         color: #444444;
         margin-bottom: 10px;
-        border: 1px solid red;
+        text-overflow: ellipsis;
       }
     }
     .btns-area {
       display: flex;
       position: absolute;
-      bottom: 190px;
+      bottom: 0;
       .btn {
         border: none;
         cursor: pointer;
@@ -184,6 +186,12 @@ a {
         }
       }
     }
+  }
+  .info-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
   }
 }
 </style>

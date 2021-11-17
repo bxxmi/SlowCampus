@@ -32,7 +32,9 @@
           </select>
         </div>
   
-        <div class="signiture">
+        <div
+          class="signiture"
+          @click="checkSign">
           <label for="">이용약관에 동의합니까?</label>
           <input
             v-model="signiture"
@@ -82,7 +84,6 @@ export default {
           productId: this.productInfo.id,
           accountId: this.myAccountId
         })
-        this.href='/afterorder'
       } else {
         alert('계좌번호와 이용약관 동의를 확인해주세요!')
       }
@@ -96,8 +97,12 @@ export default {
           username: this.$store.state.auth.APIheaderObj.username,
           Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         })
-        this.navChoice = 'account'
+      },
+    checkSign() {
+      if(this.myAccountId){
+        this.href='/afterorder'
       }
+    }
   }
 }
 </script>
@@ -185,6 +190,6 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 64vh;
+    height: 66vh;
   }
 </style>
