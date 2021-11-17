@@ -144,6 +144,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~/scss/_variables.scss';
+
 .product {
   position: relative;
   border:none;
@@ -183,15 +185,17 @@ export default {
     .product-title{
       font-size: $font-size-lg;
     }
-    .done{
-      font-size: 10px;
-      color: $color-success;
-    }
-    .cancel{
-      font-size: 10px;
-      color: $color-danger;
-    }
   }
+ }
+ .done{
+    font-size: 10px;
+    color: $color-success;
+  }
+  .cancel{
+    font-size: 10px;
+    color: $color-danger;
+  }
+
   .btn-group{ 
   position: absolute;
   right: 20px;
@@ -213,6 +217,5 @@ export default {
         }
     }
   }
- }
 }
 </style>
