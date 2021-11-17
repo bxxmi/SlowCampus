@@ -33,8 +33,7 @@
         </div>
   
         <div
-          class="signiture"
-          @click="checkSign">
+          class="signiture">
           <label for="">이용약관에 동의합니까?</label>
           <input
             v-model="signiture"
@@ -61,7 +60,6 @@ export default {
     return {
       myAccountId: null,
       signiture: false,
-      href: '/order'
     }
   },
   computed: {
@@ -71,6 +69,13 @@ export default {
     myAccountsNameIdNumberInfo() {
       return this.$store.getters['account/myAccountsNameIdNumberInfo']
     },
+    href() {
+      if(this.signiture && this.myAccountId){
+        return '/afterorder'
+      }else {
+        return '/order'
+      }
+    }
   },
   created() {
     this.loadMyAccount()
@@ -98,12 +103,7 @@ export default {
           Authorization :'Bearer '+ authfunc.getCookie('accessToken'),
         })
       },
-    checkSign() {
-      if(this.myAccountId){
-        this.href='/afterorder'
-      }
-    }
-  }
+  },
 }
 </script>
 
