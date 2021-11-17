@@ -7,27 +7,31 @@
           :src="productInfo.thumbnail"
           alt="thumbnail" />
       </div>
-      <div class="product-info-list">
-        <button
-          class="btn cart"
-          @click="addToCart">
-          장바구니
-        </button>
-        <div class="product-tag">
-          # {{ productInfo.tags }}
+      <div class="info-area">
+        <div class="product-info-list">
+          <div class="product-tag">
+            # {{ productInfo.tags }}
+          </div>
+          <div class="product-title">
+            {{ productInfo.title }}
+          </div>
+          <div class="product-description">
+            {{ productInfo.description }}
+          </div>
         </div>
-        <div class="product-title">
-          {{ productInfo.title }}
+        <div class="btns-area">
+          <RouterLink
+            class="btn buy"
+            to="/order"
+            @click="[storeProductToBuyInfo(),loadAccountInfo()]">
+            구매하기
+          </RouterLink>
+          <button
+            class="btn cart"
+            @click="addToCart">
+            장바구니
+          </button>
         </div>
-        <div class="product-description">
-          {{ productInfo.description }}
-        </div>
-        <RouterLink
-          class="btn buy-btn"
-          to="/order"
-          @click="[storeProductToBuyInfo(),loadAccountInfo()]">
-          구매하기
-        </RouterLink>
       </div>
     </section>
   </div>
@@ -112,85 +116,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .btn {
-    border: none;
-    cursor: pointer;
-    height: 36px;
-    background-color: #0d6efd;
-    color: #fff;
-    border-radius: 8px;
-    font-size: 14px;
+a { 
+  text-decoration: none;
+}
 
-      &:hover {
-    opacity: .5;
-    }
-    }
-
-    .cart {
-    height: 30px;
-    font-size: 13px;
-    margin-bottom: 10px;
-    }
-
-    .buy-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 130px;
-    text-decoration: none;
-    }
-
-    .section-area {
-    width: 100%;
-    height: 606px;
-    box-sizing: border-box;
-    padding: 100px 300px;
-    section {
+.section-area {
+  width: 100%;
+  height: 606px;
+  box-sizing: border-box;
+  padding: 100px 300px;
+  section {
     display: flex;
     min-width: 650px;
     .thumbnail {
-    img {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-    margin-right: 20px;
-    }
+      img {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+        margin-right: 20px;
+      }
     }
     .product-info-list {
-    .product-tag {
-    height: 20px;
-    background-color: #eaeaea;
-    color: #444444;
-    font-weight: 700;
-    line-height: 15px;
-    text-align: center;
-    border-radius: 50px;
-    font-size: 12px;
-    margin-bottom: 20px;
+      .product-tag {
+        width: 50%;
+        height: 25px;
+        background-color: #eaeaea;
+        color: #444444;
+        font-weight: 700;
+        line-height: 23px;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+      .product-title {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      .product-description {
+        color: #444444;
+        margin-bottom: 10px;
+        border: 1px solid red;
+      }
     }
-    .product-title {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 30px;
+    .btns-area {
+      display: flex;
+      position: absolute;
+      bottom: 190px;
+      .btn {
+        border: none;
+        cursor: pointer;
+        width: 120px;
+        height: 40px;
+        background-color: #0d6efd;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 14px;
+          &:hover {
+          opacity: .5;
+        }
+        &.buy {
+          text-align: center;
+          line-height: 40px;
+          margin-right: 30px;
+        }
+      }
     }
-    .product-description {
-    color: #444444;
-    margin-bottom: 30px;
-    }
-    }
-    }
-    }
-
-    .fa-heart {
-    font-size: 24px;
-    }
-
-    .fas.fa-heart {
-    color: #FE1694;
-    }
-
-    .far.fa-heart {
-    color: #eaeaea
-    }
-    </style>
+  }
+}
+</style>
