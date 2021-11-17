@@ -4,7 +4,7 @@ $color-success: #198754;
 $color-danger: #dc3545;
 $color-warning: #ffc107;
 $color-info: #0dcaf0;
-$color-like: #FE1694;
+$color-like: #fe1694;
 
 $color-font: #333;
 $color-bg: #eaeaea;
@@ -20,14 +20,14 @@ $font-weight-normal: 400;
 $font-weight-bold: 700;
 
 $color-blue: #0d6efd;
-$color-lightblue: #18A0FB;
+$color-lightblue: #18a0fb;
 $color-indigo: #6610f2;
 $color-purple: #6f42c1;
-$color-pink: #F699CD;
-$color-rose: #FC94AF;
-$color-coral: #FE7D6A;
-$color-punch: #ffffff;
-$color-red: #E3242B;
+$color-pink: #f699cd;
+$color-rose: #fc94af;
+$color-coral: #fe7d6a;
+$color-punch: #fff;
+$color-red: #e3242b;
 $color-orange: #fd7e14;
 $color-yellow: #ffc107;
 $color-green: #198754;
@@ -37,7 +37,7 @@ $color-grey: #0dcaf0;
 $color-black: #0dcaf0;
 $color-white: #fff;
 
-@mixin main-btn($color, $bgcolor){
+@mixin main-btn($color, $bgcolor) {
   width: 100px;
   padding: 5px;
   border-radius: 10px;
@@ -50,7 +50,7 @@ $color-white: #fff;
   transition: all .7s;
 }
 
-@mixin order-btn($color, $bgcolor){
+@mixin order-btn($color, $bgcolor) {
   width: 70px;
   padding: 3px;
   border-radius: 7px;
@@ -60,23 +60,22 @@ $color-white: #fff;
   color: $color;
   background-color: $bgcolor;
   border: 1px solid $color-primary;
-  transition: all .5s;
+  transition: all .2s;
 }
 
-@mixin confirm-btn{
+@mixin confirm-btn {
   width: 50px;
-  padding:2px;
+  padding: 2px;
   border-radius: 10px;
   text-decoration: none;
   text-align: center;
   color: $color-white;
   background-color: $color-primary;
-  transition: all .5s;
+  transition: all .2s;
 }
 
-@mixin flex ($content){
+@mixin flex ($content) {
   display: flex;
   justify-content: $content;
   align-items: center;
-
 }
