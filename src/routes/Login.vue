@@ -10,14 +10,18 @@
         <input
           v-model="email"
           placeholder="이메일을 입력하세요"
-          type="email" />
+          type="email"
+          required
+          @keyup.enter="logIn" />
       </div>
       <div>
         <p>password</p>
         <input
           v-model="pw"
           placeholder="비밀번호를 입력하세요"
-          type="password" />
+          type="password"
+          required
+          @keyup.enter="logIn" />
       </div>
       <button @click="logIn">
         로그인 하기
@@ -80,6 +84,7 @@ body{
       a{
         text-decoration: none;
         color: $color-pink;
+        margin-left: 10px;
       }
     }
   }
@@ -119,7 +124,8 @@ body{
       background-color: $color-blue;
       color: white;
       border: 1px $color-blue solid;
-      transition: 1s;
+      transition: .5s;
+      cursor: pointer;
     }
     button:hover{
       background-color: white;
