@@ -18,7 +18,7 @@
           id="mypage"
           @click="tomypage">
           <img
-            v-if="($store.state.auth.logged_user.profileImg != '')"
+            v-if="$store.state.auth.logged_user.profileImg"
             :src="$store.state.auth.logged_user.profileImg" />
           <img
             v-else
