@@ -126,8 +126,8 @@ export default {
             //pw
             //암호화
             if(this.new_pw){
-                const enc_newpw = authfunc.encryptPW(this.new_pw)
-                const enc_oldpw = authfunc.encryptPW(this.old_pw)
+                const enc_newpw = authfunc.encryptPW(this.new_pw.trim())
+                const enc_oldpw = authfunc.encryptPW(this.old_pw.trim())
                 if(this.pw_valid){
                     data_obj['newPassword'] = enc_newpw
                     data_obj['oldPassword'] = enc_oldpw
@@ -138,7 +138,7 @@ export default {
             //name
             if(this.name){
                 this.name_valid 
-                ? data_obj['displayName']=this.name
+                ? data_obj['displayName']=this.name.trim()
                 : alert('invalid name')
             }
             //profile
