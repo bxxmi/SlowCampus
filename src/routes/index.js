@@ -10,7 +10,7 @@ import MyAccount from '~/components/myPage/MyAccount'
 import Order from '~/routes/Order'
 import AfterOrder from '~/routes/AfterOrder'
 import ShoppingCart from '~/routes/ShoppingCart'
-import authfunc from '~/store/authfunc'
+import AllSoldList from './AllSoldList'
 
 export default createRouter({
   history: createWebHistory(),
@@ -30,6 +30,10 @@ export default createRouter({
     {
       path: '/productDetail/:id',
       component: ProductDetail,
+    },
+    {
+      path: '/salesList',
+      component: AllSoldList
     },
     {
       path: '/createProduct',

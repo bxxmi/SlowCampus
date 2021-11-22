@@ -19,6 +19,7 @@ export default {
       price: 0
     },
     cart: [],
+    soldProduct: [],
     //에러 메시지 저장
     message: '',
   }),
@@ -123,7 +124,7 @@ export default {
       commit('assignState', { allProduct: data })
     },
     // 관리자 API: 전체 판매 내역
-    async soldProductList() {
+    async soldProductList({ commit }) {
       const { data } = await axios({
         url: 'https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/transactions/all',
         method: 'GET',
@@ -134,6 +135,7 @@ export default {
           'masterKey': 'true'
         }
       })
+      commit('assignState', { soldProduct: data })
     },
     // 공용 API: 단일 제품 상세 조회 (완료)
     async detailProduct({ commit }, itemId) {
