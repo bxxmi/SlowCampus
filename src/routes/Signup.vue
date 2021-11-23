@@ -137,13 +137,13 @@ export default {
     }
 
     //비밀번호 암호화
-    const enc_pw = authfunc.encryptPW(this.pw)
+    const enc_pw = authfunc.encryptPW(this.pw.trim())
 
     //data 객체 생성
     const data_obj = {
-      'email': this.email,
+      'email': this.email.trim(),
       'password' : enc_pw,
-      'displayName' : this.name,
+      'displayName' : this.name.trim(),
     }
     if(this.img_obj.url != ''){
       data_obj['profileImgBase64'] = this.img_obj.url

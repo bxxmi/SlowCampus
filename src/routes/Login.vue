@@ -52,10 +52,10 @@ export default {
 		logIn : async function() {
 
 			//로그인
-			const enc_pw = authfunc.encryptPW(this.pw)
+			const enc_pw = authfunc.encryptPW(this.pw.trim())
 
 			const data_obj = {
-                'email': this.email,
+                'email': this.email.trim(),
                 'password' : enc_pw
 			}
 
