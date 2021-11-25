@@ -1,10 +1,8 @@
 <template>
-  <ul class="sales-list">
-    <SoldItem 
-      v-for="item in soldList"
-      :key="item.detailId" 
-      :item="item" />
-  </ul>
+  <SoldItem 
+    v-for="item in soldList"
+    :key="item.detailId" 
+    :item="item" />
 </template>
 
 <script>
