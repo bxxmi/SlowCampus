@@ -1,16 +1,22 @@
 <template>
-  <div class="sales-area">
-    <h1>상품 판매 내역입니다.</h1>
+  <div class="top">
+    <AdminNav /> 
+    <div class="bottom">
+      <div class="sales-area">
+        <SoldList />
+      </div>
+    </div>
   </div>
-  <SoldList />
 </template>
 
 <script>
 import SoldList from '~/components/admin/SoldList'
+import AdminNav from '~/components/admin/AdminNav'
 
 export default {
   components: {
-    SoldList
+    SoldList,
+    AdminNav
   }
 }
 </script>

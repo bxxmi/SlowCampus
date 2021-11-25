@@ -1,10 +1,8 @@
 <template>
-  <ul class="sales-list">
-    <SoldItem 
-      v-for="item in soldList"
-      :key="item.id" 
-      :item="item" />
-  </ul>
+  <SoldItem 
+    v-for="item in soldList"
+    :key="item.detailId" 
+    :item="item" />
 </template>
 
 <script>
@@ -21,6 +19,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('product/soldProductList')
+    console.log(this.soldList)
   }  
 }
 </script>

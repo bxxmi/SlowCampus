@@ -132,7 +132,7 @@ export default {
           'content-type': 'application/json',
           'apikey': 'FcKdtJs202110',
           'username': 'adminteam2',
-          'masterKey': 'true'
+          'masterKey': true
         }
       })
       commit('assignState', { soldProduct: data })
