@@ -3,7 +3,7 @@ import Home from './Home'
 import Login from './Login'
 import Signup from './Signup'
 import ProductDetail from '~/components/products/ProductDetail'
-import CreateProduct from './CreateProduct'
+import CreateProduct from '~/components/admin/CreateProduct'
 import MyInfo from '~/components/myPage/MyInfo'
 import MyOrder from '~/components/myPage/MyOrder'
 import MyAccount from '~/components/myPage/MyAccount'
@@ -17,15 +17,15 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
     },
     {
       path: '/signup',
-      component: Signup
+      component: Signup,
     },
     {
       path: '/login',
-      component: Login
+      component: Login,
     },
     {
       path: '/productDetail/:id',
@@ -33,35 +33,35 @@ export default createRouter({
     },
     {
       path: '/salesList',
-      component: AllSoldList
+      component: AllSoldList,
     },
     {
       path: '/createProduct',
-      component: CreateProduct
+      component: CreateProduct,
     },
     {
       path: '/myinfo',
-      component: MyInfo
+      component: MyInfo,
     },
     {
       path: '/myorder',
-      component: MyOrder
+      component: MyOrder,
     },
     {
       path: '/myaccount',
-      component: MyAccount
+      component: MyAccount,
     },
     {
       path: '/order',
-      component: Order
+      component: Order,
     },
     {
       path: '/afterorder',
-      component: AfterOrder
+      component: AfterOrder,
     },
     {
       path: '/cart',
-      component: ShoppingCart
-    }
-  ]
+      component: ShoppingCart,
+    },
+  ],
 })

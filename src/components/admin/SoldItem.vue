@@ -24,14 +24,14 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => ({})
-    }
-  }
+      default: () => ({}),
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~/scss/_variables.scss';
+@import "~/scss/_variables.scss";
 
 .product {
   border-radius: 15px;
@@ -61,7 +61,7 @@ export default {
       font-weight: 700;
       margin-right: 5px;
     }
-    .product-title{
+    .product-title {
       font-size: $font-size-lg;
       margin-bottom: 20px;
     }
