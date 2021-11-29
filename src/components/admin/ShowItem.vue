@@ -1,31 +1,53 @@
 <template>
+  <EditProductModal
+    v-if="isModalView"
+    @close-modal="isModalView = false">
+    <ModalContent :item="item" />
+  </EditProductModal>
   <div class="product">
     <div class="product-area">
       <div class="product-image">
         <img
           ref="image"
-          :src="item.product.thumbnail"
+          :src="item.thumbnail"
           alt="productImage" />
       </div>
       <div class="product-about">
         <div class="product-title">
-          <h1>
-            {{ item.product.title }}
+          <h1 @click="isModalView = true">
+            {{ item.title }}
           </h1>
         </div>
-        <span class="product-time-paid">판매 일자: {{ item.timePaid }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import EditProductModal from './EditProductModal.vue'
+import ModalContent from './ModalContent.vue'
+
 export default {
+  components: {
+    EditProductModal,
+    ModalContent
+  },
   props: {
     item: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
+  },
+  data() {
+    return {
+      isModalView: false
+    }
+  },
+  mounted() {
+    const thumbnail = this.item.thumbnail
+    if (!thumbnail) {
+      this.$refs.image.src = 'https://image.pngaaa.com/465/115465-middle.png'
+    }
   }
 }
 </script>
@@ -55,20 +77,16 @@ export default {
     }
   }
   .product-about {
+    display: flex;
+    align-items: center;
     .product-title {
-      display: flex;
-      align-items: center;
       font-weight: 700;
       margin-right: 5px;
       font-size: $font-size-lg;
-      margin-bottom: 20px;
       cursor: pointer;
       &:hover {
         text-decoration: underline;
       }
-    }
-    .product-time-paid {
-      font-size: $font-size-m;
     }
   }
 }

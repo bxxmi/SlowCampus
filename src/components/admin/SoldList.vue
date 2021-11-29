@@ -19,7 +19,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('product/soldProductList')
-    console.log(this.soldList)
   }  
 }
 </script>

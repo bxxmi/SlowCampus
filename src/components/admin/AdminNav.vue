@@ -10,6 +10,11 @@
       to="/createProduct">
       제품 추가
     </RouterLink>
+    <RouterLink
+      class="btn"
+      to="/itemList">
+      제품 목록
+    </RouterLink>
   </nav>
   <div class="border"></div>
 </template>

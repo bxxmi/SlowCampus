@@ -11,6 +11,7 @@ import Order from '~/routes/Order'
 import AfterOrder from '~/routes/AfterOrder'
 import ShoppingCart from '~/routes/ShoppingCart'
 import AllSoldList from './AllSoldList'
+import ShowItemAll from '~/components/admin/ShowItemAll'
 
 export default createRouter({
   history: createWebHistory(),
@@ -38,6 +39,10 @@ export default createRouter({
     {
       path: '/createProduct',
       component: CreateProduct,
+    },
+    {
+      path: '/itemList',
+      component: ShowItemAll,
     },
     {
       path: '/myinfo',
