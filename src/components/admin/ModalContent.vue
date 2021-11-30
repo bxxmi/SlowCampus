@@ -120,18 +120,34 @@ export default {
 .card-area {
   width: 450px;
   margin: 65px auto;
+  position: relative;
   .item-info {
     width: 350px;
     margin: 0 auto;
-    border: 1px solid red;
     .item {
-      margin-bottom: 25px;
+      margin-bottom: 18px;
       font-size: 16px;
     }
     .title {
-      margin-right: 20px;
+      margin: 0 20px 5px 0;
       font-weight: 700;
     }
+    input {
+      width: 100%;
+      height: 25px;
+    }
+  }
+  button {
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    border: 0;
+    color: white;
+    background-color: $color-primary;
+    position: absolute;
+    right: 50px;
+    bottom: -30px;
+    cursor: pointer;
   }
 }
 </style>
