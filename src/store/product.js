@@ -94,9 +94,9 @@ export default {
       alert('제품 추가 완료')
     },
     // 관리자 API: 제품 수정
-    async editProduct(itemId) {
+    async editProduct({ commit }, product) {
       const { data } = await axios({
-        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${itemId}`,
+        url: `https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${product[0].id}`,
         method: 'PUT',
         headers: {
           'content-type': 'application/json',
@@ -105,9 +105,16 @@ export default {
           'masterKey': 'true'
         },
         data: {
-          'price': 2000
+          'title': product[0].title,
+          'price': product[0].price,
+          'description': product[0].description,
+          'tags': product[0].tags,
+          'thumbnailBase64': product[0].thumbnail,
+          'photoBase64': product[0].photo,
         }
       })
+      commit('addProduct', data)
+      alert('수정되었습니다.')
     },
     // 관리자 API: 전체 제품 조회 (완료)
     async getAllProduct({ commit }) {

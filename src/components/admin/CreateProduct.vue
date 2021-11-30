@@ -23,7 +23,7 @@
           v-model="productTag"
           type="text"
           placeholder="제품을 대표할 태그를 작성해주세요." />
-        <label>상품 썸네일</label>
+        <label>썸네일</label>
         <input
           type="file"
           @change="selectThumbnail" />

@@ -1,9 +1,9 @@
 <template>
   <div class="product-list">
     <ProductItem
-      class='box'
-      v-for="item in itemListArray.slice(0,this.$store.state.auth.range)"
+      v-for="item in itemListArray.slice(0,$store.state.auth.range)"
       :key="item.detailId"
+      class="box"
       :item="item" />
   </div>
 </template>
