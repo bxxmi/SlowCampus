@@ -4,3 +4,16 @@
 
 > 개발 기간 : 2021/11/10 ~ 2021/11/17 <br />
 > 개발 인원 : 4명
+
+🔗 배포 주소 : https://slowcampus.netlify.app/
+
+🔗 프로젝트 관리 노션 : https://unequaled-yuzu-fab.notion.site/a2073c64317f47279bc84de3f824e7c7
+
+위 노션에 프로젝트 구조 및 전반적인 내용을 확인하실 수 있습니다.
+
+### 설치 및 실행 방법
+
+```
+$ npm i
+$ npm run dev
+```
